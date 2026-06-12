@@ -1,0 +1,4208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 FIFA 世界杯观赛指南</title>
+<style>
+  :root {
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-card: #1a2235;
+    --bg-card-hover: #1f2a40;
+    --accent-gold: #d4a853;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    --accent-purple: #8b5cf6;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: #2a3550;
+    --group-a: #e74c3c;
+    --group-b: #3498db;
+    --group-c: #2ecc71;
+    --group-d: #f39c12;
+    --group-e: #9b59b6;
+    --group-f: #1abc9c;
+    --group-g: #e67e22;
+    --group-h: #2980b9;
+    --group-i: #c0392b;
+    --group-j: #27ae60;
+    --group-k: #8e44ad;
+    --group-l: #16a085;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* Hero Section */
+  .hero {
+    position: relative;
+    padding: 60px 20px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a1a3e 50%, #0a0e1a 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(212,168,83,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(59,130,246,0.08) 0%, transparent 50%);
+    animation: heroGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes heroGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(5deg); }
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block;
+    padding: 6px 20px;
+    border: 1px solid var(--accent-gold);
+    border-radius: 20px;
+    color: var(--accent-gold);
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #d4a853, #f5d98a, #d4a853);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+  }
+  .hero .subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+  }
+  .hero .hosts {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+  }
+  .hero .host-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+  }
+  .hero .host-flag { font-size: 1.5rem; }
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .hero-meta .meta-item {
+    text-align: center;
+  }
+  .hero-meta .meta-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+  }
+  .hero-meta .meta-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* Countdown */
+  .hero-countdown {
+    margin-bottom: 24px;
+  }
+  .hero-countdown-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+  .hero-countdown-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .hero-cd-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 64px;
+  }
+  .hero-cd-num {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #d4a853, #f5d98a, #d4a853);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+  }
+  .hero-cd-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+  .hero-cd-sep {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    opacity: 0.4;
+    align-self: flex-start;
+    line-height: 1.1;
+    padding-top: 2px;
+  }
+  .hero-cd-done {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--accent-green);
+  }
+
+  /* Navigation */
+  .nav-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 26, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 0 20px;
+    position: relative;
+  }
+  .nav-tabs-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .nav-tabs-inner {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+  .nav-tabs-inner::-webkit-scrollbar { display: none; }
+  .nav-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: rgba(10, 14, 26, 0.95);
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 10;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    backdrop-filter: blur(10px);
+  }
+  .nav-scroll-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+  .nav-scroll-btn.visible { display: flex; }
+  .nav-scroll-btn.left { left: -8px; }
+  .nav-scroll-btn.right { right: -8px; }
+  .nav-fade-left,
+  .nav-fade-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .nav-fade-left {
+    left: 0;
+    background: linear-gradient(to right, rgba(10,14,26,0.95), transparent);
+  }
+  .nav-fade-right {
+    right: 0;
+    background: linear-gradient(to left, rgba(10,14,26,0.95), transparent);
+  }
+  .nav-fade-left.visible,
+  .nav-fade-right.visible { opacity: 1; }
+  .nav-tab {
+    padding: 16px 24px;
+    color: var(--text-muted);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.3s;
+    background: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    flex-shrink: 0;
+  }
+  .nav-tab:hover { color: var(--text-primary); }
+  .nav-tab.active {
+    color: var(--accent-gold);
+    border-bottom-color: var(--accent-gold);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px;
+  }
+
+  /* Section */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+  }
+  .section-desc {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+  }
+
+  /* Groups Grid */
+  .groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .group-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .group-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .group-header {
+    padding: 14px 18px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .group-header .group-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .group-teams {
+    padding: 8px 18px 16px;
+  }
+  .team-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .team-row:last-child { border-bottom: none; }
+  .team-flag { font-size: 1.4rem; }
+  .team-name { font-size: 0.95rem; font-weight: 500; }
+  .team-conf {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+  }
+
+  /* Match Schedule */
+  .schedule-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--accent-gold); color: var(--text-primary); }
+  .filter-btn.active {
+    background: var(--accent-gold);
+    color: #000;
+    border-color: var(--accent-gold);
+    font-weight: 600;
+  }
+
+  .matchday {
+    margin-bottom: 30px;
+  }
+  .matchday-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .matchday-date {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+  }
+  .matchday-count {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 3px 10px;
+    background: rgba(6,182,212,0.1);
+    border-radius: 10px;
+  }
+
+  .matches-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px;
+  }
+  .match-card {
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    gap: 14px;
+    transition: all 0.2s;
+  }
+  .match-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(212,168,83,0.3);
+  }
+  .match-time {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    min-width: 52px;
+    text-align: center;
+  }
+  .match-teams {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+  .match-team {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .match-team .flag { font-size: 1.1rem; }
+  .match-vs {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 2px 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+  }
+  .match-venue {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    min-width: 60px;
+    text-align: right;
+  }
+  .match-group-tag {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* Knockout Section */
+  .knockout-round {
+    margin-bottom: 40px;
+  }
+  .knockout-round-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .knockout-round-title .round-icon {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .knockout-matches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 10px;
+  }
+  .ko-match {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    gap: 12px;
+    transition: all 0.2s;
+  }
+  .ko-match:hover {
+    background: var(--bg-card-hover);
+  }
+  .ko-match-num {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    min-width: 24px;
+  }
+  .ko-match-time {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    min-width: 48px;
+  }
+  .ko-match-teams {
+    flex: 1;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .ko-match-venue {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent-gold), var(--accent-blue), var(--accent-cyan));
+  }
+  .timeline-item {
+    position: relative;
+    padding: 12px 20px 12px 50px;
+    margin-bottom: 10px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 20px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    border: 3px solid var(--bg-primary);
+  }
+  .timeline-date {
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    font-weight: 600;
+  }
+  .timeline-text {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .timeline-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  /* Format Info */
+  .format-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  .format-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+  }
+  .format-card .format-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .format-card .format-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: 4px;
+  }
+  .format-card .format-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  /* Rules Section */
+  .rules-box {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    margin-top: 20px;
+  }
+  .rules-box h3 {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    color: var(--accent-gold);
+  }
+  .rules-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .rules-box li {
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+  .rules-box li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-gold);
+  }
+
+  /* Scroll to top */
+  .scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    box-shadow: 0 4px 15px rgba(212,168,83,0.3);
+  }
+  .scroll-top.show { display: flex; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero { padding: 40px 16px 30px; }
+    .hero-meta { gap: 20px; }
+    .groups-grid { grid-template-columns: 1fr; }
+    .matches-list { grid-template-columns: 1fr; }
+    .knockout-matches { grid-template-columns: 1fr; }
+    .match-venue { display: none; }
+    .nav-tab { padding: 14px 16px; font-size: 14px; }
+  }
+
+  /* Group color helpers */
+  .bg-group-a { background: var(--group-a); }
+  .bg-group-b { background: var(--group-b); }
+  .bg-group-c { background: var(--group-c); }
+  .bg-group-d { background: var(--group-d); }
+  .bg-group-e { background: var(--group-e); }
+  .bg-group-f { background: var(--group-f); }
+  .bg-group-g { background: var(--group-g); }
+  .bg-group-h { background: var(--group-h); }
+  .bg-group-i { background: var(--group-i); }
+  .bg-group-j { background: var(--group-j); }
+  .bg-group-k { background: var(--group-k); }
+  .bg-group-l { background: var(--group-l); }
+
+  /* ===== Prediction Game ===== */
+  .pred-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 32px;
+  }
+  .pred-step {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+  .pred-step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: 2px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .pred-step-circle.active {
+    border-color: var(--accent-gold);
+    background: var(--accent-gold);
+    color: #000;
+  }
+  .pred-step-circle.done {
+    border-color: var(--accent-green);
+    background: var(--accent-green);
+    color: #fff;
+  }
+  .pred-step-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .pred-step-label.active { color: var(--accent-gold); font-weight: 600; }
+  .pred-step-label.done { color: var(--accent-green); }
+  .pred-step-wrap { display: flex; flex-direction: column; align-items: center; }
+  .pred-step-line {
+    width: 60px;
+    height: 2px;
+    background: var(--border-color);
+    margin-bottom: 18px;
+  }
+  .pred-step-line.done { background: var(--accent-green); }
+
+  /* Group ranking cards */
+  .pred-groups-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .pred-group-card {
+    background: var(--bg-card);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+  .pred-group-title {
+    padding: 10px 14px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .pred-group-body { padding: 4px 0; }
+  .pred-rank-row {
+    display: flex;
+    align-items: center;
+    padding: 8px 14px;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.15s;
+    user-select: none;
+  }
+  .pred-rank-row:hover { background: rgba(255,255,255,0.03); }
+  .pred-rank-num {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .pred-rank-num.r1 { background: var(--accent-green); }
+  .pred-rank-num.r2 { background: var(--accent-blue); }
+  .pred-rank-num.r3 { background: #f59e0b; }
+  .pred-rank-num.r4 { background: var(--text-muted); }
+  .pred-rank-team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    font-size: 0.9rem;
+  }
+  .pred-rank-arrows {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .pred-rank-arrows button {
+    width: 22px;
+    height: 16px;
+    border: none;
+    background: rgba(255,255,255,0.05);
+    color: var(--text-muted);
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+  .pred-rank-arrows button:hover { background: rgba(255,255,255,0.12); color: var(--text-primary); }
+  .pred-rank-badge {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .badge-advance { background: rgba(16,185,129,0.15); color: var(--accent-green); }
+  .badge-third { background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .badge-out { background: rgba(100,116,139,0.15); color: var(--text-muted); }
+
+  /* Third place selection */
+  .third-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .third-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .third-card:hover { border-color: rgba(212,168,83,0.4); }
+  .third-card.selected {
+    border-color: var(--accent-green);
+    background: rgba(16,185,129,0.08);
+  }
+  .third-card .check-box {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: transparent;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .third-card.selected .check-box {
+    border-color: var(--accent-green);
+    background: var(--accent-green);
+    color: #fff;
+  }
+  .third-card .third-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  /* Knockout prediction */
+  .ko-pred-round {
+    margin-bottom: 32px;
+  }
+  .ko-pred-round-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ko-pred-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 10px;
+  }
+  .ko-pred-match {
+    display: flex;
+    align-items: stretch;
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+  }
+  .ko-pred-team {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border: 2px solid transparent;
+    user-select: none;
+  }
+  .ko-pred-team:hover:not(.locked) { background: rgba(255,255,255,0.03); }
+  .ko-pred-team.winner {
+    background: rgba(16,185,129,0.1);
+    border-color: var(--accent-green);
+    font-weight: 700;
+  }
+  .ko-pred-team.loser {
+    opacity: 0.4;
+  }
+  .ko-pred-team.locked {
+    cursor: default;
+    opacity: 0.35;
+  }
+  .ko-pred-team .team-flag { font-size: 1.1rem; }
+  .ko-pred-vs {
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+
+  /* Results */
+  .result-trophy {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 30px;
+  }
+  .result-trophy .trophy-icon { font-size: 4rem; margin-bottom: 10px; }
+  .result-trophy .champion-name {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #d4a853, #f5d98a, #d4a853);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .result-trophy .champion-flag { font-size: 2.5rem; }
+  .result-section {
+    margin-bottom: 24px;
+  }
+  .result-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    padding-left: 12px;
+    border-left: 3px solid var(--accent-gold);
+  }
+  .result-teams {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .result-team-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--bg-card);
+    border-radius: 20px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    border: 1px solid var(--border-color);
+  }
+
+  /* Action buttons */
+  .pred-actions {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+  .pred-btn {
+    padding: 12px 32px;
+    border-radius: 10px;
+    border: none;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .pred-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .pred-btn-primary {
+    background: var(--accent-gold);
+    color: #000;
+  }
+  .pred-btn-primary:hover:not(:disabled) { background: #e0b45e; }
+  .pred-btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+  }
+  .pred-btn-secondary:hover:not(:disabled) { border-color: var(--accent-gold); color: var(--text-primary); }
+  .pred-btn-danger {
+    background: transparent;
+    color: var(--accent-red);
+    border: 1px solid rgba(239,68,68,0.3);
+  }
+  .pred-btn-danger:hover:not(:disabled) { background: rgba(239,68,68,0.1); }
+
+  .pred-summary {
+    text-align: center;
+    padding: 12px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+  .pred-summary strong { color: var(--accent-gold); }
+
+  @media (max-width: 768px) {
+    .pred-groups-grid { grid-template-columns: 1fr; }
+    .third-grid { grid-template-columns: 1fr; }
+    .ko-pred-grid { grid-template-columns: 1fr; }
+    .pred-step-line { width: 30px; }
+    .pred-step-circle { width: 34px; height: 34px; font-size: 0.8rem; }
+  }
+
+  /* Squad Section */
+  .squad-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .squad-team-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin-bottom: 30px;
+  }
+  .squad-team-header {
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .squad-team-flag { font-size: 3rem; }
+  .squad-team-info { flex: 1; min-width: 200px; }
+  .squad-team-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
+  .squad-team-meta {
+    display: flex;
+    gap: 20px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+  .squad-meta-item {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+  .squad-meta-item strong {
+    color: var(--accent-gold);
+  }
+
+  /* Football Pitch */
+  .pitch-container {
+    padding: 20px;
+  }
+  .pitch {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    aspect-ratio: 68 / 105;
+    background: linear-gradient(180deg, #1a5e1a 0%, #2d8c2d 10%, #1a5e1a 20%, #2d8c2d 30%, #1a5e1a 40%, #2d8c2d 50%, #1a5e1a 60%, #2d8c2d 70%, #1a5e1a 80%, #2d8c2d 90%, #1a5e1a 100%);
+    border-radius: 8px;
+    border: 3px solid rgba(255,255,255,0.6);
+    overflow: hidden;
+  }
+  .pitch::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: rgba(255,255,255,0.5);
+    transform: translateY(-50%);
+  }
+  .pitch::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .pitch-box-top, .pitch-box-bottom {
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    height: 15%;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .pitch-box-top { top: 0; border-top: none; }
+  .pitch-box-bottom { bottom: 0; border-bottom: none; }
+  .pitch-box-small-top, .pitch-box-small-bottom {
+    position: absolute;
+    left: 32%;
+    right: 32%;
+    height: 6%;
+    border: 2px solid rgba(255,255,255,0.4);
+  }
+  .pitch-box-small-top { top: 0; border-top: none; }
+  .pitch-box-small-bottom { bottom: 0; border-bottom: none; }
+
+  .pitch-player {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: default;
+    z-index: 2;
+  }
+  .pitch-player-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 2px solid rgba(255,255,255,0.8);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  }
+  .pitch-player-dot.gk {
+    background: #f59e0b;
+    border-color: #fbbf24;
+  }
+  .pitch-player-name {
+    font-size: 0.65rem;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 3px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    white-space: nowrap;
+  }
+
+  /* Squad List */
+  .squad-list-section {
+    padding: 0 28px 28px;
+  }
+  .squad-list-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .squad-position-group {
+    margin-bottom: 20px;
+  }
+  .squad-position-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    padding: 4px 12px;
+    background: rgba(6,182,212,0.1);
+    border-radius: 6px;
+    display: inline-block;
+  }
+  .squad-players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .squad-player-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+  }
+  .squad-player-row:hover {
+    background: rgba(255,255,255,0.06);
+    border-color: var(--border-color);
+  }
+  .squad-player-row.starter {
+    border-left: 3px solid var(--accent-gold);
+  }
+  .squad-player-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .squad-player-row.starter .squad-player-num {
+    background: rgba(212,168,83,0.15);
+    color: var(--accent-gold);
+  }
+  .squad-player-details { flex: 1; min-width: 0; }
+  .squad-player-pname {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .squad-player-club {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .squad-player-pos {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .pos-gk { background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .pos-df { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .pos-mf { background: rgba(16,185,129,0.15); color: #10b981; }
+  .pos-fw { background: rgba(239,68,68,0.15); color: #ef4444; }
+
+  .squad-player-value {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background: rgba(212,168,83,0.1);
+    color: var(--accent-gold);
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .squad-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+  }
+  .squad-empty-icon { font-size: 3rem; margin-bottom: 16px; }
+
+  @media (max-width: 768px) {
+    .squad-team-header { padding: 16px 18px; gap: 14px; }
+    .squad-team-flag { font-size: 2.2rem; }
+    .squad-team-name { font-size: 1.2rem; }
+    .squad-players-grid { grid-template-columns: 1fr; }
+    .pitch-player-dot { width: 30px; height: 30px; font-size: 0.65rem; }
+    .pitch-player-name { font-size: 0.55rem; }
+    .pitch-container { padding: 10px; }
+    .squad-list-section { padding: 0 18px 18px; }
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 40px;
+  }
+
+  /* Full Schedule Section */
+  .fullschedule-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .fullschedule-search-wrap {
+    margin-bottom: 24px;
+  }
+  .fullschedule-search {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .fullschedule-search:focus {
+    border-color: var(--accent-gold);
+  }
+  .fullschedule-search::placeholder {
+    color: var(--text-muted);
+  }
+  .fs-day {
+    margin-bottom: 28px;
+  }
+  .fs-day-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .fs-day-date {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+  }
+  .fs-day-count {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    padding: 3px 10px;
+    background: rgba(6,182,212,0.1);
+    border-radius: 10px;
+  }
+  .fs-match {
+    display: grid;
+    grid-template-columns: 72px 80px 1fr 120px;
+    align-items: center;
+    gap: 0;
+    padding: 12px 16px;
+    margin-bottom: 4px;
+    background: var(--bg-card);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s;
+  }
+  .fs-match:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(212,168,83,0.2);
+  }
+  .fs-match-time {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+  }
+  .fs-match-stage {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    text-align: center;
+    color: #fff;
+  }
+  .fs-match-teams {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 12px;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .fs-match-team {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .fs-match-vs {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .fs-match-venue {
+    text-align: right;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+  @media (max-width: 768px) {
+    .fs-match {
+      grid-template-columns: 56px 60px 1fr;
+      gap: 4px;
+      padding: 10px 12px;
+    }
+    .fs-match-venue {
+      display: none;
+    }
+    .fs-match-stage {
+      font-size: 0.6rem;
+      padding: 2px 5px;
+    }
+    .fs-match-teams {
+      font-size: 0.85rem;
+      gap: 6px;
+      padding: 0 6px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">FIFA WORLD CUP 2026</div>
+    <h1>2026 FIFA 世界杯观赛指南</h1>
+    <p class="subtitle">美加墨世界杯 · 历史首届48队参赛</p>
+    <div class="hero-countdown" id="hero-countdown"></div>
+    <div class="hosts">
+      <div class="host-item"><span class="host-flag">🇺🇸</span> 美国</div>
+      <div class="host-item"><span class="host-flag">🇨🇦</span> 加拿大</div>
+      <div class="host-item"><span class="host-flag">🇲🇽</span> 墨西哥</div>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-value">48</div>
+        <div class="meta-label">参赛球队</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-value">12</div>
+        <div class="meta-label">小组</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-value">104</div>
+        <div class="meta-label">总场次</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-value">16</div>
+        <div class="meta-label">举办城市</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Navigation -->
+<nav class="nav-tabs">
+  <div class="nav-tabs-wrap">
+    <div class="nav-fade-left" id="navFadeLeft"></div>
+    <div class="nav-fade-right" id="navFadeRight"></div>
+    <button class="nav-scroll-btn left" id="navScrollLeft" onclick="scrollNav(-200)">‹</button>
+    <div class="nav-tabs-inner" id="navTabsInner">
+      <button class="nav-tab active" data-tab="groups">小组分组</button>
+      <button class="nav-tab" data-tab="schedule">小组赛程</button>
+      <button class="nav-tab" data-tab="knockout">淘汰赛</button>
+      <button class="nav-tab" data-tab="timeline">赛程总览</button>
+      <button class="nav-tab" data-tab="fullschedule">比赛时间</button>
+      <button class="nav-tab" data-tab="format">赛制说明</button>
+      <button class="nav-tab" data-tab="squad">球队阵容</button>
+      <button class="nav-tab" data-tab="prediction">🏆 预测竞猜</button>
+    </div>
+    <button class="nav-scroll-btn right" id="navScrollRight" onclick="scrollNav(200)">›</button>
+  </div>
+</nav>
+
+<div class="container">
+
+<!-- ===================== 小组分组 ===================== -->
+<section class="section active" id="section-groups">
+  <h2 class="section-title">小组分组</h2>
+  <p class="section-desc">48支球队分为12个小组，每组4支球队，小组前2名及8个最佳第3名晋级32强</p>
+  <div class="groups-grid" id="groups-grid"></div>
+</section>
+
+<!-- ===================== 小组赛程 ===================== -->
+<section class="section" id="section-schedule">
+  <h2 class="section-title">小组赛程</h2>
+  <p class="section-desc">共72场小组赛，6月12日至6月28日（北京时间）</p>
+  <div class="schedule-filters" id="schedule-filters"></div>
+  <div id="schedule-content"></div>
+</section>
+
+<!-- ===================== 淘汰赛 ===================== -->
+<section class="section" id="section-knockout">
+  <h2 class="section-title">淘汰赛</h2>
+  <p class="section-desc">32强淘汰赛从6月29日持续至7月20日决赛（北京时间）</p>
+  <div id="knockout-content"></div>
+</section>
+
+<!-- ===================== 赛程总览 ===================== -->
+<section class="section" id="section-timeline">
+  <h2 class="section-title">赛程总览</h2>
+  <p class="section-desc">从揭幕战到决赛，39天足球盛宴</p>
+  <div class="timeline" id="timeline-content"></div>
+</section>
+
+<!-- ===================== 比赛时间列表 ===================== -->
+<section class="section" id="section-fullschedule">
+  <h2 class="section-title">比赛时间列表</h2>
+  <p class="section-desc">全部104场比赛，按日期排列，所有时间均为北京时间（UTC+8）</p>
+  <div class="fullschedule-filters" id="fullschedule-filters"></div>
+  <div class="fullschedule-search-wrap">
+    <input type="text" class="fullschedule-search" id="fullschedule-search" placeholder="🔍 搜索球队名称...">
+  </div>
+  <div id="fullschedule-content"></div>
+</section>
+
+<!-- ===================== 赛制说明 ===================== -->
+<section class="section" id="section-format">
+  <h2 class="section-title">赛制说明</h2>
+  <p class="section-desc">2026年世界杯首次采用48队赛制</p>
+  <div class="format-grid">
+    <div class="format-card">
+      <div class="format-icon">🏆</div>
+      <div class="format-value">48队</div>
+      <div class="format-label">参赛球队数量</div>
+    </div>
+    <div class="format-card">
+      <div class="format-icon">📋</div>
+      <div class="format-value">12组</div>
+      <div class="format-label">每组4支球队</div>
+    </div>
+    <div class="format-card">
+      <div class="format-icon">⚽</div>
+      <div class="format-value">104场</div>
+      <div class="format-label">比赛总场次</div>
+    </div>
+    <div class="format-card">
+      <div class="format-icon">🏟️</div>
+      <div class="format-value">16座</div>
+      <div class="format-label">举办城市/场馆</div>
+    </div>
+    <div class="format-card">
+      <div class="format-icon">📅</div>
+      <div class="format-value">39天</div>
+      <div class="format-label">赛事持续时长</div>
+    </div>
+    <div class="format-card">
+      <div class="format-icon">🚀</div>
+      <div class="format-value">32强</div>
+      <div class="format-label">淘汰赛参赛队伍</div>
+    </div>
+  </div>
+  <div class="rules-box">
+    <h3>小组赛晋级规则</h3>
+    <ul>
+      <li>每个小组4支球队，进行单循环赛（每队3场）</li>
+      <li>胜一场得3分，平一场得1分，负一场得0分</li>
+      <li>每个小组前2名直接晋级32强淘汰赛</li>
+      <li>12个小组第3名中，成绩最好的8支球队同样晋级</li>
+      <li>第3名排名依据：积分→净胜球→进球数→公平竞赛分</li>
+    </ul>
+  </div>
+  <div class="rules-box">
+    <h3>淘汰赛规则</h3>
+    <ul>
+      <li>32强淘汰赛（1/16决赛）→ 16强（1/8决赛）→ 8强（1/4决赛）→ 半决赛 → 决赛</li>
+      <li>淘汰赛常规时间打平则进行30分钟加时赛</li>
+      <li>加时赛仍平则通过点球大战决出胜负</li>
+      <li>半决赛负者进行季军争夺战</li>
+      <li>决赛于2026年7月19日（当地时间）在纽约大都会人寿体育场举行</li>
+    </ul>
+  </div>
+  <div class="rules-box">
+    <h3>本届赛事亮点</h3>
+    <ul>
+      <li>历史上首次由三个国家联合主办世界杯</li>
+      <li>历史上首次有48支球队参加世界杯决赛圈</li>
+      <li>首次新增1/16决赛轮次（原为16强起步）</li>
+      <li>总比赛场次从64场增加至104场</li>
+      <li>揭幕战在墨西哥城阿兹特克体育场举行，决赛在纽约大都会人寿体育场举行</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== 球队阵容 ===================== -->
+<section class="section" id="section-squad">
+  <h2 class="section-title">球队阵容</h2>
+  <p class="section-desc">查看每支国家队的球员名单与最可能的首发阵容</p>
+  <div class="squad-filters" id="squad-filters"></div>
+  <div id="squad-content"></div>
+</section>
+
+<!-- ===================== 预测竞猜 ===================== -->
+<section class="section" id="section-prediction">
+  <h2 class="section-title">预测竞猜</h2>
+  <p class="section-desc">预测小组排名和淘汰赛对阵，选出你心中的冠军!</p>
+
+  <!-- Progress Steps -->
+  <div class="pred-progress" id="pred-progress"></div>
+
+  <!-- Step Content -->
+  <div id="pred-step-content"></div>
+</section>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  2026 FIFA World Cup Viewing Guide · 数据来源：FIFA官方 · 所有时间均为北京时间（UTC+8）
+</footer>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ==================== DATA ====================
+
+const groupsData = [
+  { letter: 'A', color: 'var(--group-a)', teams: [
+    { name: '墨西哥', flag: '🇲🇽', conf: '中北美' },
+    { name: '南非', flag: '🇿🇦', conf: '非洲' },
+    { name: '韩国', flag: '🇰🇷', conf: '亚洲' },
+    { name: '捷克', flag: '🇨🇿', conf: '欧洲' }
+  ]},
+  { letter: 'B', color: 'var(--group-b)', teams: [
+    { name: '加拿大', flag: '🇨🇦', conf: '中北美' },
+    { name: '波黑', flag: '🇧🇦', conf: '欧洲' },
+    { name: '卡塔尔', flag: '🇶🇦', conf: '亚洲' },
+    { name: '瑞士', flag: '🇨🇭', conf: '欧洲' }
+  ]},
+  { letter: 'C', color: 'var(--group-c)', teams: [
+    { name: '巴西', flag: '🇧🇷', conf: '南美' },
+    { name: '摩洛哥', flag: '🇲🇦', conf: '非洲' },
+    { name: '海地', flag: '🇭🇹', conf: '中北美' },
+    { name: '苏格兰', flag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', conf: '欧洲' }
+  ]},
+  { letter: 'D', color: 'var(--group-d)', teams: [
+    { name: '美国', flag: '🇺🇸', conf: '中北美' },
+    { name: '巴拉圭', flag: '🇵🇾', conf: '南美' },
+    { name: '澳大利亚', flag: '🇦🇺', conf: '亚洲' },
+    { name: '土耳其', flag: '🇹🇷', conf: '欧洲' }
+  ]},
+  { letter: 'E', color: 'var(--group-e)', teams: [
+    { name: '德国', flag: '🇩🇪', conf: '欧洲' },
+    { name: '库拉索', flag: '🇨🇼', conf: '中北美' },
+    { name: '科特迪瓦', flag: '🇨🇮', conf: '非洲' },
+    { name: '厄瓜多尔', flag: '🇪🇨', conf: '南美' }
+  ]},
+  { letter: 'F', color: 'var(--group-f)', teams: [
+    { name: '荷兰', flag: '🇳🇱', conf: '欧洲' },
+    { name: '日本', flag: '🇯🇵', conf: '亚洲' },
+    { name: '瑞典', flag: '🇸🇪', conf: '欧洲' },
+    { name: '突尼斯', flag: '🇹🇳', conf: '非洲' }
+  ]},
+  { letter: 'G', color: 'var(--group-g)', teams: [
+    { name: '比利时', flag: '🇧🇪', conf: '欧洲' },
+    { name: '埃及', flag: '🇪🇬', conf: '非洲' },
+    { name: '伊朗', flag: '🇮🇷', conf: '亚洲' },
+    { name: '新西兰', flag: '🇳🇿', conf: '大洋洲' }
+  ]},
+  { letter: 'H', color: 'var(--group-h)', teams: [
+    { name: '西班牙', flag: '🇪🇸', conf: '欧洲' },
+    { name: '佛得角', flag: '🇨🇻', conf: '非洲' },
+    { name: '沙特阿拉伯', flag: '🇸🇦', conf: '亚洲' },
+    { name: '乌拉圭', flag: '🇺🇾', conf: '南美' }
+  ]},
+  { letter: 'I', color: 'var(--group-i)', teams: [
+    { name: '法国', flag: '🇫🇷', conf: '欧洲' },
+    { name: '塞内加尔', flag: '🇸🇳', conf: '非洲' },
+    { name: '伊拉克', flag: '🇮🇶', conf: '亚洲' },
+    { name: '挪威', flag: '🇳🇴', conf: '欧洲' }
+  ]},
+  { letter: 'J', color: 'var(--group-j)', teams: [
+    { name: '阿根廷', flag: '🇦🇷', conf: '南美' },
+    { name: '阿尔及利亚', flag: '🇩🇿', conf: '非洲' },
+    { name: '奥地利', flag: '🇦🇹', conf: '欧洲' },
+    { name: '约旦', flag: '🇯🇴', conf: '亚洲' }
+  ]},
+  { letter: 'K', color: 'var(--group-k)', teams: [
+    { name: '葡萄牙', flag: '🇵🇹', conf: '欧洲' },
+    { name: '刚果民主共和国', flag: '🇨🇩', conf: '非洲' },
+    { name: '乌兹别克斯坦', flag: '🇺🇿', conf: '亚洲' },
+    { name: '哥伦比亚', flag: '🇨🇴', conf: '南美' }
+  ]},
+  { letter: 'L', color: 'var(--group-l)', teams: [
+    { name: '英格兰', flag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', conf: '欧洲' },
+    { name: '克罗地亚', flag: '🇭🇷', conf: '欧洲' },
+    { name: '加纳', flag: '🇬🇭', conf: '非洲' },
+    { name: '巴拿马', flag: '🇵🇦', conf: '中北美' }
+  ]}
+];
+
+// Team Squads Data
+const teamSquads = {
+  // ===== Group A =====
+  '墨西哥': {
+    coach: '哈维尔·阿吉雷', formation: '4-3-3',
+    players: [
+      { name: '吉列尔莫·奥乔亚', number: 1, position: 'GK', club: '萨勒尼塔纳', starter: true, value: 480 },
+      { name: '路易斯·马拉贡', number: 13, position: 'GK', club: '瓜达拉哈拉', starter: false, value: 240 },
+      { name: '卡洛斯·阿尔塞', number: 12, position: 'GK', club: '华雷斯', starter: false, value: 240 },
+      { name: '赫苏斯·加利亚多', number: 2, position: 'LB', club: '蒙特雷', starter: true, value: 540 },
+      { name: '塞萨尔·蒙特斯', number: 3, position: 'CB', club: '蒙特雷', starter: true, value: 600 },
+      { name: '约翰·巴斯克斯', number: 4, position: 'CB', club: '热那亚', starter: true, value: 600 },
+      { name: '豪尔赫·桑切斯', number: 5, position: 'RB', club: '波尔图', starter: true, value: 540 },
+      { name: '内斯托尔·阿劳霍', number: 16, position: 'RB', club: '蒂华纳', starter: false, value: 270 },
+      { name: '埃德松·阿尔瓦雷斯', number: 6, position: 'CDM', club: '西汉姆联', starter: true, value: 3000 },
+      { name: '埃克托·埃雷拉', number: 8, position: 'CM', club: '休斯顿迪纳摩', starter: true, value: 720 },
+      { name: '路易斯·查韦斯', number: 14, position: 'CM', club: '莫斯科迪纳摩', starter: true, value: 720 },
+      { name: '罗伯托·阿尔瓦拉多', number: 17, position: 'LW', club: '瓜达拉哈拉', starter: false, value: 390 },
+      { name: '乌列尔·安图纳', number: 11, position: 'RW', club: '蓝十字', starter: true, value: 780 },
+      { name: '迭戈·莱内斯', number: 7, position: 'RW', club: '皇家贝蒂斯', starter: false, value: 390 },
+      { name: '赫苏斯·科罗纳', number: 10, position: 'CAM', club: '塞维利亚', starter: true, value: 780 },
+      { name: '圣地亚哥·希门尼斯', number: 9, position: 'ST', club: '费耶诺德', starter: true, value: 4500 },
+      { name: '劳尔·希门尼斯', number: 19, position: 'ST', club: '富勒姆', starter: false, value: 420 },
+      { name: '亨利·马丁', number: 20, position: 'ST', club: '墨西哥美洲', starter: false, value: 420 }
+    ]
+  },
+  '南非': {
+    coach: '雨果·布鲁斯', formation: '4-2-3-1',
+    players: [
+      { name: '罗恩文·威廉姆斯', number: 1, position: 'GK', club: '马梅洛迪日落', starter: true, value: 240 },
+      { name: '维利·姆班瓦', number: 16, position: 'GK', club: '阿马祖鲁', starter: false, value: 120 },
+      { name: '塔佩洛·莫雷纳', number: 22, position: 'GK', club: '马梅洛迪日落', starter: false, value: 120 },
+      { name: '奥布里·马普萨', number: 2, position: 'RB', club: '马梅洛迪日落', starter: true, value: 270 },
+      { name: '格兰特·凯卡纳', number: 5, club: '马梅洛迪日落', position: 'CB', starter: true, value: 8 },
+      { name: '西扬达·祖鲁', number: 14, position: 'CB', club: '超级体育联', starter: true, value: 300 },
+      { name: '特博霍·莫科埃纳', number: 3, position: 'LB', club: '马梅洛迪日落', starter: true, value: 270 },
+      { name: '塔比索·库图梅拉', number: 4, position: 'CB', club: '开普敦城', starter: false, value: 150 },
+      { name: '特姆巴·兹瓦内', number: 6, position: 'CDM', club: '马梅洛迪日落', starter: true, value: 330 },
+      { name: '优素福·马尔特', number: 8, position: 'CM', club: '超级体育联', starter: true, value: 360 },
+      { name: '卢尔希奥·古斯特', number: 12, position: 'CM', club: '波尔图B', starter: false, value: 180 },
+      { name: '泰奥·邦戈', number: 11, position: 'LW', club: '马梅洛迪日落', starter: true, value: 390 },
+      { name: '帕西瓦尔·陶', number: 7, position: 'RW', club: '开普敦城', starter: true, value: 390 },
+      { name: '尼古拉斯·阿德勒', number: 10, position: 'CAM', club: '马梅洛迪日落', starter: true, value: 390 },
+      { name: '兹韦利·恩桑加', number: 15, position: 'CAM', club: '马梅洛迪日落', starter: false, value: 195 },
+      { name: '勒博·莫西', number: 9, position: 'ST', club: '马梅洛迪日落', starter: true, value: 420 },
+      { name: '拉西纳·特拉奥雷', number: 19, position: 'ST', club: '开普敦城', starter: false, value: 210 },
+      { name: '姆巴塔·马耶罗', number: 17, position: 'ST', club: '超级体育联', starter: false, value: 210 }
+    ]
+  },
+  '韩国': {
+    coach: '洪明甫', formation: '4-2-3-1',
+    players: [
+      { name: '赵贤祐', number: 1, position: 'GK', club: '蔚山HD', starter: true, value: 480 },
+      { name: '金承奎', number: 21, position: 'GK', club: 'FC东京', starter: false, value: 240 },
+      { name: '宋范根', number: 12, position: 'GK', club: '全北现代', starter: false, value: 240 },
+      { name: '金玟哉', number: 4, position: 'CB', club: '拜仁慕尼黑', starter: true, value: 5500 },
+      { name: '赵裕民', number: 3, position: 'CB', club: '沙迦', starter: false, value: 300 },
+      { name: '李韩汎', number: 5, position: 'CB', club: '米迪兰特', starter: true, value: 600 },
+      { name: '薛英佑', number: 2, position: 'RB', club: '贝尔格莱德红星', starter: true, value: 540 },
+      { name: '金珍洙', number: 15, position: 'LB', club: '全北现代', starter: true, value: 540 },
+      { name: '朴振燮', number: 6, position: 'CDM', club: '浙江FC', starter: false, value: 330 },
+      { name: '黄仁范', number: 8, position: 'CM', club: '费耶诺德', starter: true, value: 720 },
+      { name: '李在成', number: 10, position: 'CAM', club: '美因茨', starter: true, value: 780 },
+      { name: '孙兴慜', number: 7, position: 'LW', club: '洛杉矶FC', starter: true, value: 3000 },
+      { name: '黄喜灿', number: 11, position: 'RW', club: '狼队', starter: true, value: 780 },
+      { name: '李刚仁', number: 17, position: 'CAM', club: '巴黎圣日耳曼', starter: true, value: 5000 },
+      { name: '白承浩', number: 14, position: 'CM', club: '斯托克城', starter: false, value: 360 },
+      { name: '吴贤揆', number: 9, position: 'ST', club: '贝西克塔什', starter: true, value: 840 },
+      { name: '曹圭成', number: 19, position: 'ST', club: '米迪兰特', starter: false, value: 420 },
+      { name: '杨贤俊', number: 20, position: 'RW', club: '凯尔特人', starter: false, value: 390 }
+    ]
+  },
+  '捷克': {
+    coach: '伊万·哈谢克', formation: '4-2-3-1',
+    players: [
+      { name: '托马什·瓦茨利克', number: 1, position: 'GK', club: '布拉格斯拉维亚', starter: true, value: 480 },
+      { name: '伊日·帕夫伦卡', number: 16, position: 'GK', club: '云达不莱梅', starter: false, value: 240 },
+      { name: '托马什·科扎克', number: 23, position: 'GK', club: '比尔森胜利', starter: false, value: 240 },
+      { name: '亚库布·布拉贝茨', number: 2, position: 'RB', club: '布拉格斯拉维亚', starter: true, value: 540 },
+      { name: '托马什·霍莱什', number: 3, position: 'CB', club: '西汉姆联', starter: true, value: 600 },
+      { name: '拉迪斯拉夫·克雷伊奇', number: 4, position: 'CB', club: '布拉格斯巴达', starter: true, value: 600 },
+      { name: '大卫·齐马', number: 5, position: 'CB', club: '布拉格斯拉维亚', starter: false, value: 300 },
+      { name: '扬·博日尔', number: 18, position: 'LB', club: '布拉格斯拉维亚', starter: true, value: 540 },
+      { name: '托马什·绍切克', number: 6, position: 'CDM', club: '西汉姆联', starter: true, value: 3000 },
+      { name: '阿莱什·马特尤', number: 8, position: 'CM', club: '佛罗伦萨', starter: true, value: 720 },
+      { name: '卢卡什·马索普斯特', number: 14, position: 'CM', club: '布拉格斯拉维亚', starter: false, value: 360 },
+      { name: '弗拉迪米尔·科法尔', number: 7, position: 'RW', club: '西汉姆联', starter: true, value: 780 },
+      { name: '扬·库赫塔', number: 11, position: 'LW', club: '布拉格斯巴达', starter: true, value: 780 },
+      { name: '亚当·赫洛泽克', number: 10, position: 'CAM', club: '勒沃库森', starter: true, value: 1500 },
+      { name: '米哈尔·萨迪莱克', number: 15, position: 'CAM', club: '特温特', starter: false, value: 390 },
+      { name: '帕特里克·希克', number: 9, position: 'ST', club: '勒沃库森', starter: true, value: 2000 },
+      { name: '托马什·科拉尔', number: 19, position: 'ST', club: '布拉格斯拉维亚', starter: false, value: 420 },
+      { name: '莫伊米尔·希蒂尔', number: 20, position: 'ST', club: '比尔森胜利', starter: false, value: 420 }
+    ]
+  },
+  // ===== Group B =====
+  '加拿大': {
+    coach: '杰西·马什', formation: '4-3-3',
+    players: [
+      { name: '米兰·博尔扬', number: 1, position: 'GK', club: '贝尔格莱德红星', starter: true, value: 240 },
+      { name: '马克西姆·克雷波', number: 16, position: 'GK', club: '洛杉矶FC', starter: false, value: 120 },
+      { name: '戴恩·圣克莱尔', number: 18, position: 'GK', club: '明尼苏达联', starter: false, value: 120 },
+      { name: '阿利斯泰尔·约翰斯顿', number: 2, position: 'RB', club: '凯尔特人', starter: true, value: 270 },
+      { name: '卡马尔·米勒', number: 4, position: 'CB', club: '那不勒斯', starter: true, value: 300 },
+      { name: '斯科特·肯尼迪', number: 5, position: 'CB', club: '雷根斯堡', starter: true, value: 300 },
+      { name: '里奇·拉里亚', number: 3, position: 'LB', club: '温哥华白帽', starter: true, value: 270 },
+      { name: '萨穆埃尔·阿德库格贝', number: 15, position: 'LB', club: '哈茨', starter: false, value: 135 },
+      { name: '斯蒂芬·尤斯塔奎奥', number: 6, position: 'CDM', club: '波尔图', starter: true, value: 330 },
+      { name: '伊斯梅尔·科内', number: 8, position: 'CM', club: '马赛', starter: true, value: 360 },
+      { name: '大卫·沃瑟斯庞', number: 14, position: 'CM', club: '标准列日', starter: false, value: 180 },
+      { name: '阿方索·戴维斯', number: 7, position: 'LW', club: '拜仁慕尼黑', starter: true, value: 390 },
+      { name: '泰琼·布坎南', number: 11, position: 'RW', club: '国际米兰', starter: true, value: 390 },
+      { name: '利亚姆·米勒', number: 17, position: 'RW', club: '凯尔特人', starter: false, value: 195 },
+      { name: '乔纳森·戴维', number: 9, position: 'ST', club: '里尔', starter: true, value: 420 },
+      { name: '凯尔·拉林', number: 19, position: 'ST', club: '马洛卡', starter: false, value: 210 },
+      { name: '西尔·拉尔森', number: 20, position: 'ST', club: '多伦多FC', starter: false, value: 210 },
+      { name: '卢卡斯·卡瓦利尼', number: 10, position: 'ST', club: '温哥华白帽', starter: true, value: 420 }
+    ]
+  },
+  '波黑': {
+    coach: '谢尔盖·巴尔巴雷兹', formation: '4-4-2',
+    players: [
+      { name: '伊布拉希姆·谢希奇', number: 1, position: 'GK', club: '萨格勒布迪纳摩', starter: true, value: 240 },
+      { name: '尼古拉·瓦西尔', number: 12, position: 'GK', club: '伯恩茅斯', starter: false, value: 120 },
+      { name: '凯南·皮里奇', number: 22, position: 'GK', club: '里耶卡', starter: false, value: 120 },
+      { name: '阿迈德·霍季奇', number: 2, position: 'RB', club: '斯图加特', starter: true, value: 270 },
+      { name: '阿尼尔·阿赫梅多霍季奇', number: 4, position: 'CB', club: '里昂', starter: true, value: 300 },
+      { name: '丹尼斯·哈迪卡杜尼奇', number: 5, position: 'CB', club: '南安普顿', starter: true, value: 300 },
+      { name: '塞亚德·科拉希纳茨', number: 3, position: 'LB', club: '亚特兰大', starter: true, value: 270 },
+      { name: '埃尔敏·比查克契奇', number: 6, position: 'CB', club: '霍芬海姆', starter: false, value: 150 },
+      { name: '米拉莱姆·皮亚尼奇', number: 8, position: 'CM', club: '贝西克塔什', starter: true, value: 360 },
+      { name: '拉德·克鲁尼奇', number: 10, position: 'CM', club: '费内巴切', starter: true, value: 360 },
+      { name: '戈亚克·塞希奇', number: 14, position: 'RM', club: '里耶卡', starter: true, value: 330 },
+      { name: '阿马尔·拉赫马诺维奇', number: 7, position: 'LM', club: '布鲁日', starter: true, value: 330 },
+      { name: '米斯拉夫·奥尔希奇', number: 11, position: 'LM', club: '哈伊杜克', starter: false, value: 165 },
+      { name: '萨梅德·巴兹达尔', number: 15, position: 'CM', club: '安塔利亚体育', starter: false, value: 180 },
+      { name: '埃丁·哲科', number: 9, position: 'ST', club: '费内巴切', starter: true, value: 420 },
+      { name: '斯梅托·普雷夫利亚克', number: 19, position: 'ST', club: '柏林赫塔', starter: false, value: 210 },
+      { name: '卢卡·梅纳洛', number: 17, position: 'ST', club: '萨索洛', starter: false, value: 210 },
+      { name: '埃尔梅丁·德米洛维奇', number: 20, position: 'ST', club: '奥格斯堡', starter: true, value: 420 }
+    ]
+  },
+  '卡塔尔': {
+    coach: '蒂廷·马尔克斯', formation: '3-5-2',
+    players: [
+      { name: '萨德·谢布', number: 1, position: 'GK', club: '萨德', starter: true, value: 240 },
+      { name: '马沙尔·巴尔沙姆', number: 21, position: 'GK', club: '萨德', starter: false, value: 120 },
+      { name: '优素福·哈桑', number: 22, position: 'GK', club: '加拉法', starter: false, value: 120 },
+      { name: '佩德罗·米格尔', number: 2, position: 'CB', club: '萨德', starter: true, value: 300 },
+      { name: '布阿莱姆·胡赫', number: 3, position: 'CB', club: '萨德', starter: true, value: 300 },
+      { name: '塔里克·萨勒曼', number: 5, position: 'CB', club: '萨德', starter: true, value: 300 },
+      { name: '穆萨布·赫德尔', number: 15, position: 'RWB', club: '萨德', starter: true, value: 255 },
+      { name: '霍马姆·阿明', number: 14, position: 'LWB', club: '加拉法', starter: true, value: 255 },
+      { name: '卡里姆·布迪亚夫', number: 6, position: 'CDM', club: '杜海勒', starter: true, value: 330 },
+      { name: '阿卜杜勒阿齐兹·哈特姆', number: 8, position: 'CM', club: '加拉法', starter: true, value: 360 },
+      { name: '哈桑·海多斯', number: 10, position: 'CAM', club: '萨德', starter: true, value: 390 },
+      { name: '阿克拉姆·阿菲夫', number: 7, position: 'ST', club: '萨德', starter: true, value: 420 },
+      { name: '阿尔莫兹·阿里', number: 19, position: 'ST', club: '杜海勒', starter: true, value: 420 },
+      { name: '穆罕默德·蒙塔里', number: 11, position: 'ST', club: '杜海勒', starter: false, value: 210 },
+      { name: '纳伊夫·哈吉', number: 17, position: 'CM', club: '沃克拉', starter: false, value: 180 },
+      { name: '阿西姆·马迪博', number: 16, position: 'CM', club: '杜海勒', starter: false, value: 180 },
+      { name: '罗·鲁阿', number: 12, position: 'LWB', club: '萨德', starter: false, value: 128 },
+      { name: '伊斯梅尔·穆罕默德', number: 9, position: 'RW', club: '杜海勒', starter: false, value: 195 }
+    ]
+  },
+  '瑞士': {
+    coach: '穆拉特·雅金', formation: '4-2-3-1',
+    players: [
+      { name: '格雷戈·科贝尔', number: 1, position: 'GK', club: '多特蒙德', starter: true, value: 3500 },
+      { name: '伊冯·姆沃戈', number: 12, position: 'GK', club: '洛里昂', starter: false, value: 240 },
+      { name: '马文·凯勒', number: 23, position: 'GK', club: '伯尔尼年轻人', starter: false, value: 240 },
+      { name: '西尔万·维德默', number: 2, position: 'RB', club: '美因茨', starter: true, value: 540 },
+      { name: '尼科·埃尔维迪', number: 4, position: 'CB', club: '门兴格拉德巴赫', starter: true, value: 600 },
+      { name: '曼努埃尔·阿坎吉', number: 5, position: 'CB', club: '国际米兰', starter: true, value: 3500 },
+      { name: '里卡多·罗德里格斯', number: 3, position: 'LB', club: '皇家贝蒂斯', starter: true, value: 540 },
+      { name: '埃雷·科默特', number: 15, position: 'CB', club: '瓦伦西亚', starter: false, value: 300 },
+      { name: '格拉尼特·扎卡', number: 10, position: 'CDM', club: '桑德兰', starter: true, value: 1500 },
+      { name: '雷莫·弗罗伊勒', number: 8, position: 'CM', club: '博洛尼亚', starter: true, value: 720 },
+      { name: '丹尼斯·扎卡里亚', number: 14, position: 'CM', club: '摩纳哥', starter: false, value: 360 },
+      { name: '阿尔东·贾沙里', number: 6, position: 'CM', club: 'AC米兰', starter: false, value: 360 },
+      { name: '鲁本·巴尔加斯', number: 11, position: 'RW', club: '塞维利亚', starter: true, value: 780 },
+      { name: '丹·恩多耶', number: 17, position: 'LW', club: '诺丁汉森林', starter: true, value: 3000 },
+      { name: '法比安·里德尔', number: 15, position: 'CAM', club: '奥格斯堡', starter: false, value: 390 },
+      { name: '布雷尔·恩博洛', number: 9, position: 'ST', club: '雷恩', starter: true, value: 1800 },
+      { name: '诺亚·奥卡福', number: 19, position: 'ST', club: '利兹联', starter: false, value: 2000 },
+      { name: '泽基·阿姆杜尼', number: 20, position: 'ST', club: '伯恩利', starter: true, value: 840 }
+    ]
+  },
+  // ===== Group C =====
+  '巴西': {
+    coach: '卡洛·安切洛蒂', formation: '4-3-3',
+    players: [
+      { name: '阿利松', number: 1, position: 'GK', club: '利物浦', starter: true, value: 960 },
+      { name: '埃德松', number: 12, position: 'GK', club: '费内巴切', starter: false, value: 480 },
+      { name: '韦弗顿', number: 23, position: 'GK', club: '格雷米奥', starter: false, value: 480 },
+      { name: '达尼洛', number: 2, position: 'RB', club: '弗拉门戈', starter: true, value: 1080 },
+      { name: '马尔基尼奥斯', number: 4, position: 'CB', club: '巴黎圣日耳曼', starter: true, value: 4000 },
+      { name: '加布里埃尔·马加良斯', number: 3, position: 'CB', club: '阿森纳', starter: true, value: 1200 },
+      { name: '阿莱士·桑德罗', number: 6, position: 'LB', club: '弗拉门戈', starter: true, value: 1080 },
+      { name: '布雷默', number: 14, position: 'CB', club: '尤文图斯', starter: false, value: 600 },
+      { name: '卡塞米罗', number: 5, position: 'CDM', club: '曼联', starter: true, value: 1200 },
+      { name: '布鲁诺·吉马良斯', number: 8, position: 'CM', club: '纽卡斯尔', starter: true, value: 8500 },
+      { name: '卢卡斯·帕奎塔', number: 7, position: 'CM', club: '弗拉门戈', starter: true, value: 4000 },
+      { name: '拉菲尼亚', number: 11, position: 'RW', club: '巴塞罗那', starter: true, value: 10000 },
+      { name: '维尼修斯·儒尼奥尔', number: 10, position: 'LW', club: '皇家马德里', starter: true, value: 20000 },
+      { name: '内马尔', number: 9, position: 'ST', club: '桑托斯', starter: true, value: 1500 },
+      { name: '恩德里克', number: 19, position: 'ST', club: '里昂', starter: false, value: 5500 },
+      { name: '马特乌斯·库尼亚', number: 17, position: 'ST', club: '曼联', starter: false, value: 5000 },
+      { name: '加布里埃尔·马丁内利', number: 20, position: 'LW', club: '阿森纳', starter: false, value: 6500 },
+      { name: '伊戈尔·蒂亚戈', number: 18, position: 'ST', club: '布伦特福德', starter: false, value: 840 }
+    ]
+  },
+  '摩洛哥': {
+    coach: '穆罕默德·瓦赫比', formation: '4-3-3',
+    players: [
+      { name: '亚辛·布努', number: 1, position: 'GK', club: '阿尔希拉尔', starter: true, value: 480 },
+      { name: '穆尼尔·穆罕默迪', number: 12, position: 'GK', club: '贝尔卡内', starter: false, value: 240 },
+      { name: '雷达·塔格诺提', number: 22, position: 'GK', club: 'AS法尔', starter: false, value: 240 },
+      { name: '阿什拉夫·哈基米', number: 2, position: 'RB', club: '巴黎圣日耳曼', starter: true, value: 540 },
+      { name: '纳耶夫·阿盖尔', number: 5, position: 'CB', club: '马赛', starter: true, value: 600 },
+      { name: '查迪·里亚德', number: 4, position: 'CB', club: '水晶宫', starter: true, value: 600 },
+      { name: '努赛尔·马兹拉维', number: 3, position: 'LB', club: '曼联', starter: true, value: 2500 },
+      { name: '伊萨·迪奥普', number: 15, position: 'CB', club: '富勒姆', starter: false, value: 300 },
+      { name: '索菲扬·阿姆拉巴特', number: 6, position: 'CDM', club: '皇家贝蒂斯', starter: true, value: 660 },
+      { name: '阿泽丁·乌纳希', number: 8, position: 'CM', club: '赫罗纳', starter: true, value: 2000 },
+      { name: '比拉勒·埃尔·汉努斯', number: 14, position: 'CM', club: '斯图加特', starter: false, value: 360 },
+      { name: '哈基姆·齐耶赫', number: 7, position: 'RW', club: '加拉塔萨雷', starter: false, value: 390 },
+      { name: '阿卜德·埃扎尔祖利', number: 11, position: 'LW', club: '皇家贝蒂斯', starter: true, value: 780 },
+      { name: '卜拉欣·迪亚斯', number: 10, position: 'CAM', club: '皇家马德里', starter: true, value: 4000 },
+      { name: '伊斯梅尔·赛巴里', number: 17, position: 'CM', club: '埃因霍温', starter: false, value: 360 },
+      { name: '阿尤布·卡比', number: 9, position: 'ST', club: '奥林匹亚科斯', starter: true, value: 1200 },
+      { name: '优素福·恩内斯里', number: 19, position: 'ST', club: '费内巴切', starter: false, value: 420 },
+      { name: '苏菲安·拉希米', number: 20, position: 'ST', club: '阿尔艾因', starter: true, value: 840 }
+    ]
+  },
+  '海地': {
+    coach: '让-雅克·皮埃尔', formation: '4-2-3-1',
+    players: [
+      { name: '约翰·普拉西德', number: 1, position: 'GK', club: '唐卡斯特', starter: true, value: 240 },
+      { name: '亚历山大·博尼奥', number: 12, position: 'GK', club: '海防', starter: false, value: 120 },
+      { name: '布莱恩·西尔维斯特', number: 23, position: 'GK', club: '卡瓦利', starter: false, value: 120 },
+      { name: '热拉尔·阿什', number: 2, position: 'RB', club: '蒙特利尔', starter: true, value: 270 },
+      { name: '里卡多·阿德', number: 3, position: 'CB', club: '贝济耶', starter: true, value: 300 },
+      { name: '亚历山大·朱尔', number: 4, position: 'CB', club: '波城', starter: true, value: 300 },
+      { name: '卡里姆·让', number: 5, position: 'LB', club: '凤凰城', starter: true, value: 270 },
+      { name: '弗朗茨迪·皮埃罗', number: 15, position: 'CB', club: '海地竞技', starter: false, value: 150 },
+      { name: '布莱斯·桑巴', number: 6, position: 'CDM', club: '沙勒罗瓦', starter: true, value: 1200 },
+      { name: '扎卡里·埃里克', number: 8, position: 'CM', club: '圣艾蒂安', starter: true, value: 360 },
+      { name: '达克恩斯·纳宗', number: 10, position: 'CAM', club: '海地竞技', starter: false, value: 195 },
+      { name: '乔纳森·大卫', number: 11, position: 'RW', club: '里尔', starter: false, value: 195 },
+      { name: '法法·皮克', number: 7, position: 'LW', club: '洛杉矶银河', starter: true, value: 390 },
+      { name: '杜塞恩·阿尔西德', number: 17, position: 'RW', club: '卡瓦利', starter: true, value: 390 },
+      { name: '史蒂文·塞朗', number: 14, position: 'CAM', club: '国际迈阿密', starter: true, value: 390 },
+      { name: '杜克·朗斯', number: 9, position: 'ST', club: '蒙特利尔', starter: true, value: 420 },
+      { name: '弗里茨尼·卢瑟', number: 19, position: 'ST', club: '海地竞技', starter: false, value: 210 },
+      { name: '萨内·丹尼', number: 20, position: 'ST', club: '奥兰多城', starter: false, value: 210 }
+    ]
+  },
+  '苏格兰': {
+    coach: '史蒂夫·克拉克', formation: '3-4-2-1',
+    players: [
+      { name: '安格斯·冈恩', number: 1, position: 'GK', club: '诺维奇', starter: true, value: 480 },
+      { name: '赞德·克拉克', number: 12, position: 'GK', club: '哈茨', starter: false, value: 240 },
+      { name: '罗比·麦克罗里', number: 21, position: 'GK', club: '凯尔特人', starter: false, value: 240 },
+      { name: '斯科特·麦肯纳', number: 5, position: 'CB', club: '诺丁汉森林', starter: true, value: 600 },
+      { name: '格兰特·汉利', number: 4, position: 'CB', club: '诺维奇', starter: true, value: 600 },
+      { name: '杰克·亨德利', number: 6, position: 'CB', club: '布鲁日', starter: true, value: 600 },
+      { name: '阿隆·希基', number: 2, position: 'RWB', club: '布伦特福德', starter: true, value: 510 },
+      { name: '安迪·罗伯逊', number: 3, position: 'LWB', club: '利物浦', starter: true, value: 510 },
+      { name: '卡勒姆·麦格雷戈', number: 8, position: 'CM', club: '凯尔特人', starter: true, value: 720 },
+      { name: '约翰·麦金', number: 7, position: 'CM', club: '阿斯顿维拉', starter: true, value: 720 },
+      { name: '比利·吉尔摩', number: 14, position: 'CM', club: '布莱顿', starter: false, value: 360 },
+      { name: '瑞安·克里斯蒂', number: 10, position: 'CAM', club: '伯恩茅斯', starter: true, value: 780 },
+      { name: '斯图尔特·阿姆斯特朗', number: 17, position: 'CAM', club: '南安普顿', starter: false, value: 390 },
+      { name: '斯科特·麦克托米奈', number: 11, position: 'CAM', club: '那不勒斯', starter: true, value: 780 },
+      { name: '切·亚当斯', number: 9, position: 'ST', club: '都灵', starter: true, value: 840 },
+      { name: '林登·戴克斯', number: 19, position: 'ST', club: '女王公园巡游者', starter: false, value: 420 },
+      { name: '劳伦斯·尚克兰', number: 20, position: 'ST', club: '哈茨', starter: false, value: 420 },
+      { name: '凯文·尼斯贝特', number: 15, position: 'ST', club: '哈茨', starter: false, value: 420 }
+    ]
+  },
+  // ===== Group D =====
+  '美国': {
+    coach: '毛里西奥·波切蒂诺', formation: '4-3-3',
+    players: [
+      { name: '马特·特纳', number: 1, position: 'GK', club: '新英格兰革命', starter: true, value: 480 },
+      { name: '克里斯·布雷迪', number: 12, position: 'GK', club: '芝加哥火焰', starter: false, value: 240 },
+      { name: '马特·弗里斯', number: 23, position: 'GK', club: '纽约城', starter: false, value: 240 },
+      { name: '塞尔吉诺·德斯特', number: 2, position: 'RB', club: '埃因霍温', starter: true, value: 1000 },
+      { name: '克里斯·理查兹', number: 4, position: 'CB', club: '水晶宫', starter: true, value: 1500 },
+      { name: '蒂姆·里姆', number: 5, position: 'CB', club: '夏洛特FC', starter: false, value: 300 },
+      { name: '安东尼·罗宾逊', number: 3, position: 'LB', club: '富勒姆', starter: true, value: 1800 },
+      { name: '迈尔斯·罗宾逊', number: 15, position: 'CB', club: '辛辛那提', starter: false, value: 300 },
+      { name: '泰勒·亚当斯', number: 6, position: 'CDM', club: '伯恩茅斯', starter: true, value: 2000 },
+      { name: '韦斯顿·麦肯尼', number: 8, position: 'CM', club: '尤文图斯', starter: true, value: 1800 },
+      { name: '马利克·蒂尔曼', number: 14, position: 'CM', club: '勒沃库森', starter: true, value: 2200 },
+      { name: '蒂莫西·维阿', number: 11, position: 'RW', club: '马赛', starter: true, value: 1500 },
+      { name: '克里斯蒂安·普利西奇', number: 10, position: 'LW', club: 'AC米兰', starter: true, value: 4500 },
+      { name: '布伦登·阿伦森', number: 17, position: 'CAM', club: '利兹联', starter: false, value: 1500 },
+      { name: '乔瓦尼·雷纳', number: 7, position: 'CAM', club: '门兴格拉德巴赫', starter: false, value: 1200 },
+      { name: '福拉林·巴洛贡', number: 9, position: 'ST', club: '摩纳哥', starter: true, value: 3000 },
+      { name: '里卡多·佩皮', number: 19, position: 'ST', club: '埃因霍温', starter: false, value: 1500 },
+      { name: '哈吉·赖特', number: 20, position: 'ST', club: '考文垂', starter: true, value: 1000 }
+    ]
+  },
+  '巴拉圭': {
+    coach: '丹尼尔·加尔内罗', formation: '4-4-2',
+    players: [
+      { name: '罗伯托·费尔南德斯', number: 1, position: 'GK', club: '波特诺山丘', starter: true, value: 480 },
+      { name: '安东尼·席尔瓦', number: 12, position: 'GK', club: '自由', starter: false, value: 240 },
+      { name: '卡洛斯·科罗内尔', number: 22, position: 'GK', club: '纽约红牛', starter: false, value: 240 },
+      { name: '罗伯特·罗哈斯', number: 2, position: 'RB', club: '河床', starter: true, value: 540 },
+      { name: '古斯塔沃·戈麦斯', number: 4, position: 'CB', club: '帕尔梅拉斯', starter: true, value: 600 },
+      { name: '法比安·巴尔布埃纳', number: 3, position: 'CB', club: '科林蒂安', starter: true, value: 600 },
+      { name: '朱尼尔·阿隆索', number: 6, position: 'LB', club: '格雷米奥', starter: true, value: 540 },
+      { name: '奥马尔·阿尔德雷特', number: 5, position: 'CB', club: '赫塔费', starter: false, value: 300 },
+      { name: '理查德·桑切斯', number: 16, position: 'CDM', club: '美洲', starter: true, value: 660 },
+      { name: '安赫尔·卡多索', number: 8, position: 'CM', club: '博卡青年', starter: true, value: 720 },
+      { name: '马蒂亚斯·罗哈斯', number: 10, position: 'CM', club: '迈阿密国际', starter: false, value: 360 },
+      { name: '米格尔·阿尔米隆', number: 7, position: 'RW', club: '纽卡斯尔', starter: true, value: 780 },
+      { name: '拉蒙·索萨', number: 11, position: 'LW', club: '竞技', starter: true, value: 780 },
+      { name: '胡安·伊图尔贝', number: 17, position: 'RW', club: '波特诺山丘', starter: false, value: 390 },
+      { name: '赫苏斯·梅迪纳', number: 14, position: 'CAM', club: '波特诺山丘', starter: false, value: 390 },
+      { name: '安东尼奥·萨纳布里亚', number: 9, position: 'ST', club: '都灵', starter: true, value: 840 },
+      { name: '达里奥·莱兹卡诺', number: 19, position: 'ST', club: '蒂格雷', starter: false, value: 420 },
+      { name: '胡利奥·恩卡达', number: 20, position: 'ST', club: '纽约红牛', starter: true, value: 840 }
+    ]
+  },
+  '澳大利亚': {
+    coach: '格雷厄姆·阿诺德', formation: '4-4-2',
+    players: [
+      { name: '马修·瑞安', number: 1, position: 'GK', club: '阿尔克马尔', starter: true, value: 480 },
+      { name: '乔·高奇', number: 12, position: 'GK', club: '阿德莱德联', starter: false, value: 240 },
+      { name: '安德鲁·雷德梅尼', number: 18, position: 'GK', club: '中央海岸水手', starter: false, value: 240 },
+      { name: '纳撒尼尔·阿特金森', number: 2, position: 'RB', club: '哈茨', starter: true, value: 540 },
+      { name: '哈里·苏塔', number: 4, position: 'CB', club: '莱斯特城', starter: true, value: 600 },
+      { name: '凯·罗尔斯', number: 5, position: 'CB', club: '凯尔特人', starter: true, value: 600 },
+      { name: '阿齐兹·贝希奇', number: 3, position: 'LB', club: '哈茨', starter: true, value: 540 },
+      { name: '米洛斯·德格内克', number: 6, position: 'CB', club: '贝尔格莱德红星', starter: false, value: 300 },
+      { name: '杰克逊·欧文', number: 8, position: 'CM', club: '圣保利', starter: true, value: 720 },
+      { name: '基努·巴克斯', number: 17, position: 'CM', club: '伊普斯维奇', starter: true, value: 720 },
+      { name: '亚伦·穆伊', number: 14, position: 'CM', club: '凯尔特人', starter: false, value: 360 },
+      { name: '马修·莱基', number: 7, position: 'RW', club: '墨尔本城', starter: true, value: 780 },
+      { name: '克雷格·古德温', number: 11, position: 'LW', club: '阿尔瓦赫达', starter: true, value: 780 },
+      { name: '丹尼尔·阿尔扎尼', number: 10, position: 'LW', club: '墨尔本胜利', starter: false, value: 390 },
+      { name: '加兰·库奥尔', number: 15, position: 'RW', club: '凯尔特人', starter: false, value: 390 },
+      { name: '米切尔·杜克', number: 9, position: 'ST', club: '町田泽维亚', starter: true, value: 840 },
+      { name: '杰米·麦克拉伦', number: 19, position: 'ST', club: '墨尔本城', starter: false, value: 420 },
+      { name: '库西尼·延吉', number: 20, position: 'ST', club: '中央海岸水手', starter: true, value: 840 }
+    ]
+  },
+  '土耳其': {
+    coach: '文森佐·蒙特拉', formation: '4-2-3-1',
+    players: [
+      { name: '乌古尔詹·恰克尔', number: 1, position: 'GK', club: '加拉塔萨雷', starter: true, value: 480 },
+      { name: '梅尔特·居诺克', number: 12, position: 'GK', club: '费内巴切', starter: false, value: 240 },
+      { name: '阿尔塔伊·巴因迪尔', number: 23, position: 'GK', club: '曼联', starter: false, value: 240 },
+      { name: '梅尔特·穆尔杜尔', number: 2, position: 'RB', club: '费内巴切', starter: true, value: 540 },
+      { name: '恰格拉尔·索云库', number: 4, position: 'CB', club: '费内巴切', starter: true, value: 2500 },
+      { name: '梅里赫·德米拉尔', number: 3, position: 'CB', club: '阿尔阿赫利', starter: true, value: 1200 },
+      { name: '费尔迪·卡迪奥格卢', number: 5, position: 'LB', club: '布莱顿', starter: true, value: 2200 },
+      { name: '泽基·切利克', number: 15, position: 'RB', club: '罗马', starter: false, value: 270 },
+      { name: '哈坎·恰尔汗奥卢', number: 10, position: 'CM', club: '国际米兰', starter: true, value: 3500 },
+      { name: '奥尔昆·科克库', number: 8, position: 'CM', club: '贝西克塔什', starter: true, value: 720 },
+      { name: '萨利赫·厄兹坎', number: 6, position: 'CDM', club: '多特蒙德', starter: false, value: 330 },
+      { name: '阿尔达·居莱尔', number: 7, position: 'RW', club: '皇家马德里', starter: true, value: 8000 },
+      { name: '凯雷姆·阿克图尔科卢', number: 11, position: 'LW', club: '费内巴切', starter: true, value: 2000 },
+      { name: '伊尔凡·卡赫维奇', number: 17, position: 'LW', club: '卡西姆帕萨', starter: false, value: 390 },
+      { name: '巴里斯·阿尔佩尔·耶尔马兹', number: 14, position: 'CAM', club: '加拉塔萨雷', starter: false, value: 390 },
+      { name: '恩内斯·于纳尔', number: 9, position: 'ST', club: '法兰克福', starter: true, value: 840 },
+      { name: '肯南·耶尔德兹', number: 19, position: 'ST', club: '尤文图斯', starter: false, value: 5000 },
+      { name: '詹·乌尊', number: 20, position: 'ST', club: '法兰克福', starter: true, value: 840 }
+    ]
+  },
+  // ===== Group E =====
+  '德国': {
+    coach: '纳格尔斯曼', formation: '4-2-3-1',
+    players: [
+      { name: '曼努埃尔·诺伊尔', number: 1, position: 'GK', club: '拜仁慕尼黑', starter: true, value: 960 },
+      { name: '奥利弗·鲍曼', number: 12, position: 'GK', club: '霍芬海姆', starter: false, value: 480 },
+      { name: '亚历山大·努贝尔', number: 22, position: 'GK', club: '斯图加特', starter: false, value: 480 },
+      { name: '约书亚·基米希', number: 6, position: 'RB', club: '拜仁慕尼黑', starter: true, value: 1080 },
+      { name: '安东尼奥·吕迪格', number: 2, position: 'CB', club: '皇家马德里', starter: true, value: 2500 },
+      { name: '乔纳森·塔', number: 4, position: 'CB', club: '拜仁慕尼黑', starter: true, value: 1200 },
+      { name: '大卫·劳姆', number: 3, position: 'LB', club: '莱比锡', starter: true, value: 2000 },
+      { name: '尼科·施洛特贝克', number: 15, position: 'CB', club: '多特蒙德', starter: true, value: 3500 },
+      { name: '帕斯卡尔·格罗斯', number: 8, position: 'CDM', club: '布莱顿', starter: true, value: 1000 },
+      { name: '亚历山大·帕夫洛维奇', number: 21, position: 'CM', club: '拜仁慕尼黑', starter: false, value: 4000 },
+      { name: '安杰洛·斯蒂勒', number: 14, position: 'CM', club: '斯图加特', starter: false, value: 3000 },
+      { name: '弗洛里安·维尔茨', number: 17, position: 'CAM', club: '利物浦', starter: true, value: 13000 },
+      { name: '贾马尔·穆西亚拉', number: 10, position: 'LW', club: '拜仁慕尼黑', starter: true, value: 13000 },
+      { name: '勒罗伊·萨内', number: 19, position: 'RW', club: '加拉塔萨雷', starter: true, value: 3000 },
+      { name: '凯·哈弗茨', number: 9, position: 'ST', club: '阿森纳', starter: true, value: 6500 },
+      { name: '马克西米利安·拜尔', number: 13, position: 'ST', club: '多特蒙德', starter: false, value: 3000 },
+      { name: '尼克·沃尔特马德', number: 20, position: 'ST', club: '纽卡斯尔', starter: false, value: 2000 },
+      { name: '德尼兹·翁达夫', number: 11, position: 'ST', club: '斯图加特', starter: false, value: 1500 }
+    ]
+  },
+  '库拉索': {
+    coach: '雷内·哈克', formation: '4-3-3',
+    players: [
+      { name: '埃洛伊·鲁姆', number: 1, position: 'GK', club: '瓦尔维克', starter: true, value: 240 },
+      { name: '罗恩·扬森', number: 16, position: 'GK', club: '乌得勒支', starter: false, value: 120 },
+      { name: '约勒·阿尔特斯', number: 22, position: 'GK', club: 'SBV精英', starter: false, value: 120 },
+      { name: '库恩·约斯滕', number: 2, position: 'RB', club: '乌得勒支', starter: true, value: 270 },
+      { name: '达里尔·拉赫曼', number: 3, position: 'CB', club: '埃门', starter: true, value: 300 },
+      { name: '米隆·哈姆斯特拉', number: 4, position: 'CB', club: '海伦芬', starter: false, value: 150 },
+      { name: '休尔·弗洛拉努斯', number: 5, position: 'CB', club: '布雷达', starter: true, value: 300 },
+      { name: '卡洛斯·亨利', number: 12, position: 'LB', club: 'SBV精英', starter: false, value: 135 },
+      { name: '利安德·巴库纳', number: 6, position: 'CDM', club: '维特斯', starter: true, value: 330 },
+      { name: '朱尼奥·马蒂纳', number: 8, position: 'CM', club: '乌得勒支', starter: true, value: 360 },
+      { name: '文森特·延森', number: 14, position: 'CM', club: '特温特', starter: false, value: 180 },
+      { name: '杰尔米·安托尼塞', number: 10, position: 'CAM', club: 'SBV精英', starter: true, value: 390 },
+      { name: '朱利尼奥·巴库纳', number: 7, position: 'RW', club: '维特斯', starter: true, value: 390 },
+      { name: '埃尔森·霍伊', number: 11, position: 'LW', club: '瓦尔维克', starter: true, value: 390 },
+      { name: '肯吉·戈尔雷', number: 17, position: 'LW', club: 'SBV精英', starter: false, value: 195 },
+      { name: '兰格罗·扬加', number: 9, position: 'ST', club: '布雷达', starter: true, value: 420 },
+      { name: '拉伊·弗洛拉努斯', number: 19, position: 'ST', club: 'SBV精英', starter: false, value: 210 },
+      { name: '吉亚诺·克鲁维特', number: 20, position: 'ST', club: '维特斯', starter: true, value: 420 }
+    ]
+  },
+  '科特迪瓦': {
+    coach: '埃梅尔斯·法埃', formation: '4-3-3',
+    players: [
+      { name: '叶海亚·福法纳', number: 1, position: 'GK', club: '里泽体育', starter: true, value: 480 },
+      { name: '穆罕默德·科内', number: 16, position: 'GK', club: '沙勒罗瓦', starter: false, value: 240 },
+      { name: '阿尔班·拉丰', number: 23, position: 'GK', club: '帕纳辛纳科斯', starter: false, value: 240 },
+      { name: '奥德尔·科苏', number: 4, position: 'CB', club: '亚特兰大', starter: true, value: 4000 },
+      { name: '伊万·恩迪卡', number: 3, position: 'CB', club: '罗马', starter: true, value: 3000 },
+      { name: '威利·辛戈', number: 2, position: 'RB', club: '加拉塔萨雷', starter: true, value: 540 },
+      { name: '古埃拉·杜埃', number: 5, position: 'LB', club: '斯特拉斯堡', starter: true, value: 540 },
+      { name: '伊马纽尔·阿格巴杜', number: 15, position: 'CB', club: '贝西克塔什', starter: false, value: 300 },
+      { name: '弗兰克·凯西', number: 6, position: 'CDM', club: '阿尔阿赫利', starter: true, value: 1000 },
+      { name: '塞科·福法纳', number: 8, position: 'CM', club: '波尔图', starter: true, value: 720 },
+      { name: '易卜拉希马·桑加雷', number: 14, position: 'CM', club: '诺丁汉森林', starter: false, value: 360 },
+      { name: '阿马德·迪亚洛', number: 7, position: 'RW', club: '曼联', starter: true, value: 780 },
+      { name: '尼古拉斯·佩佩', number: 11, position: 'LW', club: '比利亚雷亚尔', starter: true, value: 780 },
+      { name: '西蒙·阿丁格拉', number: 10, position: 'CAM', club: '摩纳哥', starter: true, value: 2500 },
+      { name: '埃文·盖桑德', number: 17, position: 'ST', club: '阿斯顿维拉', starter: false, value: 3000 },
+      { name: '塞巴斯蒂安·阿莱', number: 9, position: 'ST', club: '多特蒙德', starter: true, value: 840 },
+      { name: '埃利·瓦希', number: 19, position: 'ST', club: '尼斯', starter: false, value: 3000 },
+      { name: '巴祖马纳·图雷', number: 20, position: 'ST', club: '霍芬海姆', starter: false, value: 420 }
+    ]
+  },
+  '厄瓜多尔': {
+    coach: '费利克斯·桑切斯·巴斯', formation: '4-2-3-1',
+    players: [
+      { name: '亚历山大·多明戈斯', number: 1, position: 'GK', club: '基多大学', starter: true, value: 480 },
+      { name: '埃尔南·加林德斯', number: 12, position: 'GK', club: '独立', starter: false, value: 240 },
+      { name: '莫伊塞斯·拉米雷斯', number: 22, position: 'GK', club: '瓜亚基尔城', starter: false, value: 240 },
+      { name: '安赫洛·普雷西亚多', number: 2, position: 'RB', club: '圣吉卢瓦兹', starter: true, value: 540 },
+      { name: '菲利克斯·托雷斯', number: 4, position: 'CB', club: '桑托斯拉古纳', starter: true, value: 600 },
+      { name: '皮耶罗·因卡皮耶', number: 3, position: 'CB', club: '勒沃库森', starter: true, value: 600 },
+      { name: '佩维斯·埃斯图皮尼安', number: 6, position: 'LB', club: '布莱顿', starter: true, value: 540 },
+      { name: '罗伯特·阿尔博莱达', number: 14, position: 'CB', club: '圣保罗', starter: false, value: 300 },
+      { name: '莫伊塞斯·凯塞多', number: 8, position: 'CDM', club: '切尔西', starter: true, value: 660 },
+      { name: '卡洛斯·格鲁埃索', number: 5, position: 'CM', club: '达拉斯FC', starter: true, value: 720 },
+      { name: '何塞·西富恩特斯', number: 15, position: 'CM', club: '博塔弗戈', starter: false, value: 360 },
+      { name: '冈萨洛·普拉塔', number: 11, position: 'RW', club: '里斯本竞技', starter: true, value: 780 },
+      { name: '赫雷米·萨米恩托', number: 7, position: 'LW', club: '布莱顿', starter: true, value: 780 },
+      { name: '安赫尔·梅纳', number: 17, position: 'RW', club: '莱昂', starter: false, value: 390 },
+      { name: '卡洛斯·卡塞多', number: 10, position: 'CAM', club: '独立', starter: false, value: 390 },
+      { name: '恩纳·瓦伦西亚', number: 9, position: 'ST', club: '费内巴切', starter: true, value: 840 },
+      { name: '迈克尔·埃斯特拉达', number: 19, position: 'ST', club: '蓝十字', starter: false, value: 420 },
+      { name: '凯文·罗德里格斯', number: 20, position: 'ST', club: '基多大学', starter: true, value: 840 }
+    ]
+  },
+  // ===== Group F =====
+  '荷兰': {
+    coach: '罗纳德·科曼', formation: '4-3-3',
+    players: [
+      { name: '巴特·费布鲁亨', number: 1, position: 'GK', club: '布莱顿', starter: true, value: 3000 },
+      { name: '马克·弗莱肯', number: 13, position: 'GK', club: '勒沃库森', starter: false, value: 480 },
+      { name: '罗宾·鲁夫斯', number: 23, position: 'GK', club: '桑德兰', starter: false, value: 480 },
+      { name: '丹泽尔·邓弗里斯', number: 22, position: 'RB', club: '国际米兰', starter: true, value: 2500 },
+      { name: '维吉尔·范迪克', number: 4, position: 'CB', club: '利物浦', starter: true, value: 3000 },
+      { name: '尤里恩·蒂姆伯', number: 3, position: 'CB', club: '阿森纳', starter: true, value: 4500 },
+      { name: '米奇·范德文', number: 5, position: 'LB', club: '热刺', starter: true, value: 5000 },
+      { name: '纳坦·阿克', number: 6, position: 'CB', club: '曼城', starter: true, value: 2000 },
+      { name: '弗兰基·德容', number: 21, position: 'CDM', club: '巴塞罗那', starter: true, value: 7000 },
+      { name: '特恩·库普梅纳斯', number: 8, position: 'CM', club: '尤文图斯', starter: true, value: 5000 },
+      { name: '蒂贾尼·赖因德斯', number: 14, position: 'CM', club: '曼城', starter: true, value: 6000 },
+      { name: '科迪·加克波', number: 7, position: 'LW', club: '利物浦', starter: true, value: 7500 },
+      { name: '贾斯汀·克鲁伊维特', number: 11, position: 'RW', club: '伯恩茅斯', starter: false, value: 780 },
+      { name: '布莱恩·布罗比', number: 17, position: 'ST', club: '桑德兰', starter: false, value: 840 },
+      { name: '孟菲斯·德佩', number: 9, position: 'ST', club: '科林蒂安', starter: true, value: 1120 },
+      { name: '沃特·韦霍斯特', number: 19, position: 'ST', club: '阿贾克斯', starter: false, value: 840 },
+      { name: '唐耶尔·马伦', number: 20, position: 'RW', club: '罗马', starter: false, value: 780 },
+      { name: '里安·格拉文贝尔赫', number: 15, position: 'CM', club: '利物浦', starter: false, value: 4500 }
+    ]
+  },
+  '日本': {
+    coach: '森保一', formation: '4-2-3-1',
+    players: [
+      { name: '铃木彩�的', number: 1, position: 'GK', club: '帕尔马', starter: true, value: 480 },
+      { name: '大迫敬介', number: 12, position: 'GK', club: '广岛三箭', starter: false, value: 240 },
+      { name: '早川友基', number: 23, position: 'GK', club: '�的鹿岛鹿角', starter: false, value: 240 },
+      { name: '板仓滉', number: 2, position: 'CB', club: '阿贾克斯', starter: true, value: 600 },
+      { name: '谷口彰悟', number: 4, position: 'CB', club: '圣图尔登', starter: true, value: 600 },
+      { name: '伊藤洋辉', number: 3, position: 'CB', club: '拜仁慕尼黑', starter: true, value: 600 },
+      { name: '长友佑都', number: 5, position: 'LB', club: 'FC东京', starter: true, value: 540 },
+      { name: '富安健洋', number: 16, position: 'CB', club: '阿贾克斯', starter: true, value: 600 },
+      { name: '远藤航', number: 6, position: 'CDM', club: '利物浦', starter: true, value: 660 },
+      { name: '田中碧', number: 8, position: 'CM', club: '利兹联', starter: true, value: 720 },
+      { name: '佐野海舟', number: 14, position: 'CM', club: '美因茨', starter: false, value: 360 },
+      { name: '久保建英', number: 10, position: 'RW', club: '皇家社会', starter: true, value: 6000 },
+      { name: '三笘薫', number: 7, position: 'LW', club: '布莱顿', starter: false, value: 4500 },
+      { name: '堂安律', number: 11, position: 'RW', club: '法兰克福', starter: false, value: 3000 },
+      { name: '中村敬斗', number: 17, position: 'LW', club: '兰斯', starter: true, value: 780 },
+      { name: '上田绮世', number: 9, position: 'ST', club: '费耶诺德', starter: true, value: 840 },
+      { name: '前田大然', number: 19, position: 'ST', club: '凯尔特人', starter: false, value: 420 },
+      { name: '伊藤达哉', number: 20, position: 'RW', club: '根克', starter: false, value: 390 }
+    ]
+  },
+  '瑞典': {
+    coach: '格雷厄姆·波特', formation: '4-4-2',
+    players: [
+      { name: '维克托·约翰松', number: 1, position: 'GK', club: '斯托克城', starter: true, value: 480 },
+      { name: '克里斯托弗·诺德菲尔特', number: 12, position: 'GK', club: 'AIK', starter: false, value: 240 },
+      { name: '雅各布·泽特斯托姆', number: 23, position: 'GK', club: '德比郡', starter: false, value: 240 },
+      { name: '丹尼尔·斯文森', number: 2, position: 'RB', club: '多特蒙德', starter: true, value: 540 },
+      { name: '伊萨克·希恩', number: 4, position: 'CB', club: '亚特兰大', starter: true, value: 600 },
+      { name: '维克托·林德洛夫', number: 3, position: 'CB', club: '阿斯顿维拉', starter: true, value: 600 },
+      { name: '加布里埃尔·古德蒙松', number: 5, position: 'LB', club: '利兹联', starter: true, value: 540 },
+      { name: '卡尔·斯塔费尔特', number: 15, position: 'CB', club: '维戈塞尔塔', starter: false, value: 300 },
+      { name: '马蒂亚斯·斯万贝里', number: 6, position: 'CM', club: '沃尔夫斯堡', starter: true, value: 1200 },
+      { name: '耶斯佩尔·卡尔斯特罗姆', number: 8, position: 'CM', club: '乌迪内斯', starter: true, value: 720 },
+      { name: '卢卡斯·贝格瓦尔', number: 14, position: 'CM', club: '热刺', starter: false, value: 3000 },
+      { name: '安东尼·埃兰加', number: 11, position: 'RW', club: '纽卡斯尔', starter: true, value: 3500 },
+      { name: '亚辛·阿亚里', number: 17, position: 'LW', club: '布莱顿', starter: true, value: 780 },
+      { name: '亚历山大·伊萨克', number: 9, position: 'ST', club: '利物浦', starter: true, value: 12000 },
+      { name: '维克托·久里契奇', number: 19, position: 'ST', club: '阿森纳', starter: true, value: 7500 },
+      { name: '古斯塔夫·尼尔松', number: 20, position: 'ST', club: '布鲁日', starter: false, value: 420 },
+      { name: '本杰明·尼格伦', number: 16, position: 'ST', club: '凯尔特人', starter: false, value: 420 },
+      { name: '亚历山大·伯恩哈德松', number: 10, position: 'RW', club: '基尔', starter: false, value: 390 }
+    ]
+  },
+  '突尼斯': {
+    coach: '卡德里', formation: '4-3-3',
+    players: [
+      { name: '艾门·马斯卢西', number: 1, position: 'GK', club: '萨赫勒之星', starter: true, value: 240 },
+      { name: '穆埃兹·哈桑', number: 16, position: 'GK', club: '非洲人', starter: false, value: 120 },
+      { name: '贝希尔·本·赛义德', number: 22, position: 'GK', club: '莫纳斯提尔', starter: false, value: 120 },
+      { name: '瓦伊迪·凯希里达', number: 2, position: 'RB', club: '法兰克福', starter: true, value: 270 },
+      { name: '蒙塔萨尔·塔尔比', number: 4, position: 'CB', club: '洛里昂', starter: true, value: 300 },
+      { name: '雅辛·梅里亚', number: 5, position: 'CB', club: '萨赫勒之星', starter: true, value: 300 },
+      { name: '阿里·阿布迪', number: 3, position: 'LB', club: '卡昂', starter: true, value: 270 },
+      { name: '迪伦·布朗', number: 15, position: 'CB', club: '勒阿弗尔', starter: false, value: 150 },
+      { name: '埃莱耶·斯基里', number: 6, position: 'CDM', club: '法兰克福', starter: true, value: 330 },
+      { name: '阿尼斯·本·斯莱曼', number: 8, position: 'CM', club: '佛罗伦萨', starter: true, value: 360 },
+      { name: '费尔贾尼·萨西', number: 14, position: 'CM', club: '杜海勒', starter: false, value: 180 },
+      { name: '奈姆·斯利蒂', number: 10, position: 'RW', club: '布雷斯特', starter: true, value: 390 },
+      { name: '优素福·姆萨克尼', number: 7, position: 'LW', club: '杜海勒', starter: true, value: 390 },
+      { name: '赛夫丁·哈兹里', number: 11, position: 'LW', club: '蒙彼利埃', starter: false, value: 195 },
+      { name: '瓦赫比·哈兹里', number: 17, position: 'CAM', club: '蒙彼利埃', starter: false, value: 195 },
+      { name: '哈兹姆·马斯图尔', number: 9, position: 'ST', club: '非洲人', starter: true, value: 420 },
+      { name: '塔哈·亚辛·赫尼西', number: 19, position: 'ST', club: '非洲人', starter: false, value: 210 },
+      { name: '阿里·马卢尔', number: 20, position: 'ST', club: '斯法克斯', starter: true, value: 420 }
+    ]
+  },
+  // ===== Group G =====
+  '比利时': {
+    coach: '鲁迪·加西亚', formation: '4-3-3',
+    players: [
+      { name: '蒂博·库尔图瓦', number: 1, position: 'GK', club: '皇家马德里', starter: true, value: 960 },
+      { name: '森内·拉门斯', number: 12, position: 'GK', club: '曼联', starter: false, value: 480 },
+      { name: '迈克·彭德斯', number: 23, position: 'GK', club: '切尔西', starter: false, value: 480 },
+      { name: '蒂莫西·卡斯塔涅', number: 2, position: 'RB', club: '富勒姆', starter: true, value: 1080 },
+      { name: '阿图尔·泰特', number: 4, position: 'CB', club: '法兰克福', starter: true, value: 1200 },
+      { name: '瓦努·德巴斯特', number: 3, position: 'CB', club: '里斯本竞技', starter: false, value: 600 },
+      { name: '马克西姆·德库珀', number: 5, position: 'LB', club: '布莱顿', starter: true, value: 1080 },
+      { name: '科尼·德温特', number: 15, position: 'CB', club: 'AC米兰', starter: true, value: 1200 },
+      { name: '凯文·德布劳内', number: 7, position: 'CM', club: '那不勒斯', starter: true, value: 5000 },
+      { name: '尤里·蒂勒曼斯', number: 8, position: 'CM', club: '阿斯顿维拉', starter: true, value: 4000 },
+      { name: '阿马杜·奥纳纳', number: 6, position: 'CDM', club: '阿斯顿维拉', starter: true, value: 6000 },
+      { name: '杰里米·多库', number: 11, position: 'RW', club: '曼城', starter: true, value: 7500 },
+      { name: '莱安德罗·特罗萨德', number: 17, position: 'LW', club: '阿森纳', starter: true, value: 1040 },
+      { name: '查尔斯·德凯特拉雷', number: 10, position: 'CAM', club: '亚特兰大', starter: false, value: 4000 },
+      { name: '罗梅卢·卢卡库', number: 9, position: 'ST', club: '那不勒斯', starter: true, value: 2000 },
+      { name: '多迪·卢克巴基奥', number: 19, position: 'ST', club: '本菲卡', starter: false, value: 840 },
+      { name: '莱安德罗·特罗萨德', number: 20, position: 'LW', club: '阿森纳', starter: false, value: 780 },
+      { name: '阿克塞尔·维特塞尔', number: 14, position: 'CB', club: '赫罗纳', starter: false, value: 600 }
+    ]
+  },
+  '埃及': {
+    coach: '胡桑·哈桑', formation: '4-2-3-1',
+    players: [
+      { name: '穆罕默德·谢纳维', number: 1, position: 'GK', club: '阿尔阿赫利', starter: true, value: 480 },
+      { name: '穆罕默德·阿瓦德', number: 16, position: 'GK', club: '扎马莱克', starter: false, value: 240 },
+      { name: '马哈茂德·加德', number: 23, position: 'GK', club: '金字塔', starter: false, value: 240 },
+      { name: '阿赫梅德·法蒂', number: 2, position: 'RB', club: '扎马莱克', starter: true, value: 540 },
+      { name: '阿赫梅德·赫加齐', number: 6, position: 'CB', club: '阿尔阿赫利', starter: true, value: 600 },
+      { name: '穆罕默德·阿卜德尔莫内姆', number: 3, position: 'CB', club: '阿尔阿赫利', starter: true, value: 600 },
+      { name: '穆罕默德·哈姆迪', number: 5, position: 'LB', club: '阿尔阿赫利', starter: true, value: 540 },
+      { name: '拉米·拉比亚', number: 4, position: 'CB', club: '阿尔阿赫利', starter: false, value: 300 },
+      { name: '穆罕默德·埃尔内尼', number: 8, position: 'CDM', club: '阿森纳', starter: true, value: 660 },
+      { name: '阿卜杜拉·赛义德', number: 10, position: 'CM', club: '阿尔阿赫利', starter: true, value: 720 },
+      { name: '哈姆迪·法蒂', number: 14, position: 'CM', club: '金字塔', starter: false, value: 360 },
+      { name: '马哈茂德·特雷泽盖', number: 11, position: 'RW', club: '金字塔', starter: true, value: 780 },
+      { name: '易卜拉欣·阿德尔', number: 7, position: 'LW', club: '金字塔', starter: true, value: 780 },
+      { name: '奥马尔·马穆什', number: 17, position: 'LW', club: '法兰克福', starter: false, value: 390 },
+      { name: '穆斯塔法·穆罕默德', number: 9, position: 'ST', club: '南特', starter: true, value: 840 },
+      { name: '穆罕默德·萨拉赫', number: 19, position: 'RW', club: '利物浦', starter: true, value: 4500 },
+      { name: '艾哈迈德·哈桑', number: 20, position: 'ST', club: '帕纳辛纳科斯', starter: false, value: 420 },
+      { name: '马尔万·哈姆迪', number: 15, position: 'ST', club: '金字塔', starter: false, value: 420 }
+    ]
+  },
+  '伊朗': {
+    coach: '阿米尔·加莱诺伊', formation: '4-2-3-1',
+    players: [
+      { name: '阿里雷扎·贝兰万德', number: 1, position: 'GK', club: '波斯波利斯', starter: true, value: 480 },
+      { name: '帕亚姆·尼亚兹曼', number: 12, position: 'GK', club: '大不里士拖拉机', starter: false, value: 240 },
+      { name: '侯赛因·侯赛尼', number: 22, position: 'GK', club: '独立', starter: false, value: 240 },
+      { name: '萨德赫·莫哈拉米', number: 2, position: 'RB', club: '萨格勒布迪纳摩', starter: true, value: 540 },
+      { name: '穆赫塔尔·扎雷', number: 4, position: 'CB', club: '波斯波利斯', starter: true, value: 600 },
+      { name: '马吉德·侯赛尼', number: 5, position: 'CB', club: '开塞利体育', starter: true, value: 600 },
+      { name: '米拉德·穆罕默迪', number: 3, position: 'LB', club: '塞帕罕', starter: true, value: 540 },
+      { name: '鲁兹贝赫·切什米', number: 15, position: 'CB', club: '独立', starter: false, value: 300 },
+      { name: '赛义德·埃扎托拉希', number: 6, position: 'CDM', club: '波斯波利斯', starter: true, value: 660 },
+      { name: '艾哈迈德·努罗拉希', number: 8, position: 'CM', club: '费耶诺德', starter: true, value: 720 },
+      { name: '阿里·卡里米', number: 14, position: 'CM', club: '杜海勒', starter: false, value: 360 },
+      { name: '阿里·高利扎德', number: 17, position: 'RW', club: '奥莫尼亚', starter: true, value: 780 },
+      { name: '迈赫迪·塔雷米', number: 10, position: 'ST', club: '国际米兰', starter: true, value: 840 },
+      { name: '萨达尔·阿兹蒙', number: 20, position: 'ST', club: '罗马', starter: true, value: 840 },
+      { name: '阿里莱扎·贾汉巴赫什', number: 7, position: 'RW', club: '费耶诺德', starter: false, value: 390 },
+      { name: '萨曼·戈多斯', number: 11, position: 'LW', club: '布伦特福德', starter: true, value: 780 },
+      { name: '卡里姆·安萨里法德', number: 9, position: 'ST', club: '奥莫尼亚', starter: false, value: 420 },
+      { name: '迈赫迪·加耶迪', number: 19, position: 'CAM', club: '波斯波利斯', starter: false, value: 390 }
+    ]
+  },
+  '新西兰': {
+    coach: '丹尼·海', formation: '4-4-2',
+    players: [
+      { name: '斯特凡·马里诺维奇', number: 1, position: 'GK', club: '韦伯里奇', starter: true, value: 240 },
+      { name: '迈克尔·沃德', number: 12, position: 'GK', club: '凤凰城', starter: false, value: 120 },
+      { name: '阿历克斯·保尔森', number: 23, position: 'GK', club: '伯恩茅斯', starter: false, value: 120 },
+      { name: '蒂姆·佩恩', number: 2, position: 'RB', club: '伯恩茅斯', starter: true, value: 270 },
+      { name: '温斯顿·里德', number: 5, position: 'CB', club: '西汉姆联', starter: true, value: 300 },
+      { name: '迈克尔·博克索尔', number: 4, position: 'CB', club: '森德兰', starter: true, value: 300 },
+      { name: '利伯·卡卡斯', number: 3, position: 'LB', club: '赫尔城', starter: true, value: 270 },
+      { name: '比尔·图伊洛马', number: 6, position: 'CB', club: '伯恩茅斯', starter: false, value: 150 },
+      { name: '乔·贝尔', number: 8, position: 'CM', club: '范洛', starter: true, value: 360 },
+      { name: '马科·斯塔梅尼奇', number: 14, position: 'CM', club: '凤凰城', starter: true, value: 360 },
+      { name: '克莱顿·刘易斯', number: 16, position: 'CM', club: '惠灵顿', starter: false, value: 180 },
+      { name: '卡普·巴尔', number: 7, position: 'RW', club: '伯恩茅斯', starter: true, value: 390 },
+      { name: '埃利亚斯·斯科基奇', number: 11, position: 'LW', club: '中央海岸', starter: false, value: 195 },
+      { name: '马修·加贝特', number: 10, position: 'CAM', club: '考文垂', starter: true, value: 390 },
+      { name: '卡兰·埃利奥特', number: 17, position: 'LW', club: '特尔纳纳', starter: true, value: 390 },
+      { name: '克里斯·伍德', number: 9, position: 'ST', club: '诺丁汉森林', starter: true, value: 420 },
+      { name: '科斯塔·巴巴洛塞斯', number: 19, position: 'ST', club: '凤凰城', starter: false, value: 210 },
+      { name: '亚历克斯·格里夫', number: 20, position: 'ST', club: '朴茨茅斯', starter: false, value: 210 }
+    ]
+  },
+  // ===== Group H =====
+  '西班牙': {
+    coach: '路易斯·德拉富恩特', formation: '4-3-3',
+    players: [
+      { name: '乌奈·西蒙', number: 1, position: 'GK', club: '毕尔巴鄂竞技', starter: true, value: 960 },
+      { name: '大卫·拉亚', number: 13, position: 'GK', club: '阿森纳', starter: false, value: 480 },
+      { name: '霍安·加西亚', number: 23, position: 'GK', club: '巴塞罗那', starter: false, value: 480 },
+      { name: '佩德罗·波罗', number: 2, position: 'RB', club: '热刺', starter: true, value: 1080 },
+      { name: '保罗·库巴尔西', number: 4, position: 'CB', club: '巴塞罗那', starter: true, value: 8000 },
+      { name: '拉波尔特', number: 3, position: 'CB', club: '毕尔巴鄂竞技', starter: true, value: 1200 },
+      { name: '马克·库库雷利亚', number: 5, position: 'LB', club: '切尔西', starter: true, value: 1080 },
+      { name: '埃里克·加西亚', number: 15, position: 'CB', club: '巴塞罗那', starter: false, value: 600 },
+      { name: '罗德里', number: 6, position: 'CDM', club: '曼城', starter: true, value: 12000 },
+      { name: '佩德里', number: 8, position: 'CM', club: '巴塞罗那', starter: true, value: 10000 },
+      { name: '法比安·鲁伊斯', number: 14, position: 'CM', club: '巴黎圣日耳曼', starter: false, value: 4000 },
+      { name: '拉明·亚马尔', number: 19, position: 'RW', club: '巴塞罗那', starter: true, value: 15000 },
+      { name: '尼科·威廉姆斯', number: 11, position: 'LW', club: '毕尔巴鄂竞技', starter: true, value: 7000 },
+      { name: '达尼·奥尔莫', number: 10, position: 'CAM', club: '巴塞罗那', starter: true, value: 6000 },
+      { name: '费兰·托雷斯', number: 7, position: 'LW', club: '巴塞罗那', starter: false, value: 3500 },
+      { name: '阿尔瓦罗·莫拉塔', number: 9, position: 'ST', club: 'AC米兰', starter: false, value: 1200 },
+      { name: '米克尔·奥亚萨瓦尔', number: 17, position: 'ST', club: '皇家社会', starter: true, value: 4000 },
+      { name: '耶雷米·皮诺', number: 20, position: 'RW', club: '水晶宫', starter: false, value: 3000 }
+    ]
+  },
+  '佛得角': {
+    coach: '布比斯塔', formation: '4-3-3',
+    players: [
+      { name: '沃齐尼亚', number: 1, position: 'GK', club: '法马利康', starter: true, value: 240 },
+      { name: '马科斯·马塞多', number: 12, position: 'GK', club: '贝伦人', starter: false, value: 120 },
+      { name: '埃尔德·卡多索', number: 23, position: 'GK', club: '通德拉', starter: false, value: 120 },
+      { name: '斯托皮拉', number: 2, position: 'RB', club: '吉尔维森特', starter: true, value: 270 },
+      { name: '皮卡', number: 4, position: 'CB', club: '卡萨皮亚', starter: true, value: 300 },
+      { name: '洛佩斯', number: 3, position: 'CB', club: '埃斯托里尔', starter: true, value: 300 },
+      { name: '若昂·保罗', number: 5, position: 'LB', club: '通德拉', starter: true, value: 270 },
+      { name: '德洛斯', number: 14, position: 'CB', club: '法马利康', starter: false, value: 150 },
+      { name: '安德雷', number: 6, position: 'CDM', club: '费雷拉', starter: true, value: 330 },
+      { name: '凯文·皮纳', number: 8, position: 'CM', club: '波尔多', starter: true, value: 360 },
+      { name: '努诺·桑托斯', number: 15, position: 'CM', club: '吉尔维森特', starter: false, value: 180 },
+      { name: '加里·罗德里格斯', number: 10, position: 'RW', club: '阿纳多卢', starter: true, value: 390 },
+      { name: '瑞安·门德斯', number: 11, position: 'LW', club: '阿尔费萨里', starter: true, value: 390 },
+      { name: '贾梅', number: 7, position: 'LW', club: '沙维什', starter: false, value: 195 },
+      { name: '贝贝', number: 17, position: 'CAM', club: '巴列卡诺', starter: true, value: 390 },
+      { name: '达尔文', number: 9, position: 'ST', club: '费雷拉', starter: true, value: 420 },
+      { name: '威利·塞梅多', number: 19, position: 'ST', club: '波尔蒂芒人', starter: false, value: 210 },
+      { name: '罗德里格斯', number: 20, position: 'ST', club: '法马利康', starter: false, value: 210 }
+    ]
+  },
+  '沙特阿拉伯': {
+    coach: '罗伯托·曼奇尼', formation: '4-2-3-1',
+    players: [
+      { name: '穆罕默德·奥韦斯', number: 1, position: 'GK', club: '利雅得新月', starter: true, value: 480 },
+      { name: '纳瓦夫·阿奇迪', number: 21, position: 'GK', club: '利雅得新月', starter: false, value: 240 },
+      { name: '穆罕默德·鲁巴伊', number: 22, position: 'GK', club: '吉达联合', starter: false, value: 240 },
+      { name: '沙特·阿卜杜勒哈米德', number: 2, position: 'RB', club: '罗马', starter: true, value: 540 },
+      { name: '阿里·布莱希', number: 4, position: 'CB', club: '利雅得新月', starter: true, value: 600 },
+      { name: '阿卜杜拉·马杜', number: 5, position: 'CB', club: '利雅得新月', starter: true, value: 600 },
+      { name: '亚西尔·沙赫拉尼', number: 3, position: 'LB', club: '利雅得新月', starter: true, value: 540 },
+      { name: '哈桑·坦巴克蒂', number: 13, position: 'CB', club: '利雅得新月', starter: false, value: 300 },
+      { name: '穆罕默德·卡努', number: 6, position: 'CDM', club: '利雅得新月', starter: true, value: 660 },
+      { name: '阿卜杜拉·奥泰夫', number: 8, position: 'CM', club: '利雅得新月', starter: true, value: 720 },
+      { name: '纳赛尔·达萨里', number: 14, position: 'CM', club: '吉达联合', starter: false, value: 360 },
+      { name: '萨利赫·谢赫里', number: 10, position: 'CAM', club: '吉达联合', starter: true, value: 780 },
+      { name: '萨米·纳吉', number: 11, position: 'RW', club: '利雅得胜利', starter: true, value: 780 },
+      { name: '法赫德·穆瓦拉德', number: 17, position: 'LW', club: '吉达联合', starter: false, value: 390 },
+      { name: '萨利姆·多萨里', number: 7, position: 'LW', club: '利雅得新月', starter: true, value: 780 },
+      { name: '菲拉斯·布赖坎', number: 9, position: 'ST', club: '利雅得新月', starter: true, value: 840 },
+      { name: '阿卜杜拉赫曼·加里卜', number: 19, position: 'ST', club: '吉达联合', starter: false, value: 420 },
+      { name: '穆萨布·朱维尔', number: 20, position: 'ST', club: '利雅得新月', starter: false, value: 420 }
+    ]
+  },
+  '乌拉圭': {
+    coach: '马塞洛·贝尔萨', formation: '4-3-3',
+    players: [
+      { name: '塞尔吉奥·罗切特', number: 1, position: 'GK', club: '民族', starter: true, value: 480 },
+      { name: '费尔南多·穆斯莱拉', number: 12, position: 'GK', club: '加拉塔萨雷', starter: false, value: 240 },
+      { name: '圣地亚哥·梅莱', number: 23, position: 'GK', club: '阿根廷青年', starter: false, value: 240 },
+      { name: '罗纳德·阿劳霍', number: 4, position: 'CB', club: '巴塞罗那', starter: true, value: 600 },
+      { name: '何塞·希门尼斯', number: 2, position: 'CB', club: '马德里竞技', starter: true, value: 600 },
+      { name: '马蒂亚斯·奥利维拉', number: 3, position: 'LB', club: '那不勒斯', starter: true, value: 540 },
+      { name: '吉列尔莫·巴雷拉', number: 13, position: 'RB', club: '弗拉门戈', starter: true, value: 540 },
+      { name: '塞巴斯蒂安·科茨', number: 19, position: 'CB', club: '里斯本竞技', starter: false, value: 300 },
+      { name: '费德里科·巴尔韦德', number: 15, position: 'CM', club: '皇家马德里', starter: true, value: 10000 },
+      { name: '罗德里戈·本坦库尔', number: 6, position: 'CM', club: '热刺', starter: true, value: 720 },
+      { name: '尼古拉斯·德阿拉斯凯塔', number: 10, position: 'CM', club: '弗拉门戈', starter: true, value: 720 },
+      { name: '法昆多·佩利斯特里', number: 7, position: 'RW', club: '格拉纳达', starter: false, value: 390 },
+      { name: '马克西·阿劳霍', number: 11, position: 'LW', club: '特内里费', starter: true, value: 780 },
+      { name: '布莱恩·罗德里格斯', number: 17, position: 'LW', club: '美洲', starter: false, value: 390 },
+      { name: '迭戈·罗西', number: 14, position: 'RW', club: '费内巴切', starter: true, value: 780 },
+      { name: '达尔文·努涅斯', number: 9, position: 'ST', club: '利物浦', starter: true, value: 7000 },
+      { name: '路易斯·苏亚雷斯', number: 21, position: 'ST', club: '格雷米奥', starter: false, value: 420 },
+      { name: '马克西·戈麦斯', number: 18, position: 'ST', club: '加的斯', starter: false, value: 420 }
+    ]
+  },
+  // ===== Group I =====
+  '法国': {
+    coach: '迪迪埃·德尚', formation: '4-3-3',
+    players: [
+      { name: '迈尼昂', number: 1, position: 'GK', club: 'AC米兰', starter: true, value: 4500 },
+      { name: '布莱斯·桑巴', number: 16, position: 'GK', club: '雷恩', starter: false, value: 1200 },
+      { name: '罗宾·里瑟', number: 23, position: 'GK', club: '朗斯', starter: false, value: 480 },
+      { name: '孔德', number: 5, position: 'RB', club: '巴塞罗那', starter: true, value: 6500 },
+      { name: '于帕梅卡诺', number: 4, position: 'CB', club: '拜仁慕尼黑', starter: true, value: 6000 },
+      { name: '萨利巴', number: 17, position: 'CB', club: '阿森纳', starter: true, value: 8000 },
+      { name: '特奥·埃尔南德斯', number: 3, position: 'LB', club: '阿尔希拉尔', starter: true, value: 5500 },
+      { name: '科纳特', number: 15, position: 'CB', club: '利物浦', starter: false, value: 5500 },
+      { name: '琼阿梅尼', number: 8, position: 'CDM', club: '皇家马德里', starter: true, value: 8000 },
+      { name: '坎特', number: 6, position: 'CM', club: '费内巴切', starter: true, value: 1500 },
+      { name: '拉比奥', number: 14, position: 'CM', club: 'AC米兰', starter: false, value: 2000 },
+      { name: '登贝莱', number: 11, position: 'RW', club: '巴黎圣日耳曼', starter: false, value: 6000 },
+      { name: '姆巴佩', number: 10, position: 'LW', club: '皇家马德里', starter: true, value: 18000 },
+      { name: '迈克尔·奥利塞', number: 7, position: 'RW', club: '拜仁慕尼黑', starter: true, value: 8500 },
+      { name: '巴尔科拉', number: 18, position: 'LW', club: '巴黎圣日耳曼', starter: false, value: 6500 },
+      { name: '谢尔基', number: 19, position: 'CAM', club: '曼城', starter: true, value: 5000 },
+      { name: '图拉姆', number: 20, position: 'ST', club: '国际米兰', starter: true, value: 7000 },
+      { name: '马泰塔', number: 9, position: 'ST', club: '水晶宫', starter: false, value: 3500 }
+    ]
+  },
+  '塞内加尔': {
+    coach: '帕佩·蒂亚夫', formation: '4-3-3',
+    players: [
+      { name: '爱德华·门迪', number: 1, position: 'GK', club: '阿尔阿赫利', starter: true, value: 480 },
+      { name: '莫里·迪奥', number: 16, position: 'GK', club: '勒阿弗尔', starter: false, value: 240 },
+      { name: '耶赫万·迪乌夫', number: 23, position: 'GK', club: '尼斯', starter: false, value: 240 },
+      { name: '卡利杜·库利巴利', number: 3, position: 'CB', club: '阿尔希拉尔', starter: true, value: 600 },
+      { name: '穆萨·尼亚卡特', number: 4, position: 'CB', club: '里昂', starter: true, value: 1500 },
+      { name: '阿卜杜拉耶·塞克', number: 5, position: 'CB', club: '海法马卡比', starter: false, value: 300 },
+      { name: '伊斯梅尔·雅各布斯', number: 2, position: 'LB', club: '加拉塔萨雷', starter: true, value: 540 },
+      { name: '克雷潘·迪亚塔', number: 6, position: 'RB', club: '摩纳哥', starter: false, value: 270 },
+      { name: '伊德里萨·盖耶', number: 8, position: 'CDM', club: '埃弗顿', starter: true, value: 660 },
+      { name: '帕普·马塔尔·萨尔', number: 14, position: 'CM', club: '热刺', starter: true, value: 4000 },
+      { name: '拉明·卡马拉', number: 15, position: 'CM', club: '摩纳哥', starter: true, value: 2000 },
+      { name: '萨迪奥·马内', number: 10, position: 'LW', club: '利雅得胜利', starter: true, value: 1000 },
+      { name: '伊斯梅拉·萨尔', number: 11, position: 'RW', club: '水晶宫', starter: true, value: 780 },
+      { name: '哈比卜·迪亚拉', number: 17, position: 'CAM', club: '桑德兰', starter: false, value: 390 },
+      { name: '尼古拉斯·杰克逊', number: 9, position: 'ST', club: '切尔西', starter: true, value: 5500 },
+      { name: '伊利曼·恩迪亚耶', number: 19, position: 'ST', club: '埃弗顿', starter: false, value: 420 },
+      { name: '布莱耶·迪亚', number: 20, position: 'ST', club: '洛里昂', starter: false, value: 420 },
+      { name: '阿萨内·迪奥', number: 12, position: 'ST', club: '科莫', starter: true, value: 840 }
+    ]
+  },
+  '伊拉克': {
+    coach: '赫苏斯·卡萨斯', formation: '4-2-3-1',
+    players: [
+      { name: '法赫德·塔利布', number: 1, position: 'GK', club: '阿尔肖塔', starter: true, value: 240 },
+      { name: '穆罕默德·哈米德', number: 12, position: 'GK', club: '阿尔扎瓦拉', starter: false, value: 120 },
+      { name: '阿里·卡西姆', number: 22, position: 'GK', club: '空军俱乐部', starter: false, value: 120 },
+      { name: '阿里·法伊兹', number: 2, position: 'RB', club: '阿尔肖塔', starter: true, value: 270 },
+      { name: '穆罕默德·阿里', number: 4, position: 'CB', club: '阿尔肖塔', starter: true, value: 300 },
+      { name: '雷宾·苏拉卡', number: 5, position: 'CB', club: '阿尔肖塔', starter: true, value: 300 },
+      { name: '梅尔查斯·多斯基', number: 3, position: 'LB', club: '阿尔扎瓦拉', starter: true, value: 270 },
+      { name: '阿米尔·阿尔阿马里', number: 15, position: 'CB', club: '空军俱乐部', starter: false, value: 150 },
+      { name: '阿姆贾德·阿特万', number: 6, position: 'CDM', club: '阿尔肖塔', starter: true, value: 330 },
+      { name: '易卜拉欣·巴耶什', number: 8, position: 'CM', club: '空军俱乐部', starter: true, value: 360 },
+      { name: '沙赫卜·阿卜杜拉希姆', number: 14, position: 'CM', club: '阿尔肖塔', starter: false, value: 180 },
+      { name: '穆哈纳德·阿里', number: 10, position: 'CAM', club: '阿尔肖塔', starter: true, value: 390 },
+      { name: '贾斯姆·穆罕默德', number: 11, position: 'RW', club: '阿尔扎瓦拉', starter: true, value: 390 },
+      { name: '侯赛因·阿里', number: 7, position: 'LW', club: '空军俱乐部', starter: true, value: 390 },
+      { name: '阿里·阿德南', number: 17, position: 'LW', club: '塞帕罕', starter: false, value: 195 },
+      { name: '艾曼·侯赛因', number: 9, position: 'ST', club: '阿尔肖塔', starter: true, value: 420 },
+      { name: '穆罕默德·达伍德', number: 19, position: 'ST', club: '阿尔扎瓦拉', starter: false, value: 210 },
+      { name: '阿里·阿尔哈马迪', number: 20, position: 'ST', club: '空军俱乐部', starter: false, value: 210 }
+    ]
+  },
+  '挪威': {
+    coach: '斯托勒·索尔巴肯', formation: '4-3-3',
+    players: [
+      { name: '奥尔扬·尼兰', number: 1, position: 'GK', club: '塞维利亚', starter: true, value: 480 },
+      { name: '埃吉尔·塞尔维克', number: 12, position: 'GK', club: '沃特福德', starter: false, value: 240 },
+      { name: '桑德尔·唐维克', number: 23, position: 'GK', club: '汉堡', starter: false, value: 240 },
+      { name: '朱利安·里尔森', number: 2, position: 'RB', club: '多特蒙德', starter: true, value: 2500 },
+      { name: '克里斯托弗·阿耶尔', number: 4, position: 'CB', club: '布伦特福德', starter: true, value: 3000 },
+      { name: '利奥·厄斯蒂高', number: 5, position: 'CB', club: '热那亚', starter: true, value: 600 },
+      { name: '大卫·默勒·沃尔夫', number: 3, position: 'LB', club: '狼队', starter: true, value: 540 },
+      { name: '马库斯·佩德森', number: 15, position: 'RB', club: '都灵', starter: false, value: 270 },
+      { name: '马丁·厄德高', number: 8, position: 'CM', club: '阿森纳', starter: true, value: 11000 },
+      { name: '桑德尔·贝格', number: 6, position: 'CDM', club: '富勒姆', starter: true, value: 660 },
+      { name: '帕特里克·贝格', number: 14, position: 'CM', club: '博德闪耀', starter: false, value: 360 },
+      { name: '安东尼奥·努萨', number: 11, position: 'RW', club: '莱比锡', starter: true, value: 3000 },
+      { name: '奥斯卡·鲍勃', number: 17, position: 'LW', club: '富勒姆', starter: false, value: 2500 },
+      { name: '安德烈亚斯·谢尔德鲁普', number: 10, position: 'CAM', club: '本菲卡', starter: false, value: 390 },
+      { name: '埃尔林·哈兰德', number: 9, position: 'ST', club: '曼城', starter: true, value: 840 },
+      { name: '亚历山大·索尔洛特', number: 19, position: 'ST', club: '马德里竞技', starter: false, value: 3500 },
+      { name: '约根·斯特兰德·拉尔森', number: 20, position: 'ST', club: '水晶宫', starter: true, value: 840 },
+      { name: '克里斯蒂安·索斯特维德', number: 16, position: 'CM', club: '萨索洛', starter: true, value: 720 }
+    ]
+  },
+  // ===== Group J =====
+  '阿根廷': {
+    coach: '利昂内尔·斯卡洛尼', formation: '4-3-3',
+    players: [
+      { name: '埃米利亚诺·马丁内斯', number: 1, position: 'GK', club: '阿斯顿维拉', starter: true, value: 3000 },
+      { name: '赫罗尼莫·鲁利', number: 12, position: 'GK', club: '马赛', starter: false, value: 480 },
+      { name: '胡安·穆索', number: 23, position: 'GK', club: '马德里竞技', starter: false, value: 480 },
+      { name: '贡萨洛·蒙蒂尔', number: 4, position: 'RB', club: '河床', starter: true, value: 1080 },
+      { name: '纳韦尔·莫利纳', number: 5, position: 'RB', club: '马德里竞技', starter: false, value: 540 },
+      { name: '利桑德罗·马丁内斯', number: 6, position: 'CB', club: '曼联', starter: true, value: 5500 },
+      { name: '尼古拉斯·奥塔门迪', number: 7, position: 'CB', club: '本菲卡', starter: true, value: 1200 },
+      { name: '克里斯蒂安·罗梅罗', number: 9, position: 'CB', club: '热刺', starter: true, value: 5500 },
+      { name: '尼古拉斯·塔利亚菲科', number: 10, position: 'LB', club: '里昂', starter: true, value: 1080 },
+      { name: '莱安德罗·帕雷德斯', number: 13, position: 'CM', club: '博卡青年', starter: false, value: 1000 },
+      { name: '罗德里戈·德保罗', number: 14, position: 'CM', club: '国际迈阿密', starter: true, value: 1500 },
+      { name: '恩佐·费尔南德斯', number: 16, position: 'CM', club: '切尔西', starter: true, value: 8500 },
+      { name: '亚历克西斯·麦卡利斯特', number: 17, position: 'CM', club: '利物浦', starter: true, value: 8000 },
+      { name: '利昂内尔·梅西', number: 19, position: 'RW', club: '国际迈阿密', starter: true, value: 2500 },
+      { name: '朱利安·阿尔瓦雷斯', number: 24, position: 'ST', club: '马德里竞技', starter: true, value: 10000 },
+      { name: '劳塔罗·马丁内斯', number: 22, position: 'ST', club: '国际米兰', starter: false, value: 10000 },
+      { name: '尼古拉斯·冈萨雷斯', number: 20, position: 'LW', club: '马德里竞技', starter: false, value: 780 },
+      { name: '蒂亚戈·阿尔马达', number: 25, position: 'CAM', club: '里昂', starter: false, value: 780 }
+    ]
+  },
+  '阿尔及利亚': {
+    coach: '贾梅尔·贝尔马迪', formation: '4-3-3',
+    players: [
+      { name: '安东尼·曼德雷亚', number: 1, position: 'GK', club: '波尔多', starter: true, value: 240 },
+      { name: '阿赫梅德·图巴', number: 16, position: 'GK', club: '安特卫普', starter: false, value: 120 },
+      { name: '穆斯塔法·泽格巴', number: 23, position: 'GK', club: '贝鲁兹', starter: false, value: 120 },
+      { name: '艾萨·曼迪', number: 2, position: 'RB', club: '里尔', starter: true, value: 270 },
+      { name: '杰米勒·贝莱利', number: 4, position: 'CB', club: '阿尔阿赫利', starter: true, value: 300 },
+      { name: '穆罕默德·图雷', number: 5, position: 'CB', club: '梅斯', starter: true, value: 300 },
+      { name: '拉米·本塞拜尼', number: 3, position: 'LB', club: '多特蒙德', starter: true, value: 270 },
+      { name: '阿里·马里', number: 15, position: 'CB', club: '阿尔阿赫利', starter: false, value: 150 },
+      { name: '伊斯梅尔·本纳赛尔', number: 6, position: 'CDM', club: 'AC米兰', starter: true, value: 330 },
+      { name: '纳比勒·本塔莱布', number: 8, position: 'CM', club: '里尔', starter: true, value: 360 },
+      { name: '索菲亚内·费古利', number: 14, position: 'CM', club: '贝西克塔什', starter: false, value: 180 },
+      { name: '里亚德·马赫雷斯', number: 7, position: 'RW', club: '阿尔阿赫利', starter: true, value: 390 },
+      { name: '亚当·奥纳斯', number: 11, position: 'LW', club: '那不勒斯', starter: true, value: 390 },
+      { name: '赛义德·本拉赫马', number: 10, position: 'LW', club: '里昂', starter: false, value: 195 },
+      { name: '优素福·贝莱利', number: 17, position: 'CAM', club: '阿尔阿赫利', starter: true, value: 390 },
+      { name: '伊斯兰·斯利马尼', number: 9, position: 'ST', club: '安德莱赫特', starter: true, value: 420 },
+      { name: '巴格达·布内德亚', number: 19, position: 'ST', club: '阿尔科尔', starter: false, value: 210 },
+      { name: '阿明·古伊里', number: 20, position: 'ST', club: '雷恩', starter: false, value: 210 }
+    ]
+  },
+  '奥地利': {
+    coach: '拉尔夫·朗尼克', formation: '4-2-2-2',
+    players: [
+      { name: '海因茨·林德纳', number: 1, position: 'GK', club: '伯尔尼年轻人', starter: true, value: 480 },
+      { name: '帕特里克·彭茨', number: 12, position: 'GK', club: '布伦特福德', starter: false, value: 240 },
+      { name: '亚历山大·施拉格尔', number: 13, position: 'GK', club: '沃尔夫斯堡', starter: false, value: 240 },
+      { name: '斯特凡·莱纳', number: 2, position: 'RB', club: '门兴格拉德巴赫', starter: true, value: 540 },
+      { name: '菲利普·林哈特', number: 4, position: 'CB', club: '弗赖堡', starter: true, value: 600 },
+      { name: '格诺特·特劳纳', number: 3, position: 'CB', club: '皇家社会', starter: true, value: 600 },
+      { name: '大卫·阿拉巴', number: 5, position: 'LB', club: '皇家马德里', starter: true, value: 540 },
+      { name: '凯文·丹索', number: 15, position: 'CB', club: '朗斯', starter: false, value: 300 },
+      { name: '尼古拉斯·塞瓦尔德', number: 6, position: 'CDM', club: '莱比锡', starter: true, value: 660 },
+      { name: '康拉德·莱默尔', number: 8, position: 'CDM', club: '拜仁慕尼黑', starter: true, value: 660 },
+      { name: '弗洛里安·格里利奇', number: 14, position: 'CM', club: '霍芬海姆', starter: false, value: 360 },
+      { name: '马塞尔·萨比策', number: 9, position: 'RAM', club: '多特蒙德', starter: true, value: 600 },
+      { name: '克里斯托夫·鲍姆加特纳', number: 10, position: 'LAM', club: '莱比锡', starter: true, value: 600 },
+      { name: '马尔科·阿瑙托维奇', number: 7, position: 'ST', club: '国际米兰', starter: true, value: 840 },
+      { name: '米夏埃尔·格雷戈里奇', number: 11, position: 'ST', club: '弗赖堡', starter: true, value: 840 },
+      { name: '帕特里克·维默尔', number: 17, position: 'RW', club: '沃尔夫斯堡', starter: false, value: 390 },
+      { name: '卡里姆·奥尼西沃', number: 19, position: 'ST', club: '美因茨', starter: false, value: 420 },
+      { name: '马蒂亚斯·塞德尔', number: 20, position: 'ST', club: '快速', starter: false, value: 420 }
+    ]
+  },
+  '约旦': {
+    coach: '侯辛·阿穆塔', formation: '4-2-3-1',
+    players: [
+      { name: '亚齐德·阿布·莱拉', number: 1, position: 'GK', club: '阿尔费萨里', starter: true, value: 240 },
+      { name: '阿卜杜拉·法霍里', number: 12, position: 'GK', club: '阿尔威赫达', starter: false, value: 120 },
+      { name: '阿赫麦德·阿卜杜勒-萨塔尔', number: 22, position: 'GK', club: '阿尔贾齐拉', starter: false, value: 120 },
+      { name: '穆罕默德·阿布·哈希什', number: 2, position: 'RB', club: '阿尔费萨里', starter: true, value: 270 },
+      { name: '亚赞·阿布·阿拉伯', number: 4, position: 'CB', club: '阿尔费萨里', starter: true, value: 300 },
+      { name: '萨利赫·拉提布', number: 5, position: 'CB', club: '阿尔费萨里', starter: true, value: 300 },
+      { name: '阿里·哈吉', number: 3, position: 'LB', club: '阿尔费萨里', starter: true, value: 270 },
+      { name: '阿卜杜拉·纳西布', number: 15, position: 'CB', club: '阿尔威赫达', starter: false, value: 150 },
+      { name: '尼扎尔·拉什丹', number: 6, position: 'CDM', club: '阿尔费萨里', starter: true, value: 330 },
+      { name: '易卜拉欣·萨德', number: 8, position: 'CM', club: '阿尔威赫达', starter: true, value: 360 },
+      { name: '拉贾伊·阿耶德', number: 14, position: 'CM', club: '阿尔费萨里', starter: false, value: 180 },
+      { name: '穆萨·塔马里', number: 10, position: 'CAM', club: '蒙彼利埃', starter: true, value: 390 },
+      { name: '马赫穆德·马迪', number: 11, position: 'RW', club: '阿尔费萨里', starter: true, value: 390 },
+      { name: '亚赞·阿尔奈马特', number: 17, position: 'LW', club: '阿尔费萨里', starter: true, value: 390 },
+      { name: '阿里·奥尔万', number: 7, position: 'LW', club: '阿尔威赫达', starter: false, value: 195 },
+      { name: '哈姆扎·达尔杜尔', number: 9, position: 'ST', club: '阿尔费萨里', starter: true, value: 420 },
+      { name: '阿尔萨兰·法赫德', number: 19, position: 'ST', club: '阿尔贾齐拉', starter: false, value: 210 },
+      { name: '阿卜杜拉·阿塔尔', number: 20, position: 'ST', club: '阿尔威赫达', starter: false, value: 210 }
+    ]
+  },
+  // ===== Group K =====
+  '葡萄牙': {
+    coach: '罗伯托·马丁内斯', formation: '4-3-3',
+    players: [
+      { name: '迪奥戈·科斯塔', number: 1, position: 'GK', club: '波尔图', starter: true, value: 3500 },
+      { name: '若泽·萨', number: 12, position: 'GK', club: '狼队', starter: false, value: 1500 },
+      { name: '鲁伊·席尔瓦', number: 22, position: 'GK', club: '里斯本竞技', starter: false, value: 480 },
+      { name: '若昂·坎塞洛', number: 2, position: 'RB', club: '巴塞罗那', starter: true, value: 3500 },
+      { name: '鲁本·迪亚斯', number: 4, position: 'CB', club: '曼城', starter: true, value: 6500 },
+      { name: '贡萨洛·伊纳西奥', number: 3, position: 'CB', club: '里斯本竞技', starter: true, value: 3500 },
+      { name: '努诺·门德斯', number: 19, position: 'LB', club: '巴黎圣日耳曼', starter: true, value: 5500 },
+      { name: '迪奥戈·达洛特', number: 15, position: 'RB', club: '曼联', starter: true, value: 3000 },
+      { name: '若昂·帕利尼亚', number: 6, position: 'CDM', club: '拜仁慕尼黑', starter: false, value: 4000 },
+      { name: '贝尔纳多·席尔瓦', number: 10, position: 'CM', club: '曼城', starter: true, value: 4000 },
+      { name: '维蒂尼亚', number: 8, position: 'CM', club: '巴黎圣日耳曼', starter: true, value: 7500 },
+      { name: '布鲁诺·费尔南德斯', number: 18, position: 'CAM', club: '曼联', starter: true, value: 7500 },
+      { name: '拉斐尔·莱昂', number: 17, position: 'LW', club: 'AC米兰', starter: true, value: 7000 },
+      { name: '佩德罗·内托', number: 11, position: 'RW', club: '切尔西', starter: false, value: 4500 },
+      { name: '弗朗西斯科·孔塞桑', number: 14, position: 'RW', club: '尤文图斯', starter: false, value: 3000 },
+      { name: '克里斯蒂亚诺·罗纳尔多', number: 7, position: 'ST', club: '利雅得胜利', starter: true, value: 1200 },
+      { name: '贡萨洛·拉莫斯', number: 9, position: 'ST', club: '巴黎圣日耳曼', starter: false, value: 4500 },
+      { name: '若昂·费利克斯', number: 20, position: 'ST', club: '利雅得胜利', starter: false, value: 2000 }
+    ]
+  },
+  '刚果民主共和国': {
+    coach: '塞巴斯蒂安·德萨布尔', formation: '4-3-3',
+    players: [
+      { name: '莱昂内尔·姆帕西', number: 1, position: 'GK', club: '比利亚雷亚尔', starter: true, value: 240 },
+      { name: '乔纳森·恩金吉', number: 16, position: 'GK', club: '马泽姆贝', starter: false, value: 120 },
+      { name: '巴帕·卡伦巴', number: 23, position: 'GK', club: '马泽姆贝', starter: false, value: 120 },
+      { name: '阿瑟·马苏阿库', number: 2, position: 'RB', club: '雷恩', starter: true, value: 270 },
+      { name: '迪兰·巴图宾西卡', number: 4, position: 'CB', club: '里昂', starter: true, value: 300 },
+      { name: '基库·穆斯图', number: 5, position: 'CB', club: '塞维利亚', starter: true, value: 300 },
+      { name: '约恩·维萨', number: 3, position: 'LB', club: '布伦特福德', starter: true, value: 270 },
+      { name: '马丁·恩加卢', number: 15, position: 'CB', club: '斯特拉斯堡', starter: false, value: 150 },
+      { name: '塞德里克·巴坎布', number: 6, position: 'CDM', club: '贝西克塔什', starter: false, value: 165 },
+      { name: '亚尼克·博拉萨', number: 8, position: 'CM', club: '马赛', starter: true, value: 360 },
+      { name: '萨穆埃尔·穆图萨米', number: 14, position: 'CM', club: '布雷斯特', starter: true, value: 360 },
+      { name: '迪马塔', number: 11, position: 'RW', club: '奥林匹亚科斯', starter: true, value: 390 },
+      { name: '诺阿·卡迪', number: 7, position: 'LW', club: '奥格斯堡', starter: true, value: 390 },
+      { name: '西里尔·迪亚布', number: 17, position: 'LW', club: '马泽姆贝', starter: false, value: 195 },
+      { name: '盖尔·卡库塔', number: 10, position: 'CAM', club: '朗斯', starter: true, value: 390 },
+      { name: '塞德里克·巴坎布', number: 9, position: 'ST', club: '贝西克塔什', starter: true, value: 420 },
+      { name: '菲斯特·姆比约', number: 19, position: 'ST', club: '安特卫普', starter: false, value: 210 },
+      { name: '杰克逊·穆莱卡', number: 20, position: 'ST', club: '马泽姆贝', starter: false, value: 210 }
+    ]
+  },
+  '乌兹别克斯坦': {
+    coach: '卡塔尼奇', formation: '4-2-3-1',
+    players: [
+      { name: '尤茨基尔·尤苏波夫', number: 1, position: 'GK', club: '纳萨夫', starter: true, value: 240 },
+      { name: '鲁斯塔姆·阿什尔马托夫', number: 12, position: 'GK', club: '棉农', starter: false, value: 120 },
+      { name: '桑加尔·扎伊罗夫', number: 23, position: 'GK', club: '纳萨夫', starter: false, value: 120 },
+      { name: '法鲁赫·赛菲耶夫', number: 2, position: 'RB', club: '棉农', starter: true, value: 270 },
+      { name: '埃格尔·克里梅茨', number: 4, position: 'CB', club: '塔什干火车头', starter: true, value: 300 },
+      { name: '鲁斯塔姆·阿什尔马托夫', number: 5, position: 'CB', club: '棉农', starter: true, value: 300 },
+      { name: '伊戈尔·谢尔盖耶夫', number: 3, position: 'LB', club: '棉农', starter: true, value: 270 },
+      { name: '卡米利·阿赫梅多夫', number: 15, position: 'CB', club: '纳萨夫', starter: false, value: 150 },
+      { name: '奥季尔·哈姆罗贝科夫', number: 6, position: 'CDM', club: '棉农', starter: true, value: 330 },
+      { name: '贾姆希德·伊斯坎德罗夫', number: 8, position: 'CM', club: '纳萨夫', starter: true, value: 360 },
+      { name: '萨尔多尔·萨比尔霍贾耶夫', number: 14, position: 'CM', club: '棉农', starter: false, value: 180 },
+      { name: '贾洛利丁·马沙里波夫', number: 10, position: 'CAM', club: '巴统迪纳摩', starter: true, value: 390 },
+      { name: '阿卜杜拉·阿卜杜拉耶夫', number: 11, position: 'RW', club: '纳萨夫', starter: true, value: 390 },
+      { name: '奥塔贝克·舒库罗夫', number: 7, position: 'LW', club: '棉农', starter: true, value: 390 },
+      { name: '科齐姆·科米洛夫', number: 17, position: 'RW', club: '塔什干火车头', starter: false, value: 195 },
+      { name: '埃尔多·肖穆罗多夫', number: 9, position: 'ST', club: '罗马', starter: true, value: 420 },
+      { name: '伊戈尔·谢尔盖耶夫', number: 19, position: 'ST', club: '棉农', starter: false, value: 210 },
+      { name: '博比尔·阿卜迪霍利科夫', number: 20, position: 'ST', club: '纳萨夫', starter: false, value: 210 }
+    ]
+  },
+  '哥伦比亚': {
+    coach: '内斯托尔·洛伦索', formation: '4-3-3',
+    players: [
+      { name: '卡米洛·巴尔加斯', number: 1, position: 'GK', club: '阿特拉斯', starter: true, value: 480 },
+      { name: '阿尔瓦罗·蒙特罗', number: 12, position: 'GK', club: '贝莱斯·萨斯菲尔德', starter: false, value: 240 },
+      { name: '大卫·奥斯皮纳', number: 23, position: 'GK', club: '国民竞技', starter: false, value: 240 },
+      { name: '丹尼尔·穆尼奥斯', number: 2, position: 'RB', club: '水晶宫', starter: true, value: 540 },
+      { name: '达文松·桑切斯', number: 4, position: 'CB', club: '加拉塔萨雷', starter: true, value: 1500 },
+      { name: '约翰·卢库米', number: 3, position: 'CB', club: '博洛尼亚', starter: true, value: 2000 },
+      { name: '约翰·莫希卡', number: 5, position: 'LB', club: '马洛卡', starter: true, value: 540 },
+      { name: '耶里·米纳', number: 15, position: 'CB', club: '卡利亚里', starter: false, value: 300 },
+      { name: '杰斐逊·莱尔马', number: 6, position: 'CDM', club: '水晶宫', starter: true, value: 1500 },
+      { name: '里查德·里奥斯', number: 8, position: 'CM', club: '本菲卡', starter: true, value: 3000 },
+      { name: '凯文·卡斯塔尼奥', number: 14, position: 'CM', club: '河床', starter: false, value: 360 },
+      { name: '路易斯·迪亚斯', number: 7, position: 'LW', club: '利物浦', starter: true, value: 8000 },
+      { name: '哈梅斯·罗德里格斯', number: 10, position: 'CAM', club: '明尼苏达联', starter: true, value: 780 },
+      { name: '霍恩·阿里亚斯', number: 11, position: 'RW', club: '帕尔梅拉斯', starter: false, value: 390 },
+      { name: '豪尔赫·卡拉斯卡尔', number: 17, position: 'CAM', club: '弗拉门戈', starter: false, value: 390 },
+      { name: '拉斐尔·桑托斯·博雷', number: 9, position: 'ST', club: '法兰克福', starter: true, value: 840 },
+      { name: '约翰·科尔多巴', number: 19, position: 'ST', club: '莫斯科斯巴达克', starter: false, value: 420 },
+      { name: '米格尔·博尔哈', number: 20, position: 'ST', club: '国民竞技', starter: true, value: 840 }
+    ]
+  },
+  // ===== Group L =====
+  '英格兰': {
+    coach: '加雷斯·索斯盖特', formation: '4-2-3-1',
+    players: [
+      { name: '乔丹·皮克福德', number: 1, position: 'GK', club: '埃弗顿', starter: true, value: 960 },
+      { name: '阿伦·拉姆斯代尔', number: 13, position: 'GK', club: '南安普顿', starter: false, value: 480 },
+      { name: '迪恩·亨德森', number: 22, position: 'GK', club: '水晶宫', starter: false, value: 480 },
+      { name: '凯尔·沃克', number: 2, position: 'RB', club: '曼城', starter: true, value: 1080 },
+      { name: '约翰·斯通斯', number: 5, position: 'CB', club: '曼城', starter: true, value: 1200 },
+      { name: '马克·盖伊', number: 4, position: 'CB', club: '水晶宫', starter: true, value: 1200 },
+      { name: '卢克·肖', number: 3, position: 'LB', club: '曼联', starter: true, value: 1080 },
+      { name: '埃兹里·孔萨', number: 15, position: 'CB', club: '阿斯顿维拉', starter: false, value: 600 },
+      { name: '德克兰·赖斯', number: 6, position: 'CDM', club: '阿森纳', starter: true, value: 12000 },
+      { name: '卡尔文·菲利普斯', number: 8, position: 'CM', club: '曼城', starter: false, value: 720 },
+      { name: '裘德·贝林厄姆', number: 10, position: 'CAM', club: '皇家马德里', starter: true, value: 1560 },
+      { name: '布卡约·萨卡', number: 7, position: 'RW', club: '阿森纳', starter: true, value: 14000 },
+      { name: '菲尔·福登', number: 17, position: 'LW', club: '曼城', starter: true, value: 13000 },
+      { name: '杰克·格里利什', number: 11, position: 'LW', club: '曼城', starter: false, value: 780 },
+      { name: '特伦特·亚历山大-阿诺德', number: 14, position: 'CM', club: '利物浦', starter: false, value: 720 },
+      { name: '哈里·凯恩', number: 9, position: 'ST', club: '拜仁慕尼黑', starter: true, value: 7500 },
+      { name: '奥利·沃特金斯', number: 19, position: 'ST', club: '阿斯顿维拉', starter: false, value: 840 },
+      { name: '马库斯·拉什福德', number: 20, position: 'ST', club: '曼联', starter: true, value: 1120 }
+    ]
+  },
+  '克罗地亚': {
+    coach: '兹拉科·达利奇', formation: '4-3-3',
+    players: [
+      { name: '多米尼克·利瓦科维奇', number: 1, position: 'GK', club: '费内巴切', starter: true, value: 480 },
+      { name: '伊维卡·伊武希奇', number: 12, position: 'GK', club: '奥西耶克', starter: false, value: 240 },
+      { name: '内迪尔杰·拉布罗维奇', number: 23, position: 'GK', club: '里耶卡', starter: false, value: 240 },
+      { name: '约瑟普·尤拉诺维奇', number: 2, position: 'RB', club: '柏林联合', starter: true, value: 540 },
+      { name: '约什科·格瓦迪奥尔', number: 4, position: 'CB', club: '曼城', starter: true, value: 8000 },
+      { name: '多马戈伊·维达', number: 5, position: 'CB', club: '雅典AEK', starter: true, value: 600 },
+      { name: '博尔纳·索萨', number: 3, position: 'LB', club: '阿贾克斯', starter: true, value: 540 },
+      { name: '约瑟普·斯塔尼希奇', number: 15, position: 'RB', club: '勒沃库森', starter: false, value: 270 },
+      { name: '卢卡·莫德里奇', number: 10, position: 'CM', club: '皇家马德里', starter: true, value: 720 },
+      { name: '马塞洛·布罗佐维奇', number: 8, position: 'CDM', club: '利雅得胜利', starter: true, value: 660 },
+      { name: '马特奥·科瓦契奇', number: 14, position: 'CM', club: '曼城', starter: true, value: 720 },
+      { name: '安德烈·克拉马里奇', number: 9, position: 'RW', club: '霍芬海姆', starter: true, value: 780 },
+      { name: '伊万·佩里希奇', number: 7, position: 'LW', club: '哈伊杜克', starter: false, value: 390 },
+      { name: '洛夫罗·马耶尔', number: 11, position: 'LW', club: '沃尔夫斯堡', starter: true, value: 780 },
+      { name: '马里奥·帕萨利奇', number: 17, position: 'CAM', club: '亚特兰大', starter: false, value: 390 },
+      { name: '安特·布迪米尔', number: 16, position: 'ST', club: '奥萨苏纳', starter: false, value: 420 },
+      { name: '安德烈·克拉马里奇', number: 19, position: 'ST', club: '霍芬海姆', starter: true, value: 840 },
+      { name: '布鲁诺·佩特科维奇', number: 20, position: 'ST', club: '萨格勒布迪纳摩', starter: false, value: 420 }
+    ]
+  },
+  '加纳': {
+    coach: '克里斯·休顿', formation: '4-2-3-1',
+    players: [
+      { name: '理查德·奥弗里', number: 1, position: 'GK', club: '欧登塞', starter: true, value: 480 },
+      { name: '易卜拉欣·达尼拉', number: 16, position: 'GK', club: '圣加仑', starter: false, value: 240 },
+      { name: '劳伦斯·阿蒂-齐吉', number: 23, position: 'GK', club: '巴塞尔', starter: false, value: 240 },
+      { name: '塔里克·兰普提', number: 2, position: 'RB', club: '布莱顿', starter: true, value: 540 },
+      { name: '穆罕默德·萨利苏', number: 4, position: 'CB', club: '南安普顿', starter: true, value: 600 },
+      { name: '亚历山大·吉库', number: 5, position: 'CB', club: '费耶诺德', starter: true, value: 600 },
+      { name: '吉迪恩·门萨', number: 3, position: 'LB', club: '奥格斯堡', starter: true, value: 540 },
+      { name: '丹尼斯·奥多伊', number: 15, position: 'CB', club: '布雷西亚', starter: false, value: 300 },
+      { name: '托马斯·帕尔特伊', number: 6, position: 'CDM', club: '阿森纳', starter: true, value: 660 },
+      { name: '穆罕默德·库杜斯', number: 8, position: 'CM', club: '西汉姆联', starter: true, value: 720 },
+      { name: '萨利斯·阿卜杜勒·萨梅德', number: 14, position: 'CM', club: '朗斯', starter: false, value: 360 },
+      { name: '卡迈丁·苏莱曼纳', number: 10, position: 'CAM', club: '南安普顿', starter: true, value: 780 },
+      { name: '乔丹·阿尤', number: 7, position: 'RW', club: '水晶宫', starter: true, value: 780 },
+      { name: '伊纳基·威廉姆斯', number: 11, position: 'LW', club: '毕尔巴鄂竞技', starter: true, value: 780 },
+      { name: '奥斯曼·布卡里', number: 17, position: 'LW', club: '里斯本竞技', starter: false, value: 390 },
+      { name: '安德烈·阿尤', number: 9, position: 'ST', club: '勒阿弗尔', starter: false, value: 420 },
+      { name: '安东尼·塞门约', number: 19, position: 'ST', club: '伯恩茅斯', starter: true, value: 840 },
+      { name: '伊尼亚基·威廉姆斯', number: 20, position: 'ST', club: '毕尔巴鄂竞技', starter: false, value: 420 }
+    ]
+  },
+  '巴拿马': {
+    coach: '托马斯·克里斯蒂安森', formation: '4-4-2',
+    players: [
+      { name: '路易斯·梅希亚', number: 1, position: 'GK', club: '独立', starter: true, value: 240 },
+      { name: '何塞·卡尔德隆', number: 12, position: 'GK', club: '独立', starter: false, value: 120 },
+      { name: '奥兰多·莫斯克拉', number: 22, position: 'GK', club: 'CD大学', starter: false, value: 120 },
+      { name: '迈克尔·穆里略', number: 2, position: 'RB', club: '纽约红牛', starter: true, value: 270 },
+      { name: '罗德里克·米勒', number: 4, position: 'CB', club: '大学', starter: true, value: 300 },
+      { name: '哈罗德·卡明斯', number: 3, position: 'CB', club: '圣何塞地震', starter: true, value: 300 },
+      { name: '埃里克·戴维斯', number: 5, position: 'LB', club: 'FC达拉斯', starter: true, value: 270 },
+      { name: '法里尼亚', number: 15, position: 'CB', club: '独立', starter: false, value: 150 },
+      { name: '阿尼瓦尔·戈多伊', number: 6, position: 'CDM', club: '纳什维尔', starter: true, value: 330 },
+      { name: '阿达尔贝托·卡拉斯奎拉', number: 8, position: 'CM', club: '休斯顿迪纳摩', starter: true, value: 360 },
+      { name: '阿贝迪·萨穆迪奥', number: 14, position: 'CM', club: '独立', starter: false, value: 180 },
+      { name: '约伊尔·巴塞纳斯', number: 7, position: 'RW', club: '马扎特兰', starter: true, value: 390 },
+      { name: '阿尔贝托·金特罗', number: 11, position: 'LW', club: '大学', starter: true, value: 390 },
+      { name: '爱德华多·格雷罗', number: 10, position: 'LW', club: 'CD大学', starter: false, value: 195 },
+      { name: '塞西里奥·沃特曼', number: 17, position: 'CAM', club: '大学', starter: false, value: 195 },
+      { name: '何塞·法哈尔多', number: 9, position: 'ST', club: '独立', starter: true, value: 420 },
+      { name: '伊斯梅尔·迪亚斯', number: 19, position: 'ST', club: '大学', starter: false, value: 210 },
+      { name: '加布里埃尔·托雷斯', number: 20, position: 'ST', club: '独立', starter: true, value: 420 }
+    ]
+  }
+};
+
+// Group Stage Schedule - All 72 matches (Beijing Time)
+const groupSchedule = [
+  // === 第1轮 (Matchday 1) ===
+  { date: '6月12日', time: '03:00', group: 'A', home: '墨西哥', homeFlag: '🇲🇽', away: '南非', awayFlag: '🇿🇦', venue: '墨西哥城' },
+  { date: '6月12日', time: '10:00', group: 'A', home: '韩国', homeFlag: '🇰🇷', away: '捷克', awayFlag: '🇨🇿', venue: '瓜达拉哈拉' },
+
+  { date: '6月13日', time: '03:00', group: 'B', home: '加拿大', homeFlag: '🇨🇦', away: '波黑', awayFlag: '🇧🇦', venue: '多伦多' },
+  { date: '6月13日', time: '06:00', group: 'D', home: '美国', homeFlag: '🇺🇸', away: '巴拉圭', awayFlag: '🇵🇾', venue: '达拉斯' },
+  { date: '6月13日', time: '06:00', group: 'B', home: '卡塔尔', homeFlag: '🇶🇦', away: '瑞士', awayFlag: '🇨🇭', venue: '蒙特利尔' },
+  { date: '6月13日', time: '09:00', group: 'D', home: '澳大利亚', homeFlag: '🇦🇺', away: '土耳其', awayFlag: '🇹🇷', venue: '休斯顿' },
+
+  { date: '6月14日', time: '03:00', group: 'C', home: '巴西', homeFlag: '🇧🇷', away: '摩洛哥', awayFlag: '🇲🇦', venue: '洛杉矶' },
+  { date: '6月14日', time: '06:00', group: 'C', home: '海地', homeFlag: '🇭🇹', away: '苏格兰', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', venue: '旧金山' },
+
+  { date: '6月15日', time: '03:00', group: 'E', home: '德国', homeFlag: '🇩🇪', away: '库拉索', awayFlag: '🇨🇼', venue: '纽约' },
+  { date: '6月15日', time: '06:00', group: 'F', home: '荷兰', homeFlag: '🇳🇱', away: '日本', awayFlag: '🇯🇵', venue: '波士顿' },
+  { date: '6月15日', time: '06:00', group: 'E', home: '科特迪瓦', homeFlag: '🇨🇮', away: '厄瓜多尔', awayFlag: '🇪🇨', venue: '费城' },
+  { date: '6月15日', time: '09:00', group: 'F', home: '瑞典', homeFlag: '🇸🇪', away: '突尼斯', awayFlag: '🇹🇳', venue: '迈阿密' },
+
+  { date: '6月16日', time: '03:00', group: 'G', home: '比利时', homeFlag: '🇧🇪', away: '埃及', awayFlag: '🇪🇬', venue: '西雅图' },
+  { date: '6月16日', time: '06:00', group: 'G', home: '伊朗', homeFlag: '🇮🇷', away: '新西兰', awayFlag: '🇳🇿', venue: '温哥华' },
+  { date: '6月16日', time: '06:00', group: 'H', home: '西班牙', homeFlag: '🇪🇸', away: '佛得角', awayFlag: '🇨🇻', venue: '亚特兰大' },
+  { date: '6月16日', time: '09:00', group: 'H', home: '沙特阿拉伯', homeFlag: '🇸🇦', away: '乌拉圭', awayFlag: '🇺🇾', venue: '堪萨斯城' },
+
+  { date: '6月17日', time: '03:00', group: 'I', home: '法国', homeFlag: '🇫🇷', away: '塞内加尔', awayFlag: '🇸🇳', venue: '芝加哥' },
+  { date: '6月17日', time: '06:00', group: 'J', home: '阿根廷', homeFlag: '🇦🇷', away: '阿尔及利亚', awayFlag: '🇩🇿', venue: '迈阿密' },
+  { date: '6月17日', time: '06:00', group: 'I', home: '伊拉克', homeFlag: '🇮🇶', away: '挪威', awayFlag: '🇳🇴', venue: '明尼阿波利斯' },
+  { date: '6月17日', time: '09:00', group: 'J', home: '奥地利', homeFlag: '🇦🇹', away: '约旦', awayFlag: '🇯🇴', venue: '达拉斯' },
+
+  { date: '6月18日', time: '03:00', group: 'K', home: '葡萄牙', homeFlag: '🇵🇹', away: '刚果民主共和国', awayFlag: '🇨🇩', venue: '休斯顿' },
+  { date: '6月18日', time: '06:00', group: 'L', home: '英格兰', homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', away: '克罗地亚', awayFlag: '🇭🇷', venue: '纽约' },
+  { date: '6月18日', time: '06:00', group: 'K', home: '乌兹别克斯坦', homeFlag: '🇺🇿', away: '哥伦比亚', awayFlag: '🇨🇴', venue: '旧金山' },
+  { date: '6月18日', time: '09:00', group: 'L', home: '加纳', homeFlag: '🇬🇭', away: '巴拿马', awayFlag: '🇵🇦', venue: '费城' },
+
+  // === 第2轮 (Matchday 2) ===
+  { date: '6月20日', time: '03:00', group: 'A', home: '南非', homeFlag: '🇿🇦', away: '韩国', awayFlag: '🇰🇷', venue: '墨西哥城' },
+  { date: '6月20日', time: '06:00', group: 'A', home: '捷克', homeFlag: '🇨🇿', away: '墨西哥', awayFlag: '🇲🇽', venue: '瓜达拉哈拉' },
+
+  { date: '6月21日', time: '03:00', group: 'B', home: '波黑', homeFlag: '🇧🇦', away: '卡塔尔', awayFlag: '🇶🇦', venue: '蒙特利尔' },
+  { date: '6月21日', time: '03:00', group: 'C', home: '摩洛哥', homeFlag: '🇲🇦', away: '海地', awayFlag: '🇭🇹', venue: '旧金山' },
+  { date: '6月21日', time: '06:00', group: 'B', home: '瑞士', homeFlag: '🇨🇭', away: '加拿大', awayFlag: '🇨🇦', venue: '多伦多' },
+  { date: '6月21日', time: '06:00', group: 'C', home: '苏格兰', homeFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', away: '巴西', awayFlag: '🇧🇷', venue: '洛杉矶' },
+  { date: '6月21日', time: '06:00', group: 'D', home: '巴拉圭', homeFlag: '🇵🇾', away: '澳大利亚', awayFlag: '🇦🇺', venue: '休斯顿' },
+  { date: '6月21日', time: '09:00', group: 'D', home: '土耳其', homeFlag: '🇹🇷', away: '美国', awayFlag: '🇺🇸', venue: '达拉斯' },
+
+  { date: '6月22日', time: '03:00', group: 'E', home: '库拉索', homeFlag: '🇨🇼', away: '科特迪瓦', awayFlag: '🇨🇮', venue: '费城' },
+  { date: '6月22日', time: '03:00', group: 'F', home: '日本', homeFlag: '🇯🇵', away: '瑞典', awayFlag: '🇸🇪', venue: '迈阿密' },
+  { date: '6月22日', time: '06:00', group: 'E', home: '厄瓜多尔', homeFlag: '🇪🇨', away: '德国', awayFlag: '🇩🇪', venue: '纽约' },
+  { date: '6月22日', time: '09:00', group: 'F', home: '突尼斯', homeFlag: '🇹🇳', away: '荷兰', awayFlag: '🇳🇱', venue: '波士顿' },
+
+  { date: '6月23日', time: '03:00', group: 'G', home: '埃及', homeFlag: '🇪🇬', away: '伊朗', awayFlag: '🇮🇷', venue: '温哥华' },
+  { date: '6月23日', time: '03:00', group: 'H', home: '佛得角', homeFlag: '🇨🇻', away: '沙特阿拉伯', awayFlag: '🇸🇦', venue: '堪萨斯城' },
+  { date: '6月23日', time: '06:00', group: 'G', home: '新西兰', homeFlag: '🇳🇿', away: '比利时', awayFlag: '🇧🇪', venue: '西雅图' },
+  { date: '6月23日', time: '09:00', group: 'H', home: '乌拉圭', homeFlag: '🇺🇾', away: '西班牙', awayFlag: '🇪🇸', venue: '亚特兰大' },
+
+  { date: '6月24日', time: '03:00', group: 'I', home: '塞内加尔', homeFlag: '🇸🇳', away: '伊拉克', awayFlag: '🇮🇶', venue: '明尼阿波利斯' },
+  { date: '6月24日', time: '03:00', group: 'J', home: '阿尔及利亚', homeFlag: '🇩🇿', away: '奥地利', awayFlag: '🇦🇹', venue: '达拉斯' },
+  { date: '6月24日', time: '06:00', group: 'I', home: '挪威', homeFlag: '🇳🇴', away: '法国', awayFlag: '🇫🇷', venue: '芝加哥' },
+  { date: '6月24日', time: '09:00', group: 'J', home: '约旦', homeFlag: '🇯🇴', away: '阿根廷', awayFlag: '🇦🇷', venue: '迈阿密' },
+
+  { date: '6月25日', time: '03:00', group: 'K', home: '刚果民主共和国', homeFlag: '🇨🇩', away: '乌兹别克斯坦', awayFlag: '🇺🇿', venue: '旧金山' },
+  { date: '6月25日', time: '03:00', group: 'L', home: '克罗地亚', homeFlag: '🇭🇷', away: '加纳', awayFlag: '🇬🇭', venue: '费城' },
+  { date: '6月25日', time: '06:00', group: 'K', home: '哥伦比亚', homeFlag: '🇨🇴', away: '葡萄牙', awayFlag: '🇵🇹', venue: '休斯顿' },
+  { date: '6月25日', time: '09:00', group: 'L', home: '巴拿马', homeFlag: '🇵🇦', away: '英格兰', awayFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', venue: '纽约' },
+
+  // === 第3轮 (Matchday 3) ===
+  { date: '6月26日', time: '03:00', group: 'A', home: '墨西哥', homeFlag: '🇲🇽', away: '韩国', awayFlag: '🇰🇷', venue: '墨西哥城' },
+  { date: '6月26日', time: '03:00', group: 'A', home: '南非', homeFlag: '🇿🇦', away: '捷克', awayFlag: '🇨🇿', venue: '瓜达拉哈拉' },
+  { date: '6月26日', time: '06:00', group: 'B', home: '加拿大', homeFlag: '🇨🇦', away: '卡塔尔', awayFlag: '🇶🇦', venue: '多伦多' },
+  { date: '6月26日', time: '06:00', group: 'B', home: '波黑', homeFlag: '🇧🇦', away: '瑞士', awayFlag: '🇨🇭', venue: '蒙特利尔' },
+  { date: '6月26日', time: '06:00', group: 'C', home: '巴西', homeFlag: '🇧🇷', away: '海地', awayFlag: '🇭🇹', venue: '洛杉矶' },
+  { date: '6月26日', time: '06:00', group: 'C', home: '摩洛哥', homeFlag: '🇲🇦', away: '苏格兰', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', venue: '旧金山' },
+  { date: '6月26日', time: '09:00', group: 'D', home: '美国', homeFlag: '🇺🇸', away: '澳大利亚', awayFlag: '🇦🇺', venue: '达拉斯' },
+  { date: '6月26日', time: '09:00', group: 'D', home: '巴拉圭', homeFlag: '🇵🇾', away: '土耳其', awayFlag: '🇹🇷', venue: '休斯顿' },
+
+  { date: '6月27日', time: '03:00', group: 'E', home: '德国', homeFlag: '🇩🇪', away: '科特迪瓦', awayFlag: '🇨🇮', venue: '纽约' },
+  { date: '6月27日', time: '03:00', group: 'E', home: '库拉索', homeFlag: '🇨🇼', away: '厄瓜多尔', awayFlag: '🇪🇨', venue: '费城' },
+  { date: '6月27日', time: '03:00', group: 'F', home: '荷兰', homeFlag: '🇳🇱', away: '瑞典', awayFlag: '🇸🇪', venue: '波士顿' },
+  { date: '6月27日', time: '03:00', group: 'F', home: '日本', homeFlag: '🇯🇵', away: '突尼斯', awayFlag: '🇹🇳', venue: '迈阿密' },
+  { date: '6月27日', time: '06:00', group: 'G', home: '比利时', homeFlag: '🇧🇪', away: '伊朗', awayFlag: '🇮🇷', venue: '西雅图' },
+  { date: '6月27日', time: '06:00', group: 'G', home: '埃及', homeFlag: '🇪🇬', away: '新西兰', awayFlag: '🇳🇿', venue: '温哥华' },
+  { date: '6月27日', time: '09:00', group: 'H', home: '西班牙', homeFlag: '🇪🇸', away: '沙特阿拉伯', awayFlag: '🇸🇦', venue: '亚特兰大' },
+  { date: '6月27日', time: '09:00', group: 'H', home: '佛得角', homeFlag: '🇨🇻', away: '乌拉圭', awayFlag: '🇺🇾', venue: '堪萨斯城' },
+
+  { date: '6月28日', time: '03:00', group: 'I', home: '法国', homeFlag: '🇫🇷', away: '伊拉克', awayFlag: '🇮🇶', venue: '芝加哥' },
+  { date: '6月28日', time: '03:00', group: 'I', home: '塞内加尔', homeFlag: '🇸🇳', away: '挪威', awayFlag: '🇳🇴', venue: '明尼阿波利斯' },
+  { date: '6月28日', time: '03:00', group: 'J', home: '阿根廷', homeFlag: '🇦🇷', away: '奥地利', awayFlag: '🇦🇹', venue: '迈阿密' },
+  { date: '6月28日', time: '03:00', group: 'J', home: '阿尔及利亚', homeFlag: '🇩🇿', away: '约旦', awayFlag: '🇯🇴', venue: '达拉斯' },
+  { date: '6月28日', time: '06:00', group: 'K', home: '葡萄牙', homeFlag: '🇵🇹', away: '乌兹别克斯坦', awayFlag: '🇺🇿', venue: '休斯顿' },
+  { date: '6月28日', time: '06:00', group: 'K', home: '刚果民主共和国', homeFlag: '🇨🇩', away: '哥伦比亚', awayFlag: '🇨🇴', venue: '旧金山' },
+  { date: '6月28日', time: '09:00', group: 'L', home: '英格兰', homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', away: '加纳', awayFlag: '🇬🇭', venue: '纽约' },
+  { date: '6月28日', time: '09:00', group: 'L', home: '克罗地亚', homeFlag: '🇭🇷', away: '巴拿马', awayFlag: '🇵🇦', venue: '费城' },
+];
+
+// Knockout Stage Schedule (Beijing Time)
+const knockoutData = [
+  {
+    round: '1/16决赛',
+    icon: 'var(--accent-cyan)',
+    matches: [
+      { num: 'M73', time: '6月29日 03:00', teams: 'A组第2 vs B组第2', venue: '洛杉矶' },
+      { num: 'M74', time: '6月30日 01:00', teams: 'E组第1 vs 最佳第3①', venue: '休斯顿' },
+      { num: 'M75', time: '6月30日 04:30', teams: 'F组第1 vs C组第2', venue: '波士顿' },
+      { num: 'M76', time: '6月30日 09:00', teams: 'C组第1 vs F组第2', venue: '蒙特雷' },
+      { num: 'M77', time: '7月1日 01:00', teams: 'I组第1 vs 最佳第3②', venue: '达拉斯' },
+      { num: 'M78', time: '7月1日 05:00', teams: 'E组第2 vs I组第2', venue: '纽约/新泽西' },
+      { num: 'M79', time: '7月1日 09:00', teams: 'A组第1 vs 最佳第3③', venue: '墨西哥城' },
+      { num: 'M80', time: '7月2日 00:00', teams: 'L组第1 vs 最佳第3④', venue: '亚特兰大' },
+      { num: 'M81', time: '7月2日 04:00', teams: 'D组第1 vs 最佳第3⑤', venue: '西雅图' },
+      { num: 'M82', time: '7月2日 08:00', teams: 'G组第1 vs 最佳第3⑥', venue: '旧金山湾区' },
+      { num: 'M83', time: '7月3日 03:00', teams: 'K组第2 vs L组第2', venue: '洛杉矶' },
+      { num: 'M84', time: '7月3日 07:00', teams: 'H组第1 vs J组第2', venue: '多伦多' },
+      { num: 'M85', time: '7月3日 11:00', teams: 'B组第1 vs 最佳第3⑦', venue: '温哥华' },
+      { num: 'M86', time: '7月4日 02:00', teams: 'J组第1 vs H组第2', venue: '达拉斯' },
+      { num: 'M87', time: '7月4日 06:00', teams: 'K组第1 vs 最佳第3⑧', venue: '迈阿密' },
+      { num: 'M88', time: '7月4日 09:30', teams: 'D组第2 vs G组第2', venue: '堪萨斯城' },
+    ]
+  },
+  {
+    round: '1/8决赛',
+    icon: 'var(--accent-blue)',
+    matches: [
+      { num: 'M89', time: '7月5日 01:00', teams: 'M73胜者 vs M75胜者', venue: '休斯顿' },
+      { num: 'M90', time: '7月5日 05:00', teams: 'M74胜者 vs M77胜者', venue: '费城' },
+      { num: 'M91', time: '7月6日 04:00', teams: 'M76胜者 vs M78胜者', venue: '纽约/新泽西' },
+      { num: 'M92', time: '7月6日 08:00', teams: 'M79胜者 vs M80胜者', venue: '墨西哥城' },
+      { num: 'M93', time: '7月7日 03:00', teams: 'M83胜者 vs M84胜者', venue: '达拉斯' },
+      { num: 'M94', time: '7月7日 08:00', teams: 'M81胜者 vs M82胜者', venue: '西雅图' },
+      { num: 'M95', time: '7月8日 00:00', teams: 'M86胜者 vs M88胜者', venue: '亚特兰大' },
+      { num: 'M96', time: '7月8日 04:00', teams: 'M85胜者 vs M87胜者', venue: '温哥华' },
+    ]
+  },
+  {
+    round: '1/4决赛',
+    icon: 'var(--accent-purple)',
+    matches: [
+      { num: 'M97', time: '7月10日 04:00', teams: 'M89胜者 vs M90胜者', venue: '波士顿' },
+      { num: 'M98', time: '7月11日 03:00', teams: 'M93胜者 vs M94胜者', venue: '洛杉矶' },
+      { num: 'M99', time: '7月12日 05:00', teams: 'M91胜者 vs M92胜者', venue: '迈阿密' },
+      { num: 'M100', time: '7月12日 09:00', teams: 'M95胜者 vs M96胜者', venue: '堪萨斯城' },
+    ]
+  },
+  {
+    round: '半决赛',
+    icon: 'var(--accent-gold)',
+    matches: [
+      { num: 'M101', time: '7月15日 03:00', teams: 'M97胜者 vs M98胜者', venue: '达拉斯' },
+      { num: 'M102', time: '7月16日 03:00', teams: 'M99胜者 vs M100胜者', venue: '亚特兰大' },
+    ]
+  },
+  {
+    round: '季军赛',
+    icon: 'var(--accent-green)',
+    matches: [
+      { num: 'M103', time: '7月19日 05:00', teams: 'M101负者 vs M102负者', venue: '迈阿密' },
+    ]
+  },
+  {
+    round: '决赛',
+    icon: 'var(--accent-gold)',
+    matches: [
+      { num: 'M104', time: '7月20日 03:00', teams: 'M101胜者 vs M102胜者', venue: '纽约/新泽西·大都会人寿体育场' },
+    ]
+  }
+];
+
+const timelineData = [
+  { date: '2026年6月12日', text: '揭幕战：墨西哥 vs 南非', sub: '墨西哥城阿兹特克体育场 · 北京时间03:00' },
+  { date: '6月12日 - 6月18日', text: '小组赛第1轮', sub: '24场比赛' },
+  { date: '6月20日 - 6月25日', text: '小组赛第2轮', sub: '24场比赛' },
+  { date: '6月26日 - 6月28日', text: '小组赛第3轮', sub: '24场比赛 · 同组同时开球' },
+  { date: '6月29日 - 7月4日', text: '1/16决赛', sub: '16场比赛' },
+  { date: '7月5日 - 7月8日', text: '1/8决赛', sub: '8场比赛' },
+  { date: '7月10日 - 7月12日', text: '1/4决赛', sub: '4场比赛' },
+  { date: '7月15日', text: '半决赛（第一场）', sub: '达拉斯 · 北京时间03:00' },
+  { date: '7月16日', text: '半决赛（第二场）', sub: '亚特兰大 · 北京时间03:00' },
+  { date: '7月19日', text: '季军赛', sub: '迈阿密 · 北京时间05:00' },
+  { date: '7月20日', text: '决赛', sub: '纽约大都会人寿体育场 · 北京时间03:00' },
+];
+
+// ==================== RENDER FUNCTIONS ====================
+
+function getGroupColor(letter) {
+  const colors = { A:'var(--group-a)',B:'var(--group-b)',C:'var(--group-c)',D:'var(--group-d)',E:'var(--group-e)',F:'var(--group-f)',G:'var(--group-g)',H:'var(--group-h)',I:'var(--group-i)',J:'var(--group-j)',K:'var(--group-k)',L:'var(--group-l)' };
+  return colors[letter] || '#666';
+}
+
+function renderGroups() {
+  const grid = document.getElementById('groups-grid');
+  grid.innerHTML = groupsData.map(g => `
+    <div class="group-card">
+      <div class="group-header" style="background:${g.color}20; border-bottom: 2px solid ${g.color}">
+        <span class="group-letter" style="background:${g.color}">${g.letter}</span>
+        ${g.letter} 组
+      </div>
+      <div class="group-teams">
+        ${g.teams.map(t => `
+          <div class="team-row">
+            <span class="team-flag">${t.flag}</span>
+            <span class="team-name">${t.name}</span>
+            <span class="team-conf">${t.conf}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderSchedule() {
+  // Render filters
+  const filtersEl = document.getElementById('schedule-filters');
+  const filterItems = ['全部', '第1轮', '第2轮', '第3轮', ...groupsData.map(g => g.letter + '组')];
+  filtersEl.innerHTML = filterItems.map((f, i) => `
+    <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${f}">${f}</button>
+  `).join('');
+
+  // Render matches
+  renderScheduleMatches('全部');
+
+  // Filter click handler
+  filtersEl.addEventListener('click', e => {
+    if (!e.target.classList.contains('filter-btn')) return;
+    filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    renderScheduleMatches(e.target.dataset.filter);
+  });
+}
+
+function renderScheduleMatches(filter) {
+  const content = document.getElementById('schedule-content');
+  let matches = [...groupSchedule];
+
+  if (filter === '第1轮') {
+    matches = matches.filter(m => {
+      const d = parseInt(m.date.replace('6月','').replace('日',''));
+      return d >= 12 && d <= 18;
+    });
+  } else if (filter === '第2轮') {
+    matches = matches.filter(m => {
+      const d = parseInt(m.date.replace('6月','').replace('日',''));
+      return d >= 20 && d <= 25;
+    });
+  } else if (filter === '第3轮') {
+    matches = matches.filter(m => {
+      const d = parseInt(m.date.replace('6月','').replace('日',''));
+      return d >= 26 && d <= 28;
+    });
+  } else if (filter !== '全部') {
+    const groupLetter = filter.replace('组','');
+    matches = matches.filter(m => m.group === groupLetter);
+  }
+
+  // Group by date
+  const byDate = {};
+  matches.forEach(m => {
+    if (!byDate[m.date]) byDate[m.date] = [];
+    byDate[m.date].push(m);
+  });
+
+  content.innerHTML = Object.entries(byDate).map(([date, dayMatches]) => {
+    dayMatches.sort((a, b) => a.time.localeCompare(b.time));
+    return `
+      <div class="matchday">
+        <div class="matchday-header">
+          <span class="matchday-date">${date}</span>
+          <span class="matchday-count">${dayMatches.length}场比赛</span>
+        </div>
+        <div class="matches-list">
+          ${dayMatches.map(m => `
+            <div class="match-card">
+              <div class="match-time">${m.time}</div>
+              <span class="match-group-tag" style="background:${getGroupColor(m.group)}">${m.group}组</span>
+              <div class="match-teams">
+                <span class="match-team"><span class="flag">${m.homeFlag}</span>${m.home}</span>
+                <span class="match-vs">VS</span>
+                <span class="match-team"><span class="flag">${m.awayFlag}</span>${m.away}</span>
+              </div>
+              <div class="match-venue">${m.venue}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderKnockout() {
+  const content = document.getElementById('knockout-content');
+  content.innerHTML = knockoutData.map(round => `
+    <div class="knockout-round">
+      <div class="knockout-round-title">
+        <span class="round-icon" style="background:${round.icon}"></span>
+        ${round.round}
+      </div>
+      <div class="knockout-matches">
+        ${round.matches.map(m => `
+          <div class="ko-match">
+            <span class="ko-match-num">${m.num}</span>
+            <span class="ko-match-time">${m.time.split(' ')[1]}</span>
+            <span class="ko-match-teams">${m.teams}</span>
+            <span class="ko-match-venue">${m.venue}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTimeline() {
+  const content = document.getElementById('timeline-content');
+  content.innerHTML = timelineData.map(item => `
+    <div class="timeline-item">
+      <div class="timeline-date">${item.date}</div>
+      <div class="timeline-text">${item.text}</div>
+      <div class="timeline-sub">${item.sub}</div>
+    </div>
+  `).join('');
+}
+
+// ==================== FULL SCHEDULE SECTION ====================
+
+function buildFullSchedule() {
+  const allMatches = [];
+
+  groupSchedule.forEach(m => {
+    allMatches.push({
+      date: m.date,
+      time: m.time,
+      home: m.home,
+      homeFlag: m.homeFlag,
+      away: m.away,
+      awayFlag: m.awayFlag,
+      venue: m.venue,
+      stage: '小组赛',
+      stageShort: m.group + '组'
+    });
+  });
+
+  knockoutData.forEach(round => {
+    round.matches.forEach(m => {
+      const parts = m.time.split(' ');
+      allMatches.push({
+        date: parts[0],
+        time: parts[1],
+        home: m.teams.split(' vs ')[0],
+        homeFlag: '',
+        away: m.teams.split(' vs ')[1],
+        awayFlag: '',
+        venue: m.venue,
+        stage: round.round,
+        stageShort: round.round,
+        num: m.num
+      });
+    });
+  });
+
+  return allMatches;
+}
+
+function renderFullSchedule() {
+  const allMatches = buildFullSchedule();
+  const filtersEl = document.getElementById('fullschedule-filters');
+  const searchEl = document.getElementById('fullschedule-search');
+  const contentEl = document.getElementById('fullschedule-content');
+
+  const stageColors = {
+    '小组赛': 'var(--accent-blue)',
+    '1/16决赛': 'var(--accent-cyan)',
+    '1/8决赛': 'var(--accent-blue)',
+    '1/4决赛': 'var(--accent-purple)',
+    '半决赛': 'var(--accent-gold)',
+    '季军赛': 'var(--accent-green)',
+    '决赛': 'var(--accent-gold)'
+  };
+
+  const filterItems = ['全部', '小组赛', '1/16决赛', '1/8决赛', '1/4决赛', '半决赛', '季军赛', '决赛'];
+  filtersEl.innerHTML = filterItems.map((f, i) => `
+    <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${f}">${f}</button>
+  `).join('');
+
+  let currentFilter = '全部';
+  let currentSearch = '';
+
+  function getFiltered() {
+    let matches = [...allMatches];
+    if (currentFilter !== '全部') {
+      matches = matches.filter(m => m.stage === currentFilter);
+    }
+    if (currentSearch) {
+      const q = currentSearch.toLowerCase();
+      matches = matches.filter(m =>
+        m.home.toLowerCase().includes(q) ||
+        m.away.toLowerCase().includes(q)
+      );
+    }
+    return matches;
+  }
+
+  function renderList() {
+    const matches = getFiltered();
+    const byDate = {};
+    matches.forEach(m => {
+      if (!byDate[m.date]) byDate[m.date] = [];
+      byDate[m.date].push(m);
+    });
+
+    const dateKeys = Object.keys(byDate).sort((a, b) => {
+      const parseDate = (d) => {
+        const match = d.match(/(\d+)月(\d+)日/);
+        if (!match) return 0;
+        return parseInt(match[1]) * 100 + parseInt(match[2]);
+      };
+      return parseDate(a) - parseDate(b);
+    });
+
+    contentEl.innerHTML = dateKeys.map(date => {
+      const dayMatches = byDate[date];
+      dayMatches.sort((a, b) => a.time.localeCompare(b.time));
+      return `
+        <div class="fs-day">
+          <div class="fs-day-header">
+            <span class="fs-day-date">${date}</span>
+            <span class="fs-day-count">${dayMatches.length}场比赛</span>
+          </div>
+          ${dayMatches.map(m => `
+            <div class="fs-match">
+              <div class="fs-match-time">${m.time}</div>
+              <div class="fs-match-stage" style="background:${stageColors[m.stage] || '#666'}">${m.stageShort}</div>
+              <div class="fs-match-teams">
+                <span class="fs-match-team">${m.homeFlag ? '<span>' + m.homeFlag + '</span>' : ''}<span>${m.home}</span></span>
+                <span class="fs-match-vs">VS</span>
+                <span class="fs-match-team">${m.awayFlag ? '<span>' + m.awayFlag + '</span>' : ''}<span>${m.away}</span></span>
+              </div>
+              <div class="fs-match-venue">${m.venue}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }).join('');
+
+    if (dateKeys.length === 0) {
+      contentEl.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);">未找到匹配的比赛</div>';
+    }
+  }
+
+  filtersEl.addEventListener('click', e => {
+    if (!e.target.classList.contains('filter-btn')) return;
+    filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    currentFilter = e.target.dataset.filter;
+    renderList();
+  });
+
+  searchEl.addEventListener('input', e => {
+    currentSearch = e.target.value.trim();
+    renderList();
+  });
+
+  renderList();
+}
+
+// ==================== SQUAD SECTION ====================
+
+function getPosClass(pos) {
+  if (pos === 'GK') return 'pos-gk';
+  if (['CB','LB','RB','LWB','RWB'].includes(pos)) return 'pos-df';
+  if (['CDM','CM','CAM','LM','RM','LAM','RAM'].includes(pos)) return 'pos-mf';
+  return 'pos-fw';
+}
+
+function getPosLabel(pos) {
+  const labels = { GK:'门将', CB:'中卫', LB:'左后卫', RB:'右后卫', LWB:'左翼卫', RWB:'右翼卫',
+    CDM:'后腰', CM:'中场', CAM:'前腰', LM:'左中场', RM:'右中场', LAM:'左前腰', RAM:'右前腰',
+    LW:'左边锋', RW:'右边锋', ST:'前锋', CF:'中锋' };
+  return labels[pos] || pos;
+}
+
+function getFormationPositions(formation) {
+  const layouts = {
+    '4-3-3': [
+      { x:50, y:90, pos:'GK' },
+      { x:15, y:70, pos:'LB' }, { x:37, y:72, pos:'CB' }, { x:63, y:72, pos:'CB' }, { x:85, y:70, pos:'RB' },
+      { x:25, y:48, pos:'CM' }, { x:50, y:50, pos:'CDM' }, { x:75, y:48, pos:'CM' },
+      { x:20, y:22, pos:'LW' }, { x:50, y:18, pos:'ST' }, { x:80, y:22, pos:'RW' }
+    ],
+    '4-4-2': [
+      { x:50, y:90, pos:'GK' },
+      { x:15, y:70, pos:'LB' }, { x:37, y:72, pos:'CB' }, { x:63, y:72, pos:'CB' }, { x:85, y:70, pos:'RB' },
+      { x:15, y:45, pos:'LM' }, { x:38, y:48, pos:'CM' }, { x:62, y:48, pos:'CM' }, { x:85, y:45, pos:'RM' },
+      { x:38, y:20, pos:'ST' }, { x:62, y:20, pos:'ST' }
+    ],
+    '4-2-3-1': [
+      { x:50, y:90, pos:'GK' },
+      { x:15, y:70, pos:'LB' }, { x:37, y:72, pos:'CB' }, { x:63, y:72, pos:'CB' }, { x:85, y:70, pos:'RB' },
+      { x:35, y:55, pos:'CDM' }, { x:65, y:55, pos:'CDM' },
+      { x:20, y:35, pos:'LW' }, { x:50, y:33, pos:'CAM' }, { x:80, y:35, pos:'RW' },
+      { x:50, y:15, pos:'ST' }
+    ],
+    '3-5-2': [
+      { x:50, y:90, pos:'GK' },
+      { x:25, y:72, pos:'CB' }, { x:50, y:74, pos:'CB' }, { x:75, y:72, pos:'CB' },
+      { x:10, y:45, pos:'LWB' }, { x:35, y:50, pos:'CM' }, { x:50, y:48, pos:'CDM' }, { x:65, y:50, pos:'CM' }, { x:90, y:45, pos:'RWB' },
+      { x:38, y:20, pos:'ST' }, { x:62, y:20, pos:'ST' }
+    ],
+    '3-4-3': [
+      { x:50, y:90, pos:'GK' },
+      { x:25, y:72, pos:'CB' }, { x:50, y:74, pos:'CB' }, { x:75, y:72, pos:'CB' },
+      { x:15, y:45, pos:'LM' }, { x:38, y:48, pos:'CM' }, { x:62, y:48, pos:'CM' }, { x:85, y:45, pos:'RM' },
+      { x:20, y:22, pos:'LW' }, { x:50, y:18, pos:'ST' }, { x:80, y:22, pos:'RW' }
+    ],
+    '4-4-2': [
+      { x:50, y:90, pos:'GK' },
+      { x:15, y:70, pos:'LB' }, { x:37, y:72, pos:'CB' }, { x:63, y:72, pos:'CB' }, { x:85, y:70, pos:'RB' },
+      { x:15, y:45, pos:'LM' }, { x:38, y:48, pos:'CM' }, { x:62, y:48, pos:'CM' }, { x:85, y:45, pos:'RM' },
+      { x:38, y:20, pos:'ST' }, { x:62, y:20, pos:'ST' }
+    ],
+    '4-3-2-1': [
+      { x:50, y:90, pos:'GK' },
+      { x:15, y:70, pos:'LB' }, { x:37, y:72, pos:'CB' }, { x:63, y:72, pos:'CB' }, { x:85, y:70, pos:'RB' },
+      { x:25, y:50, pos:'CM' }, { x:50, y:52, pos:'CDM' }, { x:75, y:50, pos:'CM' },
+      { x:35, y:30, pos:'LAM' }, { x:65, y:30, pos:'RAM' },
+      { x:50, y:12, pos:'ST' }
+    ],
+    '4-2-2-2': [
+      { x:50, y:90, pos:'GK' },
+      { x:15, y:70, pos:'LB' }, { x:37, y:72, pos:'CB' }, { x:63, y:72, pos:'CB' }, { x:85, y:70, pos:'RB' },
+      { x:35, y:55, pos:'CDM' }, { x:65, y:55, pos:'CDM' },
+      { x:25, y:35, pos:'LAM' }, { x:75, y:35, pos:'RAM' },
+      { x:38, y:15, pos:'ST' }, { x:62, y:15, pos:'ST' }
+    ]
+  };
+  return layouts[formation] || layouts['4-3-3'];
+}
+
+function renderPitch(squad) {
+  const players = squad.players;
+  const positions = getFormationPositions(squad.formation);
+
+  const posGroup = (pos) => {
+    if (pos === 'GK') return 'GK';
+    if (['CB','LB','RB','LWB','RWB'].includes(pos)) return 'DF';
+    if (['CDM','CM','CAM','LM','RM','LAM','RAM'].includes(pos)) return 'MF';
+    return 'FW';
+  };
+
+  const assigned = [];
+  const used = new Set();
+
+  positions.forEach(slot => {
+    let best = null;
+    let bestIdx = -1;
+    let bestVal = -1;
+
+    players.forEach((p, i) => {
+      if (used.has(i)) return;
+      const v = p.value || 0;
+      if (p.position === slot.pos && v > bestVal) {
+        best = p; bestIdx = i; bestVal = v;
+      }
+    });
+    if (!best) {
+      players.forEach((p, i) => {
+        if (used.has(i)) return;
+        const v = p.value || 0;
+        if (posGroup(p.position) === posGroup(slot.pos) && v > bestVal) {
+          best = p; bestIdx = i; bestVal = v;
+        }
+      });
+    }
+    if (!best) {
+      players.forEach((p, i) => {
+        if (used.has(i)) return;
+        const v = p.value || 0;
+        if (v > bestVal) { best = p; bestIdx = i; bestVal = v; }
+      });
+    }
+    if (best) {
+      used.add(bestIdx);
+      assigned.push({ player: best, slot });
+    }
+  });
+
+  const pitchHTML = `
+    <div class="pitch-container">
+      <div style="text-align:center;margin-bottom:12px;color:var(--text-secondary);font-size:0.85rem;">首发阵容 (${squad.formation})</div>
+      <div class="pitch">
+        <div class="pitch-box-top"></div>
+        <div class="pitch-box-bottom"></div>
+        <div class="pitch-box-small-top"></div>
+        <div class="pitch-box-small-bottom"></div>
+        ${assigned.map(({ player: p, slot }) => `
+            <div class="pitch-player" style="left:${slot.x}%;top:${slot.y}%">
+              <div class="pitch-player-dot ${p.position === 'GK' ? 'gk' : ''}">${p.number}</div>
+              <div class="pitch-player-name">${p.name.length > 6 ? p.name.slice(0,5)+'..' : p.name}</div>
+            </div>`).join('')}
+      </div>
+    </div>`;
+  return pitchHTML;
+}
+
+function renderSquadList(players) {
+  const groups = { GK:[], DF:[], MF:[], FW:[] };
+  players.forEach(p => {
+    const cls = getPosClass(p.position);
+    if (cls === 'pos-gk') groups.GK.push(p);
+    else if (cls === 'pos-df') groups.DF.push(p);
+    else if (cls === 'pos-mf') groups.MF.push(p);
+    else groups.FW.push(p);
+  });
+
+  Object.values(groups).forEach(arr => arr.sort((a, b) => (b.value || 0) - (a.value || 0)));
+
+  const fmtVal = (v) => {
+    if (v >= 10000) return (v/10000).toFixed(1) + '亿欧';
+    if (v >= 1000) return (v/1000).toFixed(1) + '千万欧';
+    return v + '万欧';
+  };
+  const sectionLabels = { GK:'门将', DF:'后卫', MF:'中场', FW:'前锋' };
+  return Object.entries(groups).filter(([,arr]) => arr.length > 0).map(([key, arr]) => `
+    <div class="squad-position-group">
+      <div class="squad-position-label">${sectionLabels[key]}</div>
+      <div class="squad-players-grid">
+        ${arr.map(p => `
+          <div class="squad-player-row ${p.starter ? 'starter' : ''}">
+            <div class="squad-player-num">${p.number}</div>
+            <div class="squad-player-details">
+              <div class="squad-player-pname">${p.name}</div>
+              <div class="squad-player-club">${p.club}</div>
+            </div>
+            <div class="squad-player-pos ${getPosClass(p.position)}">${getPosLabel(p.position)}</div>
+            <div class="squad-player-value">${p.value ? fmtVal(p.value) : '-'}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderSquad() {
+  const filtersEl = document.getElementById('squad-filters');
+  const contentEl = document.getElementById('squad-content');
+
+  // Build team list from all groups
+  const allTeams = [];
+  groupsData.forEach(g => {
+    g.teams.forEach(t => {
+      allTeams.push({ name: t.name, flag: t.flag, group: g.letter, color: g.color });
+    });
+  });
+
+  // Render filter buttons (by group)
+  const filterItems = ['全部', ...groupsData.map(g => g.letter + '组')];
+  filtersEl.innerHTML = filterItems.map((f, i) => `
+    <button class="filter-btn ${i === 0 ? 'active' : ''}" data-filter="${f}">${f}</button>
+  `).join('');
+
+  function showSquad(filter) {
+    let teams = allTeams;
+    if (filter !== '全部') {
+      const groupLetter = filter.replace('组','');
+      teams = allTeams.filter(t => t.group === groupLetter);
+    }
+
+    contentEl.innerHTML = teams.map(t => {
+      const squad = teamSquads[t.name];
+      if (!squad) {
+        return `
+          <div class="squad-team-card">
+            <div class="squad-team-header">
+              <span class="squad-team-flag">${t.flag}</span>
+              <div class="squad-team-info">
+                <div class="squad-team-name">${t.name}</div>
+                <div class="squad-team-meta"><span class="squad-meta-item">暂无阵容数据</span></div>
+              </div>
+            </div>
+          </div>`;
+      }
+      return `
+        <div class="squad-team-card">
+          <div class="squad-team-header" style="border-left:4px solid ${t.color || 'var(--accent-gold)'}">
+            <span class="squad-team-flag">${t.flag}</span>
+            <div class="squad-team-info">
+              <div class="squad-team-name">${t.name}</div>
+              <div class="squad-team-meta">
+                <span class="squad-meta-item">教练: <strong>${squad.coach}</strong></span>
+                <span class="squad-meta-item">阵型: <strong>${squad.formation}</strong></span>
+                <span class="squad-meta-item">球员: <strong>${squad.players.length}人</strong></span>
+              </div>
+            </div>
+          </div>
+          ${renderPitch(squad)}
+          <div class="squad-list-section">
+            <div class="squad-list-title">完整大名单</div>
+            ${renderSquadList(squad.players)}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  showSquad('全部');
+
+  filtersEl.addEventListener('click', e => {
+    if (!e.target.classList.contains('filter-btn')) return;
+    filtersEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    showSquad(e.target.dataset.filter);
+  });
+}
+
+// ==================== NAVIGATION ====================
+
+// Nav scroll helpers
+function scrollNav(delta) {
+  const el = document.getElementById('navTabsInner');
+  if (el) el.scrollBy({ left: delta, behavior: 'smooth' });
+}
+
+function updateNavScroll() {
+  const el = document.getElementById('navTabsInner');
+  if (!el) return;
+  const fadeL = document.getElementById('navFadeLeft');
+  const fadeR = document.getElementById('navFadeRight');
+  const btnL = document.getElementById('navScrollLeft');
+  const btnR = document.getElementById('navScrollRight');
+  const canScrollLeft = el.scrollLeft > 2;
+  const canScrollRight = el.scrollLeft < el.scrollWidth - el.clientWidth - 2;
+
+  fadeL.classList.toggle('visible', canScrollLeft);
+  fadeR.classList.toggle('visible', canScrollRight);
+  btnL.classList.toggle('visible', canScrollLeft);
+  btnR.classList.toggle('visible', canScrollRight);
+}
+
+document.querySelectorAll('.nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section-' + tab.dataset.tab).classList.add('active');
+    // Scroll active tab into view
+    tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  });
+});
+
+// Listen for nav scroll events
+const navInner = document.getElementById('navTabsInner');
+if (navInner) {
+  navInner.addEventListener('scroll', updateNavScroll);
+  window.addEventListener('resize', updateNavScroll);
+  // Initial check after a short delay to allow layout
+  setTimeout(updateNavScroll, 100);
+}
+
+// Scroll to top button
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('scrollTop');
+  if (window.scrollY > 400) {
+    btn.classList.add('show');
+  } else {
+    btn.classList.remove('show');
+  }
+});
+
+// ==================== COUNTDOWN ====================
+
+function updateCountdown() {
+  const el = document.getElementById('hero-countdown');
+  if (!el) return;
+  // 揭幕战：2026年6月12日 03:00 北京时间 (UTC+8)
+  const kickoff = new Date('2026-06-12T03:00:00+08:00');
+  const now = new Date();
+  const diff = kickoff - now;
+
+  if (diff <= 0) {
+    el.innerHTML = '<div class="hero-countdown-done">⚽ 世界杯已经开幕！</div>';
+    return;
+  }
+
+  const totalSeconds = Math.floor(diff / 1000);
+  const days = Math.floor(totalSeconds / 86400);
+  const hours = Math.floor((totalSeconds % 86400) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+
+  el.innerHTML = `
+    <div class="hero-countdown-label">距离揭幕战（墨西哥 vs 南非）还有</div>
+    <div class="hero-countdown-row">
+      <div class="hero-cd-item">
+        <div class="hero-cd-num">${String(days).padStart(2,'0')}</div>
+        <div class="hero-cd-label">天</div>
+      </div>
+      <div class="hero-cd-sep">:</div>
+      <div class="hero-cd-item">
+        <div class="hero-cd-num">${String(hours).padStart(2,'0')}</div>
+        <div class="hero-cd-label">时</div>
+      </div>
+      <div class="hero-cd-sep">:</div>
+      <div class="hero-cd-item">
+        <div class="hero-cd-num">${String(minutes).padStart(2,'0')}</div>
+        <div class="hero-cd-label">分</div>
+      </div>
+      <div class="hero-cd-sep">:</div>
+      <div class="hero-cd-item">
+        <div class="hero-cd-num">${String(seconds).padStart(2,'0')}</div>
+        <div class="hero-cd-label">秒</div>
+      </div>
+    </div>
+  `;
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ==================== INIT ====================
+
+renderGroups();
+renderSchedule();
+renderKnockout();
+renderTimeline();
+renderFullSchedule();
+renderSquad();
+
+// ==================== PREDICTION GAME ====================
+
+const PRED_KEY = 'wc2026_prediction';
+const predSteps = [
+  { id: 1, label: '小组排名' },
+  { id: 2, label: '最佳第三' },
+  { id: 3, label: '淘汰赛' },
+  { id: 4, label: '预测结果' }
+];
+
+// 1/16决赛对阵模板 —— 依据FIFA官方2026赛程
+// team1Source/team2Source: {type:'group', pos:1, group:'A'} or {type:'third', slot:1}
+// 最佳第3名出现在: M74, M77, M79, M80, M81, M82, M85, M87 共8场
+const R32_TEMPLATE = [
+  { num: 'M73', t1: { type:'group', pos:2, group:'A' }, t2: { type:'group', pos:2, group:'B' } },
+  { num: 'M74', t1: { type:'group', pos:1, group:'E' }, t2: { type:'third', slot:1 } },
+  { num: 'M75', t1: { type:'group', pos:1, group:'F' }, t2: { type:'group', pos:2, group:'C' } },
+  { num: 'M76', t1: { type:'group', pos:1, group:'C' }, t2: { type:'group', pos:2, group:'F' } },
+  { num: 'M77', t1: { type:'group', pos:1, group:'I' }, t2: { type:'third', slot:2 } },
+  { num: 'M78', t1: { type:'group', pos:2, group:'E' }, t2: { type:'group', pos:2, group:'I' } },
+  { num: 'M79', t1: { type:'group', pos:1, group:'A' }, t2: { type:'third', slot:3 } },
+  { num: 'M80', t1: { type:'group', pos:1, group:'L' }, t2: { type:'third', slot:4 } },
+  { num: 'M81', t1: { type:'group', pos:1, group:'D' }, t2: { type:'third', slot:5 } },
+  { num: 'M82', t1: { type:'group', pos:1, group:'G' }, t2: { type:'third', slot:6 } },
+  { num: 'M83', t1: { type:'group', pos:2, group:'K' }, t2: { type:'group', pos:2, group:'L' } },
+  { num: 'M84', t1: { type:'group', pos:1, group:'H' }, t2: { type:'group', pos:2, group:'J' } },
+  { num: 'M85', t1: { type:'group', pos:1, group:'B' }, t2: { type:'third', slot:7 } },
+  { num: 'M86', t1: { type:'group', pos:1, group:'J' }, t2: { type:'group', pos:2, group:'H' } },
+  { num: 'M87', t1: { type:'group', pos:1, group:'K' }, t2: { type:'third', slot:8 } },
+  { num: 'M88', t1: { type:'group', pos:2, group:'D' }, t2: { type:'group', pos:2, group:'G' } }
+];
+
+// 淘汰赛后续轮次模板: [matchNum, fromMatch1, fromMatch2]
+const KO_ROUNDS = [
+  { round: '1/16决赛', matches: R32_TEMPLATE.map(m => m.num) },
+  { round: '1/8决赛', matches: [
+    { num: 'M89', from: ['M73','M75'] },
+    { num: 'M90', from: ['M74','M77'] },
+    { num: 'M91', from: ['M76','M78'] },
+    { num: 'M92', from: ['M79','M80'] },
+    { num: 'M93', from: ['M83','M84'] },
+    { num: 'M94', from: ['M81','M82'] },
+    { num: 'M95', from: ['M86','M88'] },
+    { num: 'M96', from: ['M85','M87'] }
+  ]},
+  { round: '1/4决赛', matches: [
+    { num: 'M97', from: ['M89','M90'] },
+    { num: 'M98', from: ['M93','M94'] },
+    { num: 'M99', from: ['M91','M92'] },
+    { num: 'M100', from: ['M95','M96'] }
+  ]},
+  { round: '半决赛', matches: [
+    { num: 'M101', from: ['M97','M98'] },
+    { num: 'M102', from: ['M99','M100'] }
+  ]},
+  { round: '季军赛', matches: [
+    { num: 'M103', from: ['M101','M102'], isLoser: true }
+  ]},
+  { round: '决赛', matches: [
+    { num: 'M104', from: ['M101','M102'] }
+  ]}
+];
+
+let predState = {
+  currentStep: 1,
+  groupRankings: {},  // { A: [teamName1, teamName2, teamName3, teamName4], ... }
+  bestThirds: [],     // [groupLetter1, groupLetter2, ...] exactly 8
+  knockoutWinners: {} // { M73: teamName, M74: teamName, ... }
+};
+
+function loadPredState() {
+  try {
+    const saved = localStorage.getItem(PRED_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      predState = { ...predState, ...parsed };
+    }
+  } catch(e) {}
+}
+
+function savePredState() {
+  try { localStorage.setItem(PRED_KEY, JSON.stringify(predState)); } catch(e) {}
+}
+
+function initPrediction() {
+  loadPredState();
+  // Initialize default rankings if not set
+  groupsData.forEach(g => {
+    if (!predState.groupRankings[g.letter]) {
+      predState.groupRankings[g.letter] = g.teams.map(t => t.name);
+    }
+  });
+  renderPredProgress();
+  renderPredStep();
+}
+
+function renderPredProgress() {
+  const el = document.getElementById('pred-progress');
+  el.innerHTML = predSteps.map((s, i) => {
+    const isDone = s.id < predState.currentStep;
+    const isActive = s.id === predState.currentStep;
+    const cls = isDone ? 'done' : (isActive ? 'active' : '');
+    return `
+      ${i > 0 ? `<div class="pred-step-line ${s.id <= predState.currentStep ? 'done' : ''}"></div>` : ''}
+      <div class="pred-step-wrap">
+        <div class="pred-step-circle ${cls}" onclick="goToStep(${s.id})">
+          ${isDone ? '✓' : s.id}
+        </div>
+        <div class="pred-step-label ${cls}">${s.label}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+function goToStep(step) {
+  // Can only go back or to current step, not forward beyond allowed
+  if (step > predState.currentStep) {
+    if (step === 2 && !isStep1Complete()) return;
+    if (step === 3 && !isStep2Complete()) return;
+    if (step === 4 && !isStep3Complete()) return;
+  }
+  predState.currentStep = step;
+  savePredState();
+  renderPredProgress();
+  renderPredStep();
+}
+
+function isStep1Complete() {
+  return Object.keys(predState.groupRankings).length === 12;
+}
+function isStep2Complete() {
+  return predState.bestThirds.length === 8;
+}
+function isStep3Complete() {
+  return predState.knockoutWinners['M104'] !== undefined;
+}
+
+function renderPredStep() {
+  const el = document.getElementById('pred-step-content');
+  switch(predState.currentStep) {
+    case 1: renderStep1(el); break;
+    case 2: renderStep2(el); break;
+    case 3: renderStep3(el); break;
+    case 4: renderStep4(el); break;
+  }
+}
+
+// ===== Step 1: Group Rankings =====
+function renderStep1(el) {
+  const completed = Object.keys(predState.groupRankings).length;
+  el.innerHTML = `
+    <div class="pred-summary">已排列 <strong>${completed}</strong> / 12 个小组 · 使用箭头调整每组排名</div>
+    <div class="pred-groups-grid" id="pred-groups-grid"></div>
+    <div class="pred-actions">
+      <button class="pred-btn pred-btn-primary" onclick="goToStep(2)" ${!isStep1Complete() ? 'disabled' : ''}>
+        下一步：选择最佳第三名 →
+      </button>
+    </div>
+  `;
+  renderPredGroupCards();
+}
+
+function renderPredGroupCards() {
+  const grid = document.getElementById('pred-groups-grid');
+  if (!grid) return;
+  grid.innerHTML = groupsData.map(g => {
+    const ranking = predState.groupRankings[g.letter] || g.teams.map(t => t.name);
+    return `
+      <div class="pred-group-card">
+        <div class="pred-group-title" style="background:${g.color}15; border-bottom: 1px solid ${g.color}40">
+          <span class="group-letter" style="background:${g.color}; width:26px; height:26px; font-size:0.75rem; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; color:#fff; font-weight:800;">${g.letter}</span>
+          ${g.letter} 组
+        </div>
+        <div class="pred-group-body">
+          ${ranking.map((name, idx) => {
+            const team = g.teams.find(t => t.name === name);
+            if (!team) return '';
+            const rankClass = `r${idx+1}`;
+            const badgeCls = idx < 2 ? 'badge-advance' : (idx === 2 ? 'badge-third' : 'badge-out');
+            const badgeText = idx < 2 ? '晋级' : (idx === 2 ? '第3名' : '淘汰');
+            return `
+              <div class="pred-rank-row">
+                <div class="pred-rank-num ${rankClass}">${idx+1}</div>
+                <div class="pred-rank-team">
+                  <span>${team.flag}</span>
+                  <span>${team.name}</span>
+                </div>
+                <span class="pred-rank-badge ${badgeCls}">${badgeText}</span>
+                <div class="pred-rank-arrows">
+                  <button onclick="moveRank('${g.letter}',${idx},-1)" ${idx===0?'disabled':''}>▲</button>
+                  <button onclick="moveRank('${g.letter}',${idx},1)" ${idx===3?'disabled':''}>▼</button>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function moveRank(groupLetter, idx, dir) {
+  const ranking = predState.groupRankings[groupLetter];
+  const newIdx = idx + dir;
+  if (newIdx < 0 || newIdx > 3) return;
+  [ranking[idx], ranking[newIdx]] = [ranking[newIdx], ranking[idx]];
+  savePredState();
+  renderPredGroupCards();
+  // Update summary
+  const summary = document.querySelector('.pred-summary');
+  if (summary) {
+    const completed = Object.keys(predState.groupRankings).length;
+    summary.innerHTML = `已排列 <strong>${completed}</strong> / 12 个小组 · 使用箭头调整每组排名`;
+  }
+  // Enable/disable next button
+  const btn = document.querySelector('.pred-btn-primary');
+  if (btn) btn.disabled = !isStep1Complete();
+}
+
+// ===== Step 2: Best Thirds =====
+function renderStep2(el) {
+  const thirdPlaceTeams = [];
+  groupsData.forEach(g => {
+    const ranking = predState.groupRankings[g.letter] || g.teams.map(t => t.name);
+    const thirdTeam = g.teams.find(t => t.name === ranking[2]);
+    if (thirdTeam) {
+      thirdPlaceTeams.push({ group: g.letter, name: thirdTeam.name, flag: thirdTeam.flag, color: g.color });
+    }
+  });
+
+  const selected = predState.bestThirds;
+  el.innerHTML = `
+    <div class="pred-summary">选择 <strong>8</strong> 支最佳第三名球队晋级32强（已选 <strong>${selected.length}</strong>/8）</div>
+    <div class="third-grid" id="third-grid">
+      ${thirdPlaceTeams.map(t => {
+        const isSelected = selected.includes(t.group);
+        return `
+          <div class="third-card ${isSelected ? 'selected' : ''}" onclick="toggleThird('${t.group}')">
+            <div class="check-box">${isSelected ? '✓' : ''}</div>
+            <div class="third-info">
+              <span>${t.flag}</span>
+              <span>${t.name}</span>
+              <span style="color:var(--text-muted);font-size:0.75rem">${t.group}组第3</span>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+    <div class="pred-actions">
+      <button class="pred-btn pred-btn-secondary" onclick="goToStep(1)">← 上一步</button>
+      <button class="pred-btn pred-btn-primary" onclick="goToStep(3)" ${selected.length !== 8 ? 'disabled' : ''}>
+        下一步：淘汰赛预测 →
+      </button>
+    </div>
+  `;
+}
+
+function toggleThird(groupLetter) {
+  const idx = predState.bestThirds.indexOf(groupLetter);
+  if (idx >= 0) {
+    predState.bestThirds.splice(idx, 1);
+  } else {
+    if (predState.bestThirds.length >= 8) return;
+    predState.bestThirds.push(groupLetter);
+  }
+  // Clear knockout predictions when thirds change
+  predState.knockoutWinners = {};
+  savePredState();
+  renderStep2(document.getElementById('pred-step-content'));
+}
+
+// ===== Step 3: Knockout Prediction =====
+function getTeamFromSource(source) {
+  if (source.type === 'group') {
+    const g = groupsData.find(g => g.letter === source.group);
+    const ranking = predState.groupRankings[source.group] || g.teams.map(t => t.name);
+    const teamName = ranking[source.pos - 1];
+    const team = g.teams.find(t => t.name === teamName);
+    return team ? { name: team.name, flag: team.flag } : null;
+  } else {
+    // Best third: sorted alphabetically, slot 1-8
+    const sorted = [...predState.bestThirds].sort();
+    const groupLetter = sorted[source.slot - 1];
+    if (!groupLetter) return null;
+    const g = groupsData.find(g => g.letter === groupLetter);
+    const ranking = predState.groupRankings[groupLetter] || g.teams.map(t => t.name);
+    const teamName = ranking[2];
+    const team = g.teams.find(t => t.name === teamName);
+    return team ? { name: team.name, flag: team.flag } : null;
+  }
+}
+
+function resolveTeam(matchNum) {
+  // For R32 matches, resolve from template
+  const template = R32_TEMPLATE.find(m => m.num === matchNum);
+  if (template) {
+    return {
+      t1: getTeamFromSource(template.t1),
+      t2: getTeamFromSource(template.t2)
+    };
+  }
+  // For later rounds, resolve from previous winners
+  for (let r = 1; r < KO_ROUNDS.length; r++) {
+    const round = KO_ROUNDS[r];
+    const match = round.matches.find(m => m.num === matchNum);
+    if (match) {
+      const t1Winner = predState.knockoutWinners[match.from[0]];
+      const t2Winner = predState.knockoutWinners[match.from[1]];
+      // For 3rd place match, use losers of semis
+      if (match.isLoser) {
+        const t1Loser = getLoser(match.from[0]);
+        const t2Loser = getLoser(match.from[1]);
+        return { t1: t1Loser, t2: t2Loser };
+      }
+      return { t1: t1Winner ? findTeamObj(t1Winner) : null, t2: t2Winner ? findTeamObj(t2Winner) : null };
+    }
+  }
+  return { t1: null, t2: null };
+}
+
+function getLoser(semiMatchNum) {
+  const semiResult = resolveTeam(semiMatchNum);
+  const winner = predState.knockoutWinners[semiMatchNum];
+  if (!winner || !semiResult.t1 || !semiResult.t2) return null;
+  const loserName = winner === semiResult.t1.name ? semiResult.t2.name : semiResult.t1.name;
+  return findTeamObj(loserName);
+}
+
+function findTeamObj(name) {
+  for (const g of groupsData) {
+    const t = g.teams.find(t => t.name === name);
+    if (t) return { name: t.name, flag: t.flag };
+  }
+  return name ? { name, flag: '' } : null;
+}
+
+function isMatchReady(matchNum) {
+  // Check if both teams for this match are determined
+  const result = resolveTeam(matchNum);
+  return result.t1 !== null && result.t2 !== null;
+}
+
+function renderStep3(el) {
+  el.innerHTML = `
+    <div class="pred-summary">点击选择每场比赛的胜者晋级下一轮</div>
+    <div id="ko-pred-container"></div>
+    <div class="pred-actions">
+      <button class="pred-btn pred-btn-secondary" onclick="goToStep(2)">← 上一步</button>
+      <button class="pred-btn pred-btn-primary" onclick="goToStep(4)" ${!isStep3Complete() ? 'disabled' : ''}>
+        查看预测结果 →
+      </button>
+    </div>
+  `;
+  renderKOPredRounds();
+}
+
+function renderKOPredRounds() {
+  const container = document.getElementById('ko-pred-container');
+  if (!container) return;
+
+  let html = '';
+  KO_ROUNDS.forEach(round => {
+    const roundColor = round.round === '决赛' ? 'var(--accent-gold)' :
+                       round.round === '半决赛' ? 'var(--accent-gold)' :
+                       round.round === '季军赛' ? 'var(--accent-green)' :
+                       round.round === '1/4决赛' ? 'var(--accent-purple)' :
+                       round.round === '1/8决赛' ? 'var(--accent-blue)' : 'var(--accent-cyan)';
+
+    html += `<div class="ko-pred-round">
+      <div class="ko-pred-round-title">
+        <span style="width:8px;height:8px;border-radius:50%;background:${roundColor};display:inline-block;"></span>
+        ${round.round}
+      </div>
+      <div class="ko-pred-grid">`;
+
+    if (round.round === '1/16决赛') {
+      R32_TEMPLATE.forEach(m => {
+        const teams = resolveTeam(m.num);
+        const winner = predState.knockoutWinners[m.num];
+        html += renderKOPredMatch(m.num, teams, winner);
+      });
+    } else {
+      round.matches.forEach(m => {
+        let teams;
+        if (m.isLoser) {
+          const t1Loser = getLoser(m.from[0]);
+          const t2Loser = getLoser(m.from[1]);
+          teams = { t1: t1Loser, t2: t2Loser };
+        } else {
+          const t1W = predState.knockoutWinners[m.from[0]];
+          const t2W = predState.knockoutWinners[m.from[1]];
+          teams = {
+            t1: t1W ? findTeamObj(t1W) : null,
+            t2: t2W ? findTeamObj(t2W) : null
+          };
+        }
+        const winner = predState.knockoutWinners[m.num];
+        html += renderKOPredMatch(m.num, teams, winner);
+      });
+    }
+
+    html += `</div></div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function renderKOPredMatch(num, teams, winner) {
+  const t1 = teams.t1;
+  const t2 = teams.t2;
+  const ready = t1 && t2;
+
+  return `
+    <div class="ko-pred-match">
+      <div class="ko-pred-team ${winner === (t1?.name) ? 'winner' : (winner && winner !== t1?.name ? 'loser' : '')} ${!ready ? 'locked' : ''}"
+           onclick="${ready ? `pickKOWinner('${num}','${t1.name}')` : ''}">
+        <span class="team-flag">${t1?.flag || '?'}</span>
+        <span>${t1?.name || '待定'}</span>
+        ${winner === t1?.name ? '<span style="margin-left:auto;color:var(--accent-green);">✓</span>' : ''}
+      </div>
+      <div class="ko-pred-vs">VS</div>
+      <div class="ko-pred-team ${winner === (t2?.name) ? 'winner' : (winner && winner !== t2?.name ? 'loser' : '')} ${!ready ? 'locked' : ''}"
+           onclick="${ready ? `pickKOWinner('${num}','${t2.name}')` : ''}">
+        <span class="team-flag">${t2?.flag || '?'}</span>
+        <span>${t2?.name || '待定'}</span>
+        ${winner === t2?.name ? '<span style="margin-left:auto;color:var(--accent-green);">✓</span>' : ''}
+      </div>
+    </div>
+  `;
+}
+
+function pickKOWinner(matchNum, teamName) {
+  // If already selected same, deselect
+  if (predState.knockoutWinners[matchNum] === teamName) {
+    delete predState.knockoutWinners[matchNum];
+  } else {
+    predState.knockoutWinners[matchNum] = teamName;
+  }
+  // Clear all downstream predictions if changing an earlier match
+  clearDownstream(matchNum);
+  savePredState();
+  renderKOPredRounds();
+  // Update next button
+  const btn = document.querySelector('.pred-btn-primary');
+  if (btn) btn.disabled = !isStep3Complete();
+}
+
+function clearDownstream(matchNum) {
+  // Find all matches that depend on this one and clear their winners
+  for (let r = 1; r < KO_ROUNDS.length; r++) {
+    const round = KO_ROUNDS[r];
+    round.matches.forEach(m => {
+      if (m.from && m.from.includes(matchNum)) {
+        if (predState.knockoutWinners[m.num] !== undefined) {
+          delete predState.knockoutWinners[m.num];
+          clearDownstream(m.num);
+        }
+      }
+    });
+  }
+}
+
+// ===== Step 4: Results =====
+function renderStep4(el) {
+  const champion = predState.knockoutWinners['M104'];
+  const runnerUp = getRunnerUp('M104');
+  const thirdPlace = predState.knockoutWinners['M103'];
+  const fourthPlace = getRunnerUp('M103');
+
+  const semiFinalists = [];
+  ['M101','M102'].forEach(m => {
+    const w = predState.knockoutWinners[m];
+    const l = getRunnerUp(m);
+    if (w && !semiFinalists.includes(w)) semiFinalists.push(w);
+    if (l && !semiFinalists.includes(l)) semiFinalists.push(l);
+  });
+
+  const quarterFinalists = [];
+  ['M97','M98','M99','M100'].forEach(m => {
+    const w = predState.knockoutWinners[m];
+    if (w && !quarterFinalists.includes(w)) quarterFinalists.push(w);
+  });
+
+  const r16Teams = [];
+  R32_TEMPLATE.forEach(m => {
+    const w = predState.knockoutWinners[m.num];
+    if (w && !r16Teams.includes(w)) r16Teams.push(w);
+  });
+
+  const champTeam = findTeamObj(champion);
+  const runnerTeam = findTeamObj(runnerUp);
+  const thirdTeam = findTeamObj(thirdPlace);
+  const fourthTeam = findTeamObj(fourthPlace);
+
+  el.innerHTML = `
+    <div class="result-trophy">
+      <div class="trophy-icon">🏆</div>
+      <div class="champion-flag">${champTeam?.flag || ''}</div>
+      <div class="champion-name">${champion || '???'}</div>
+      <div style="color:var(--text-secondary);margin-top:4px;font-size:1rem;">冠军</div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">亚军</div>
+      <div class="result-teams">
+        ${runnerTeam ? `<div class="result-team-chip"><span>${runnerTeam.flag}</span> ${runnerTeam.name}</div>` : ''}
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">季军 & 殿军</div>
+      <div class="result-teams">
+        ${thirdTeam ? `<div class="result-team-chip"><span>🥉</span><span>${thirdTeam.flag}</span> ${thirdTeam.name}</div>` : ''}
+        ${fourthTeam ? `<div class="result-team-chip"><span>4th</span><span>${fourthTeam.flag}</span> ${fourthTeam.name}</div>` : ''}
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">四强</div>
+      <div class="result-teams">
+        ${semiFinalists.map(n => { const t = findTeamObj(n); return t ? `<div class="result-team-chip"><span>${t.flag}</span> ${t.name}</div>` : ''; }).join('')}
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">八强</div>
+      <div class="result-teams">
+        ${quarterFinalists.map(n => { const t = findTeamObj(n); return t ? `<div class="result-team-chip"><span>${t.flag}</span> ${t.name}</div>` : ''; }).join('')}
+      </div>
+    </div>
+
+    <div class="result-section">
+      <div class="result-section-title">十六强</div>
+      <div class="result-teams">
+        ${r16Teams.map(n => { const t = findTeamObj(n); return t ? `<div class="result-team-chip"><span>${t.flag}</span> ${t.name}</div>` : ''; }).join('')}
+      </div>
+    </div>
+
+    <div class="pred-actions" style="margin-top:32px;">
+      <button class="pred-btn pred-btn-secondary" onclick="goToStep(3)">← 修改预测</button>
+      <button class="pred-btn pred-btn-danger" onclick="resetPrediction()">重置全部预测</button>
+    </div>
+  `;
+}
+
+function getRunnerUp(matchNum) {
+  const teams = resolveTeam(matchNum);
+  const winner = predState.knockoutWinners[matchNum];
+  if (!winner || !teams.t1 || !teams.t2) return null;
+  return winner === teams.t1.name ? teams.t2.name : teams.t1.name;
+}
+
+function resetPrediction() {
+  if (!confirm('确定要重置全部预测吗？此操作不可撤销。')) return;
+  predState = {
+    currentStep: 1,
+    groupRankings: {},
+    bestThirds: [],
+    knockoutWinners: {}
+  };
+  groupsData.forEach(g => {
+    predState.groupRankings[g.letter] = g.teams.map(t => t.name);
+  });
+  savePredState();
+  renderPredProgress();
+  renderPredStep();
+}
+
+// Initialize prediction game (must be after all declarations)
+initPrediction();
+</script>
+
+</body>
+</html>
