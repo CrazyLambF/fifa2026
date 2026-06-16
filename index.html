@@ -664,6 +664,17 @@
     min-width: 60px;
     text-align: right;
   }
+  .match-odds {
+    font-size: 0.72rem;
+    color: var(--accent-gold);
+    background: rgba(212,168,83,0.08);
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-top: 6px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
   .match-group-tag {
     font-size: 0.7rem;
     padding: 2px 8px;
@@ -864,6 +875,88 @@
     .knockout-matches { grid-template-columns: 1fr; }
     .match-venue { display: none; }
     .nav-tab { padding: 14px 16px; font-size: 14px; }
+    
+    /* 赛程卡片手机端样式 */
+    .match-card {
+      flex-wrap: wrap;
+      padding: 10px 12px;
+      gap: 6px;
+    }
+    .match-time {
+      font-size: 0.82rem;
+      min-width: 42px;
+    }
+    .match-group-tag {
+      font-size: 0.65rem;
+      padding: 2px 6px;
+    }
+    .match-teams {
+      flex: 1;
+      min-width: 180px;
+      gap: 4px;
+    }
+    .match-team {
+      font-size: 0.78rem;
+      gap: 3px;
+    }
+    .match-team .flag {
+      font-size: 0.9rem;
+    }
+    .match-vs {
+      font-size: 0.7rem;
+      padding: 1px 4px;
+    }
+    .match-score-badge {
+      font-size: 0.8rem;
+      padding: 2px 6px;
+    }
+    .match-odds {
+      width: 100%;
+      font-size: 0.65rem;
+      margin-top: 4px;
+      order: 10;
+    }
+    .schedule-filters {
+      gap: 6px;
+    }
+    .filter-btn {
+      padding: 6px 12px;
+      font-size: 0.78rem;
+    }
+
+    /* 赔率部分手机端样式 */
+    .odds-item {
+      flex-wrap: wrap;
+      padding: 12px 14px;
+      gap: 8px;
+    }
+    .odds-rank {
+      width: 28px;
+      height: 28px;
+      font-size: 0.8rem;
+      margin-right: 10px;
+    }
+    .odds-team-info {
+      flex: 1;
+      min-width: 120px;
+    }
+    .odds-team-name {
+      font-size: 0.9rem;
+    }
+    .odds-team-detail {
+      font-size: 0.7rem;
+    }
+    .odds-bar-wrap {
+      flex: 1;
+      min-width: 100px;
+      max-width: none;
+      margin: 0 10px;
+      order: 4;
+    }
+    .odds-pct {
+      font-size: 1.1rem;
+      min-width: 50px;
+    }
   }
 
   /* Group color helpers */
@@ -1626,9 +1719,29 @@
       padding: 2px 5px;
     }
     .fs-match-teams {
-      font-size: 0.85rem;
-      gap: 6px;
-      padding: 0 6px;
+      font-size: 0.82rem;
+      gap: 4px;
+      padding: 0 4px;
+      min-width: 0;
+    }
+    .fs-match-team {
+      gap: 3px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      min-width: 0;
+    }
+    .fs-match-team span:first-child {
+      flex-shrink: 0;
+    }
+    .fs-match-team span:last-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .fs-match-vs {
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      padding: 1px 4px;
     }
   }
 </style>
@@ -3069,15 +3182,15 @@ const groupSchedule = [
   { date: '6月15日', time: '06:00', group: 'E', home: '科特迪瓦', homeFlag: '🇨🇮', away: '厄瓜多尔', awayFlag: '🇪🇨', venue: '费城', score1: 1, score2: 0 },
   { date: '6月15日', time: '09:00', group: 'F', home: '瑞典', homeFlag: '🇸🇪', away: '突尼斯', awayFlag: '🇹🇳', venue: '迈阿密', score1: 5, score2: 1 },
 
-  { date: '6月16日', time: '03:00', group: 'G', home: '比利时', homeFlag: '🇧🇪', away: '埃及', awayFlag: '🇪🇬', venue: '西雅图' },
-  { date: '6月16日', time: '06:00', group: 'G', home: '伊朗', homeFlag: '🇮🇷', away: '新西兰', awayFlag: '🇳🇿', venue: '温哥华' },
-  { date: '6月16日', time: '06:00', group: 'H', home: '西班牙', homeFlag: '🇪🇸', away: '佛得角', awayFlag: '🇨🇻', venue: '亚特兰大' },
-  { date: '6月16日', time: '09:00', group: 'H', home: '沙特阿拉伯', homeFlag: '🇸🇦', away: '乌拉圭', awayFlag: '🇺🇾', venue: '堪萨斯城' },
+  { date: '6月16日', time: '03:00', group: 'G', home: '比利时', homeFlag: '🇧🇪', away: '埃及', awayFlag: '🇪🇬', venue: '西雅图', odds: '比利时 -180 / 埃及 +500' },
+  { date: '6月16日', time: '06:00', group: 'G', home: '伊朗', homeFlag: '🇮🇷', away: '新西兰', awayFlag: '🇳🇿', venue: '温哥华', odds: '伊朗 -130 / 新西兰 +380' },
+  { date: '6月16日', time: '06:00', group: 'H', home: '西班牙', homeFlag: '🇪🇸', away: '佛得角', awayFlag: '🇨🇻', venue: '亚特兰大', odds: '西班牙 -1200 / 佛得角 +3500' },
+  { date: '6月16日', time: '09:00', group: 'H', home: '沙特阿拉伯', homeFlag: '🇸🇦', away: '乌拉圭', awayFlag: '🇺🇾', venue: '堪萨斯城', odds: '乌拉圭 -230 / 沙特 +600' },
 
-  { date: '6月17日', time: '03:00', group: 'I', home: '法国', homeFlag: '🇫🇷', away: '塞内加尔', awayFlag: '🇸🇳', venue: '芝加哥' },
-  { date: '6月17日', time: '06:00', group: 'J', home: '阿根廷', homeFlag: '🇦🇷', away: '阿尔及利亚', awayFlag: '🇩🇿', venue: '迈阿密' },
-  { date: '6月17日', time: '06:00', group: 'I', home: '伊拉克', homeFlag: '🇮🇶', away: '挪威', awayFlag: '🇳🇴', venue: '明尼阿波利斯' },
-  { date: '6月17日', time: '09:00', group: 'J', home: '奥地利', homeFlag: '🇦🇹', away: '约旦', awayFlag: '🇯🇴', venue: '达拉斯' },
+  { date: '6月17日', time: '03:00', group: 'I', home: '法国', homeFlag: '🇫🇷', away: '塞内加尔', awayFlag: '🇸🇳', venue: '芝加哥', odds: '法国 -203 / 塞内加尔 +733' },
+  { date: '6月17日', time: '06:00', group: 'J', home: '阿根廷', homeFlag: '🇦🇷', away: '阿尔及利亚', awayFlag: '🇩🇿', venue: '迈阿密', odds: '阿根廷 -350 / 阿尔及利亚 +900' },
+  { date: '6月17日', time: '06:00', group: 'I', home: '伊拉克', homeFlag: '🇮🇶', away: '挪威', awayFlag: '🇳🇴', venue: '明尼阿波利斯', odds: '挪威 -155 / 伊拉克 +400' },
+  { date: '6月17日', time: '09:00', group: 'J', home: '奥地利', homeFlag: '🇦🇹', away: '约旦', awayFlag: '🇯🇴', venue: '达拉斯', odds: '奥地利 -165 / 约旦 +450' },
 
   { date: '6月18日', time: '03:00', group: 'K', home: '葡萄牙', homeFlag: '🇵🇹', away: '刚果民主共和国', awayFlag: '🇨🇩', venue: '休斯顿' },
   { date: '6月18日', time: '06:00', group: 'L', home: '英格兰', homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', away: '克罗地亚', awayFlag: '🇭🇷', venue: '纽约' },
@@ -3328,6 +3441,7 @@ function renderScheduleMatches(filter) {
                 <span class="match-team"><span class="flag">${m.awayFlag}</span>${m.away}</span>
               </div>
               <div class="match-venue">${m.venue}</div>
+              ${m.odds ? `<div class="match-odds">📊 ${m.odds}</div>` : ''}
             </div>
           `).join('')}
         </div>
@@ -4128,7 +4242,9 @@ function renderOdds() {
       <div style="text-align:center;margin-bottom:20px;color:var(--text-muted);font-size:0.85rem;">
         数据来源：Polymarket / 各大博彩公司综合 · 更新于2026年6月15日
       </div>
-      ${odds.map((o, i) => `
+      ${odds.map((o, i) => {
+        const decimalOdds = (100 / o.pct).toFixed(2);
+        return `
         <div class="odds-item">
           <div class="odds-rank ${i === 0 ? 'r1' : (i === 1 ? 'r2' : (i === 2 ? 'r3' : 'normal'))}">${i + 1}</div>
           <div class="odds-team-info">
@@ -4140,15 +4256,16 @@ function renderOdds() {
               <div class="odds-bar-fill" style="width:${(o.pct / maxPct * 100).toFixed(0)}%;background:${o.color}"></div>
             </div>
           </div>
-          <div class="odds-pct">${o.pct}%</div>
+          <div class="odds-pct">${decimalOdds}</div>
         </div>
-      `).join('')}
+        `;
+      }).join('')}
       <div style="text-align:center;margin-top:20px;padding:16px;background:var(--bg-card);border-radius:10px;border:1px solid var(--border-color);">
         <div style="color:var(--accent-gold);font-weight:700;margin-bottom:8px;">💡 赔率解读</div>
         <div style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;">
-          西班牙和法国并列最大热门，英格兰紧随其后。<br>
-          德国首战7-1大胜后赔率下降至第7位，美国作为东道主表现强势。<br>
-          阿根廷作为卫冕冠军仍被看好，但小组赛尚未开始。
+          赔率为小数格式，表示投注1元可获得的回报（含本金）。<br>
+          例如：赔率6.17表示投1元，若猜中可获得6.17元回报。<br>
+          赔率越低，夺冠概率越大。西班牙和法国并列最大热门。
         </div>
       </div>
     </div>
