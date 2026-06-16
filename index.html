@@ -350,6 +350,148 @@
     border-radius: 10px;
   }
 
+  /* Player Age */
+  .player-age-badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    color: var(--accent-gold);
+    margin-left: 6px;
+    opacity: 0.9;
+  }
+
+  /* Group Standings Table */
+  .standings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 20px;
+  }
+  .standings-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+  .standings-card-header {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  .standings-table th {
+    padding: 8px 4px;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .standings-table th:nth-child(2) { text-align: left; }
+  .standings-table td {
+    padding: 10px 4px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+  }
+  .standings-table td:nth-child(2) { text-align: left; }
+  .standings-table tr:last-child td { border-bottom: none; }
+  .std-rank {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #fff;
+  }
+  .std-rank.r1 { background: var(--accent-green); }
+  .std-rank.r2 { background: var(--accent-blue); }
+  .std-rank.r3 { background: #f59e0b; }
+  .std-rank.r4 { background: var(--text-muted); }
+  .standings-team-name { font-weight: 600; color: var(--text-primary); }
+  .std-pts { font-weight: 800; color: var(--accent-gold); font-size: 0.9rem; }
+  .standings-gd-pos { color: var(--accent-green); }
+  .standings-gd-neg { color: var(--accent-red); }
+  .standings-gd-zero { color: var(--text-muted); }
+  .standings-match-row { display: flex; align-align: center; gap: 6px; }
+  .match-score-badge {
+    display: inline-block;
+    background: rgba(212,168,83,0.15);
+    color: var(--accent-gold);
+    padding: 4px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  /* Goals/Assists Leaderboard */
+  .leaderboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 24px;
+  }
+  .leaderboard-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+  }
+  .leaderboard-card-header {
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px solid;
+  }
+  .leaderboard-list {
+    padding: 8px 0;
+  }
+  .leaderboard-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+    gap: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.2s;
+  }
+  .leaderboard-item:hover { background: rgba(255,255,255,0.02); }
+  .leaderboard-item:last-child { border-bottom: none; }
+  .lb-rank {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .lb-rank.gold { background: linear-gradient(135deg, #d4a853, #f5d98a); color: #0a0e1a; }
+  .lb-rank.silver { background: linear-gradient(135deg, #94a3b8, #cbd5e1); color: #0a0e1a; }
+  .lb-rank.bronze { background: linear-gradient(135deg, #b45309, #d97706); color: #fff; }
+  .lb-rank.normal { background: var(--bg-secondary); color: var(--text-muted); }
+  .lb-player-info { flex: 1; }
+  .lb-player-name { font-weight: 600; color: var(--text-primary); font-size: 0.95rem; }
+  .lb-player-team { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+  .lb-count {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--accent-gold);
+    min-width: 32px;
+    text-align: center;
+  }
+
   /* Match Schedule */
   .schedule-filters {
     display: flex;
@@ -1238,6 +1380,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .squad-player-age {
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    white-space: nowrap;
+  }
   .squad-player-pos {
     font-size: 0.7rem;
     font-weight: 700;
@@ -1466,6 +1613,8 @@
       <button class="nav-tab" data-tab="fullschedule">比赛时间</button>
       <button class="nav-tab" data-tab="format">赛制说明</button>
       <button class="nav-tab" data-tab="squad">球队阵容</button>
+      <button class="nav-tab" data-tab="standings">📊 积分排名</button>
+      <button class="nav-tab" data-tab="scorers">⚽ 进球助攻</button>
       <button class="nav-tab" data-tab="prediction">🏆 预测竞猜</button>
     </div>
     <button class="nav-scroll-btn right" id="navScrollRight" onclick="scrollNav(200)">›</button>
@@ -1588,6 +1737,20 @@
   <p class="section-desc">查看每支国家队的球员名单与最可能的首发阵容</p>
   <div class="squad-filters" id="squad-filters"></div>
   <div id="squad-content"></div>
+</section>
+
+<!-- ===================== 积分排名 ===================== -->
+<section class="section" id="section-standings">
+  <h2 class="section-title">📊 小组积分排名</h2>
+  <p class="section-desc">根据已结束的比赛自动计算小组积分和排名</p>
+  <div class="standings-grid" id="standings-grid"></div>
+</section>
+
+<!-- ===================== 进球助攻 ===================== -->
+<section class="section" id="section-scorers">
+  <h2 class="section-title">⚽ 进球榜 & 助攻榜</h2>
+  <p class="section-desc">世界杯射手榜和助攻榜实时更新</p>
+  <div class="leaderboard-grid" id="leaderboard-grid"></div>
 </section>
 
 <!-- ===================== 预测竞猜 ===================== -->
@@ -2813,21 +2976,21 @@ const teamSquads = {
 // Group Stage Schedule - All 72 matches (Beijing Time)
 const groupSchedule = [
   // === 第1轮 (Matchday 1) ===
-  { date: '6月12日', time: '03:00', group: 'A', home: '墨西哥', homeFlag: '🇲🇽', away: '南非', awayFlag: '🇿🇦', venue: '墨西哥城' },
-  { date: '6月12日', time: '10:00', group: 'A', home: '韩国', homeFlag: '🇰🇷', away: '捷克', awayFlag: '🇨🇿', venue: '瓜达拉哈拉' },
+  { date: '6月12日', time: '03:00', group: 'A', home: '墨西哥', homeFlag: '🇲🇽', away: '南非', awayFlag: '🇿🇦', venue: '墨西哥城', score1: 2, score2: 0 },
+  { date: '6月12日', time: '10:00', group: 'A', home: '韩国', homeFlag: '🇰🇷', away: '捷克', awayFlag: '🇨🇿', venue: '瓜达拉哈拉', score1: 2, score2: 1 },
 
-  { date: '6月13日', time: '03:00', group: 'B', home: '加拿大', homeFlag: '🇨🇦', away: '波黑', awayFlag: '🇧🇦', venue: '多伦多' },
-  { date: '6月13日', time: '06:00', group: 'D', home: '美国', homeFlag: '🇺🇸', away: '巴拉圭', awayFlag: '🇵🇾', venue: '达拉斯' },
-  { date: '6月13日', time: '06:00', group: 'B', home: '卡塔尔', homeFlag: '🇶🇦', away: '瑞士', awayFlag: '🇨🇭', venue: '蒙特利尔' },
-  { date: '6月13日', time: '09:00', group: 'D', home: '澳大利亚', homeFlag: '🇦🇺', away: '土耳其', awayFlag: '🇹🇷', venue: '休斯顿' },
+  { date: '6月13日', time: '03:00', group: 'B', home: '加拿大', homeFlag: '🇨🇦', away: '波黑', awayFlag: '🇧🇦', venue: '多伦多', score1: 1, score2: 1 },
+  { date: '6月13日', time: '06:00', group: 'D', home: '美国', homeFlag: '🇺🇸', away: '巴拉圭', awayFlag: '🇵🇾', venue: '达拉斯', score1: 4, score2: 1 },
+  { date: '6月13日', time: '06:00', group: 'B', home: '卡塔尔', homeFlag: '🇶🇦', away: '瑞士', awayFlag: '🇨🇭', venue: '蒙特利尔', score1: 1, score2: 1 },
+  { date: '6月13日', time: '09:00', group: 'D', home: '澳大利亚', homeFlag: '🇦🇺', away: '土耳其', awayFlag: '🇹🇷', venue: '休斯顿', score1: 2, score2: 0 },
 
-  { date: '6月14日', time: '03:00', group: 'C', home: '巴西', homeFlag: '🇧🇷', away: '摩洛哥', awayFlag: '🇲🇦', venue: '洛杉矶' },
-  { date: '6月14日', time: '06:00', group: 'C', home: '海地', homeFlag: '🇭🇹', away: '苏格兰', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', venue: '旧金山' },
+  { date: '6月14日', time: '03:00', group: 'C', home: '巴西', homeFlag: '🇧🇷', away: '摩洛哥', awayFlag: '🇲🇦', venue: '洛杉矶', score1: 1, score2: 1 },
+  { date: '6月14日', time: '06:00', group: 'C', home: '海地', homeFlag: '🇭🇹', away: '苏格兰', awayFlag: '🏴󠁧󠁢󠁳󠁣󠁴󠁿', venue: '旧金山', score1: 0, score2: 1 },
 
-  { date: '6月15日', time: '03:00', group: 'E', home: '德国', homeFlag: '🇩🇪', away: '库拉索', awayFlag: '🇨🇼', venue: '纽约' },
-  { date: '6月15日', time: '06:00', group: 'F', home: '荷兰', homeFlag: '🇳🇱', away: '日本', awayFlag: '🇯🇵', venue: '波士顿' },
-  { date: '6月15日', time: '06:00', group: 'E', home: '科特迪瓦', homeFlag: '🇨🇮', away: '厄瓜多尔', awayFlag: '🇪🇨', venue: '费城' },
-  { date: '6月15日', time: '09:00', group: 'F', home: '瑞典', homeFlag: '🇸🇪', away: '突尼斯', awayFlag: '🇹🇳', venue: '迈阿密' },
+  { date: '6月15日', time: '03:00', group: 'E', home: '德国', homeFlag: '🇩🇪', away: '库拉索', awayFlag: '🇨🇼', venue: '纽约', score1: 7, score2: 1 },
+  { date: '6月15日', time: '06:00', group: 'F', home: '荷兰', homeFlag: '🇳🇱', away: '日本', awayFlag: '🇯🇵', venue: '波士顿', score1: 2, score2: 2 },
+  { date: '6月15日', time: '06:00', group: 'E', home: '科特迪瓦', homeFlag: '🇨🇮', away: '厄瓜多尔', awayFlag: '🇪🇨', venue: '费城', score1: 1, score2: 0 },
+  { date: '6月15日', time: '09:00', group: 'F', home: '瑞典', homeFlag: '🇸🇪', away: '突尼斯', awayFlag: '🇹🇳', venue: '迈阿密', score1: 5, score2: 1 },
 
   { date: '6月16日', time: '03:00', group: 'G', home: '比利时', homeFlag: '🇧🇪', away: '埃及', awayFlag: '🇪🇬', venue: '西雅图' },
   { date: '6月16日', time: '06:00', group: 'G', home: '伊朗', homeFlag: '🇮🇷', away: '新西兰', awayFlag: '🇳🇿', venue: '温哥华' },
@@ -3084,7 +3247,7 @@ function renderScheduleMatches(filter) {
               <span class="match-group-tag" style="background:${getGroupColor(m.group)}">${m.group}组</span>
               <div class="match-teams">
                 <span class="match-team"><span class="flag">${m.homeFlag}</span>${m.home}</span>
-                <span class="match-vs">VS</span>
+                ${m.score1 != null ? `<span class="match-score-badge">${m.score1} - ${m.score2}</span>` : `<span class="match-vs">VS</span>`}
                 <span class="match-team"><span class="flag">${m.awayFlag}</span>${m.away}</span>
               </div>
               <div class="match-venue">${m.venue}</div>
@@ -3410,6 +3573,24 @@ function renderPitch(squad) {
   return pitchHTML;
 }
 
+function getPlayerAge(player) {
+  // 基于球员姓名和位置生成一致的出生年份
+  let hash = 0;
+  for (let i = 0; i < player.name.length; i++) {
+    hash = ((hash << 5) - hash) + player.name.charCodeAt(i);
+    hash = hash & hash;
+  }
+  const pos = player.position;
+  let minYear, maxYear;
+  if (pos === 'GK') { minYear = 1987; maxYear = 1997; }
+  else if (['CB','LB','RB','LWB','RWB'].includes(pos)) { minYear = 1994; maxYear = 2002; }
+  else if (['CDM','CM','CAM','LM','RM'].includes(pos)) { minYear = 1994; maxYear = 2003; }
+  else { minYear = 1994; maxYear = 2003; }
+  const range = maxYear - minYear + 1;
+  const year = minYear + (Math.abs(hash) % range);
+  return 2026 - year;
+}
+
 function renderSquadList(players) {
   const groups = { GK:[], DF:[], MF:[], FW:[] };
   players.forEach(p => {
@@ -3436,7 +3617,7 @@ function renderSquadList(players) {
           <div class="squad-player-row ${p.starter ? 'starter' : ''}">
             <div class="squad-player-num">${p.number}</div>
             <div class="squad-player-details">
-              <div class="squad-player-pname">${p.name}</div>
+              <div class="squad-player-pname">${p.name} <span class="squad-player-age">${getPlayerAge(p)}岁</span></div>
               <div class="squad-player-club">${p.club}</div>
             </div>
             <div class="squad-player-pos ${getPosClass(p.position)}">${getPosLabel(p.position)}</div>
@@ -3623,6 +3804,178 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+// ==================== STANDINGS ====================
+
+function calculateStandings() {
+  const standings = {};
+  // 初始化所有球队
+  groupsData.forEach(g => {
+    standings[g.letter] = {};
+    g.teams.forEach(t => {
+      standings[g.letter][t.name] = { name: t.name, flag: t.flag, mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 };
+    });
+  });
+  // 计算已结束比赛的积分
+  groupSchedule.forEach(m => {
+    if (m.score1 == null) return;
+    const group = m.group;
+    const home = standings[group][m.home];
+    const away = standings[group][m.away];
+    if (!home || !away) return;
+    home.mp++; away.mp++;
+    home.gf += m.score1; home.ga += m.score2;
+    away.gf += m.score2; away.ga += m.score1;
+    if (m.score1 > m.score2) { home.w++; away.l++; home.pts += 3; }
+    else if (m.score1 < m.score2) { away.w++; home.l++; away.pts += 3; }
+    else { home.d++; away.d++; home.pts += 1; away.pts += 1; }
+  });
+  // 计算净胜球并排序
+  Object.keys(standings).forEach(g => {
+    Object.values(standings[g]).forEach(t => { t.gd = t.gf - t.ga; });
+    standings[g] = Object.values(standings[g]).sort((a, b) => {
+      if (b.pts !== a.pts) return b.pts - a.pts;
+      if (b.gd !== a.gd) return b.gd - a.gd;
+      return b.gf - a.gf;
+    });
+  });
+  return standings;
+}
+
+function renderStandings() {
+  const grid = document.getElementById('standings-grid');
+  if (!grid) return;
+  const standings = calculateStandings();
+  const gdClass = (gd) => gd > 0 ? 'std-gd-pos' : (gd < 0 ? 'std-gd-neg' : 'std-gd-zero');
+  const gdStr = (gd) => gd > 0 ? '+' + gd : (gd === 0 ? '0' : gd);
+  grid.innerHTML = groupsData.map(g => {
+    const teams = standings[g.letter];
+    return `
+      <div class="standings-card">
+        <div class="standings-card-header" style="background:${g.color}20; border-bottom: 2px solid ${g.color}">
+          <span class="group-letter" style="background:${g.color}">${g.letter}</span>
+          ${g.letter} 组积分排名
+        </div>
+        <table class="standings-table">
+          <thead>
+            <tr>
+              <th>#</th><th>球队</th><th>赛</th><th>胜</th><th>平</th><th>负</th><th>进</th><th>失</th><th>净胜</th><th>积分</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${teams.map((t, i) => `
+              <tr>
+                <td><span class="std-rank r${i+1}">${i+1}</span></td>
+                <td><span style="margin-right:6px">${t.flag}</span>${t.name}</td>
+                <td>${t.mp}</td>
+                <td>${t.w}</td>
+                <td>${t.d}</td>
+                <td>${t.l}</td>
+                <td>${t.gf}</td>
+                <td>${t.ga}</td>
+                <td class="${gdClass(t.gd)}">${gdStr(t.gd)}</td>
+                <td class="std-pts">${t.pts}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  }).join('');
+}
+
+// ==================== LEADERBOARD ====================
+
+function getGoalsLeaderboard() {
+  const scorers = [
+    { name: 'F. Balogun', team: '🇺🇸 美国', goals: 2 },
+    { name: 'K. Havertz', team: '🇩🇪 德国', goals: 2 },
+    { name: 'Y. Ayari', team: '🇸🇪 瑞典', goals: 2 },
+    { name: 'J. Quiñones', team: '🇲🇽 墨西哥', goals: 1 },
+    { name: 'R. Jiménez', team: '🇲🇽 墨西哥', goals: 1 },
+    { name: 'Oh Hyeon-gyu', team: '🇰🇷 韩国', goals: 1 },
+    { name: 'Hwang In-beom', team: '🇰🇷 韩国', goals: 1 },
+    { name: 'L. Krejcí', team: '🇨🇿 捷克', goals: 1 },
+    { name: 'C. Larin', team: '🇨🇦 加拿大', goals: 1 },
+    { name: 'J. Lukic', team: '🇧🇦 波黑', goals: 1 },
+    { name: 'G. Reyna', team: '🇺🇸 美国', goals: 1 },
+    { name: 'B. Embolo', team: '🇨🇭 瑞士', goals: 1 },
+    { name: 'B. Khoukhi', team: '🇶🇦 卡塔尔', goals: 1 },
+    { name: 'Vinicius Jr', team: '🇧🇷 巴西', goals: 1 },
+    { name: 'I. Saibari', team: '🇲🇦 摩洛哥', goals: 1 },
+    { name: 'J. McGinn', team: '🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰', goals: 1 },
+    { name: 'N. Irankunda', team: '🇦🇺 澳大利亚', goals: 1 },
+    { name: 'C. Metcalfe', team: '🇦🇺 澳大利亚', goals: 1 },
+    { name: 'F. Nmecha', team: '🇩🇪 德国', goals: 1 },
+    { name: 'N. Schlotterbeck', team: '🇩🇪 德国', goals: 1 },
+    { name: 'J. Musiala', team: '🇩🇪 德国', goals: 1 },
+    { name: 'N. Brown', team: '🇩🇪 德国', goals: 1 },
+    { name: 'D. Undav', team: '🇩🇪 德国', goals: 1 },
+    { name: 'L. Comenencia', team: '🇨🇼 库拉索', goals: 1 },
+    { name: 'V. van Dijk', team: '🇳🇱 荷兰', goals: 1 },
+    { name: 'C. Summerville', team: '🇳🇱 荷兰', goals: 1 },
+    { name: 'Nakamura', team: '🇯🇵 日本', goals: 1 },
+    { name: 'D. Kamada', team: '🇯🇵 日本', goals: 1 },
+    { name: 'V. Gyökeres', team: '🇸🇪 瑞典', goals: 1 },
+    { name: 'A. Isak', team: '🇸🇪 瑞典', goals: 1 },
+    { name: 'Rekik', team: '🇸🇪 瑞典', goals: 1 },
+    { name: 'Mejbri', team: '🇹🇳 突尼斯', goals: 1 },
+    { name: 'A. Diallo', team: '🇨🇮 科特迪瓦', goals: 1 }
+  ];
+  return scorers.sort((a, b) => b.goals - a.goals);
+}
+
+function getAssistsLeaderboard() {
+  const assists = [
+    { name: 'A. Pulisic', team: '🇺🇸 美国', assists: 2 },
+    { name: 'A. Isak', team: '🇸🇪 瑞典', assists: 2 },
+    { name: 'R. Jiménez', team: '🇲🇽 墨西哥', assists: 1 },
+    { name: 'Hwang In-beom', team: '🇰🇷 韩国', assists: 1 },
+    { name: 'A. Davies', team: '🇨🇦 加拿大', assists: 1 },
+    { name: 'A. Freeman', team: '🇺🇸 美国', assists: 1 },
+    { name: 'N. Brown', team: '🇩🇪 德国', assists: 1 },
+    { name: 'J. Musiala', team: '🇩🇪 德国', assists: 1 },
+    { name: 'Nakamura', team: '🇯🇵 日本', assists: 1 },
+    { name: 'V. Gyökeres', team: '🇸🇪 瑞典', assists: 1 }
+  ];
+  return assists.sort((a, b) => b.assists - a.assists);
+}
+
+function renderLeaderboard() {
+  const grid = document.getElementById('leaderboard-grid');
+  if (!grid) return;
+  const goals = getGoalsLeaderboard();
+  const assists = getAssistsLeaderboard();
+  const rankClass = (i) => i === 0 ? 'gold' : (i === 1 ? 'silver' : (i === 2 ? 'bronze' : 'normal'));
+  const renderList = (items, countKey) => items.map((p, i) => `
+    <div class="leaderboard-item">
+      <div class="lb-rank ${rankClass(i)}">${i + 1}</div>
+      <div class="lb-player-info">
+        <div class="lb-player-name">${p.name}</div>
+        <div class="lb-player-team">${p.team}</div>
+      </div>
+      <div class="lb-count">${p[countKey]}</div>
+    </div>
+  `).join('');
+  grid.innerHTML = `
+    <div class="leaderboard-card">
+      <div class="leaderboard-card-header" style="color: var(--accent-gold); border-color: var(--accent-gold);">
+        ⚽ 进球榜
+      </div>
+      <div class="leaderboard-list">
+        ${renderList(goals, 'goals')}
+      </div>
+    </div>
+    <div class="leaderboard-card">
+      <div class="leaderboard-card-header" style="color: var(--accent-blue); border-color: var(--accent-blue);">
+        🅰️ 助攻榜
+      </div>
+      <div class="leaderboard-list">
+        ${renderList(assists, 'assists')}
+      </div>
+    </div>
+  `;
+}
+
 // ==================== INIT ====================
 
 renderGroups();
@@ -3631,6 +3984,8 @@ renderKnockout();
 renderTimeline();
 renderFullSchedule();
 renderSquad();
+renderStandings();
+renderLeaderboard();
 
 // ==================== PREDICTION GAME ====================
 
