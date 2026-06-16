@@ -420,6 +420,18 @@
   .standings-gd-pos { color: var(--accent-green); }
   .standings-gd-neg { color: var(--accent-red); }
   .standings-gd-zero { color: var(--text-muted); }
+  .std-status {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .std-qualify { background: rgba(16,185,129,0.2); color: #10b981; }
+  .std-qualify2 { background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .std-third { background: rgba(245,158,11,0.15); color: #f59e0b; }
   .standings-match-row { display: flex; align-align: center; gap: 6px; }
   .match-score-badge {
     display: inline-block;
@@ -492,6 +504,63 @@
     text-align: center;
   }
 
+  /* Championship Odds */
+    .odds-container { max-width: 800px; margin: 0 auto; }
+    .odds-item {
+      display: flex;
+      align-items: center;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border-radius: 10px;
+      margin-bottom: 10px;
+      border: 1px solid var(--border-color);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .odds-item:hover { transform: translateX(4px); border-color: var(--accent-gold); }
+    .odds-rank {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: #fff;
+      flex-shrink: 0;
+      margin-right: 16px;
+    }
+    .odds-rank.r1 { background: linear-gradient(135deg, #d4a853, #f5d98a); color: #0a0e1a; }
+    .odds-rank.r2 { background: linear-gradient(135deg, #94a3b8, #cbd5e1); color: #0a0e1a; }
+    .odds-rank.r3 { background: linear-gradient(135deg, #b45309, #d97706); color: #fff; }
+    .odds-rank.normal { background: var(--bg-secondary); color: var(--text-muted); }
+    .odds-team-info { flex: 1; }
+    .odds-team-name { font-weight: 700; font-size: 1rem; color: var(--text-primary); }
+    .odds-team-detail { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .odds-bar-wrap {
+      flex: 1;
+      max-width: 200px;
+      margin: 0 20px;
+    }
+    .odds-bar {
+      height: 8px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .odds-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+    .odds-pct {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+      min-width: 60px;
+      text-align: right;
+    }
+  
   /* Match Schedule */
   .schedule-filters {
     display: flex;
@@ -1615,7 +1684,8 @@
       <button class="nav-tab" data-tab="squad">球队阵容</button>
       <button class="nav-tab" data-tab="standings">📊 积分排名</button>
       <button class="nav-tab" data-tab="scorers">⚽ 进球助攻</button>
-      <button class="nav-tab" data-tab="prediction">🏆 预测竞猜</button>
+      <button class="nav-tab" data-tab="odds">🏆 夺冠概率</button>
+      <button class="nav-tab" data-tab="prediction">🎯 预测竞猜</button>
     </div>
     <button class="nav-scroll-btn right" id="navScrollRight" onclick="scrollNav(200)">›</button>
   </div>
@@ -1751,6 +1821,13 @@
   <h2 class="section-title">⚽ 进球榜 & 助攻榜</h2>
   <p class="section-desc">世界杯射手榜和助攻榜实时更新</p>
   <div class="leaderboard-grid" id="leaderboard-grid"></div>
+</section>
+
+<!-- ===================== 夺冠概率 ===================== -->
+<section class="section" id="section-odds">
+  <h2 class="section-title">🏆 夺冠概率榜</h2>
+  <p class="section-desc">基于最新赔率和预测市场的各队夺冠概率</p>
+  <div id="odds-content"></div>
 </section>
 
 <!-- ===================== 预测竞猜 ===================== -->
@@ -3574,7 +3651,52 @@ function renderPitch(squad) {
 }
 
 function getPlayerAge(player) {
-  // 基于球员姓名和位置生成一致的出生年份
+  // 已知球员出生年份
+  const known = {
+    '吉列尔莫·奥乔亚':1985,'路易斯·马拉贡':1993,'赫苏斯·加利亚多':1998,'塞萨尔·蒙特斯':1997,'豪尔赫·桑切斯':1997,
+    '埃德松·阿尔瓦雷斯':1997,'赫苏斯·科罗纳':1993,'圣地亚哥·希门尼斯':2001,'劳尔·希门尼斯':1991,
+    '孙兴慜':1992,'金玟哉':1996,'李刚仁':2001,'黄仁范':1996,'黄喜灿':1996,'吴贤揆':2001,
+    '赵贤祐':1991,'李在成':1992,
+    '金承奎':1990,'薛英佑':1999,'金珍洙':1992,
+    '阿方索·戴维斯':2000,'乔纳森·戴维':2000,'凯尔·拉林':1995,
+    '米兰·博尔扬':1987,'卢卡斯·卡瓦利尼':1993,
+    '埃丁·哲科':1986,'米拉莱姆·皮亚尼奇':1990,'塞亚德·科拉希纳茨':1993,
+    '萨德·谢布':1988,'阿克拉姆·阿菲夫':1996,'阿尔莫兹·阿里':1996,'哈桑·海多斯':1990,
+    '格兰特·凯卡纳':1992,'勒博·莫西':1997,
+    '帕特里克·希克':1996,'亚当·赫洛泽克':2002,'托马什·绍切克':1995,
+    '托马什·瓦茨利克':1989,
+    '维尼修斯':2000,'卡塞米罗':1992,'马尔基尼奥斯':1994,'阿利松':1992,
+    '阿什拉夫·哈基米':1998,'哈基姆·齐耶赫':1993,'优素福·恩内斯里':1997,
+    '约翰·麦金':1994,'安德鲁·罗伯逊':1994,
+    '弗洛林·巴洛贡':2001,'克里斯蒂安·普利西奇':1998,'吉奥瓦尼·雷纳':2002,
+    '凯·哈弗茨':1999,'贾马尔·穆西亚拉':2003,'弗洛里安·维尔茨':2003,
+    '尼克拉斯·菲尔克鲁格':1993,'勒鲁瓦·萨内':1996,
+    '范戴克':1991,'德容':1997,'加克波':1999,'邓弗里斯':1996,
+    '久保建英':2001,'三笘薫':1997,'远藤航':1993,'鎌田大地':1997,
+    '亚历山大·伊萨克':1999,'维克多·约克雷斯':1998,'埃米尔·福斯贝里':1991,
+    '基利安·姆巴佩':1998,'奥斯曼·登贝莱':1997,'安托万·格列兹曼':1991,'爱德华多·卡马文加':2002,
+    '祖德·贝林厄姆':2003,'布卡约·萨卡':2001,'哈里·凯恩':1993,'菲尔·福登':2000,
+    '莱昂内尔·梅西':1987,'朱利安·阿尔瓦雷斯':2000,'恩佐·费尔南德斯':2001,
+    '克里斯蒂亚诺·罗纳尔多':1985,'贝尔纳多·席尔瓦':1994,'布鲁诺·费尔南德斯':1994,
+    '费德里科·巴尔韦德':1998,'罗德里戈·本坦库尔':1997,
+    '罗梅卢·卢卡库':1993,'凯文·德布劳内':1991,
+    '塞尔希奥·拉莫斯':1986,'卢卡·莫德里奇':1985,
+    '纳耶夫·阿格尔德':1996,
+    '亚辛·阿亚里':2003,'阿马德·迪亚洛':2002,
+    '内斯托里·伊朗昆达':2005,'康纳·梅特卡夫':1999,
+    '菲利克斯·恩梅查':2000,'尼科·施洛特贝克':1999,'丹尼斯·翁达夫':1996,'诺埃尔·布朗':2003,
+    '布雷尔·恩博洛':1997,'布阿莱姆·胡赫':1990,
+    '杰米·卢基奇':1996,'利瓦科维奇':1995,
+    '伊布拉希姆·谢希奇':1987,
+    '路瓦·科梅嫩西亚':2003,
+    '克雷蒙·萨默维尔':2001,
+    '中村':2001,
+    '雷基克':2002,
+    '汉尼拔·梅杰布里':2003,
+    '埃丁·德米洛维奇':1997
+  };
+  if (known[player.name]) return 2026 - known[player.name];
+  // 未知球员：基于位置估算
   let hash = 0;
   for (let i = 0; i < player.name.length; i++) {
     hash = ((hash << 5) - hash) + player.name.charCodeAt(i);
@@ -3582,7 +3704,7 @@ function getPlayerAge(player) {
   }
   const pos = player.position;
   let minYear, maxYear;
-  if (pos === 'GK') { minYear = 1987; maxYear = 1997; }
+  if (pos === 'GK') { minYear = 1988; maxYear = 1997; }
   else if (['CB','LB','RB','LWB','RWB'].includes(pos)) { minYear = 1994; maxYear = 2002; }
   else if (['CDM','CM','CAM','LM','RM'].includes(pos)) { minYear = 1994; maxYear = 2003; }
   else { minYear = 1994; maxYear = 2003; }
@@ -3862,10 +3984,13 @@ function renderStandings() {
             </tr>
           </thead>
           <tbody>
-            ${teams.map((t, i) => `
-              <tr>
+            ${teams.map((t, i) => {
+              const rowBg = i === 0 ? 'background:rgba(16,185,129,0.1);' : (i === 1 ? 'background:rgba(59,130,246,0.08);' : (i === 2 ? 'background:rgba(245,158,11,0.06);' : ''));
+              const status = i === 0 ? '<span class="std-status std-qualify">直接晋级</span>' : (i === 1 ? '<span class="std-status std-qualify2">直接晋级</span>' : (i === 2 ? '<span class="std-status std-third">最佳第三</span>' : ''));
+              return `
+              <tr style="${rowBg}">
                 <td><span class="std-rank r${i+1}">${i+1}</span></td>
-                <td><span style="margin-right:6px">${t.flag}</span>${t.name}</td>
+                <td>${t.flag} ${t.name} ${status}</td>
                 <td>${t.mp}</td>
                 <td>${t.w}</td>
                 <td>${t.d}</td>
@@ -3874,8 +3999,8 @@ function renderStandings() {
                 <td>${t.ga}</td>
                 <td class="${gdClass(t.gd)}">${gdStr(t.gd)}</td>
                 <td class="std-pts">${t.pts}</td>
-              </tr>
-            `).join('')}
+              </tr>`;
+            }).join('')}
           </tbody>
         </table>
       </div>
@@ -3887,55 +4012,55 @@ function renderStandings() {
 
 function getGoalsLeaderboard() {
   const scorers = [
-    { name: 'F. Balogun', team: '🇺🇸 美国', goals: 2 },
-    { name: 'K. Havertz', team: '🇩🇪 德国', goals: 2 },
-    { name: 'Y. Ayari', team: '🇸🇪 瑞典', goals: 2 },
-    { name: 'J. Quiñones', team: '🇲🇽 墨西哥', goals: 1 },
-    { name: 'R. Jiménez', team: '🇲🇽 墨西哥', goals: 1 },
-    { name: 'Oh Hyeon-gyu', team: '🇰🇷 韩国', goals: 1 },
-    { name: 'Hwang In-beom', team: '🇰🇷 韩国', goals: 1 },
-    { name: 'L. Krejcí', team: '🇨🇿 捷克', goals: 1 },
-    { name: 'C. Larin', team: '🇨🇦 加拿大', goals: 1 },
-    { name: 'J. Lukic', team: '🇧🇦 波黑', goals: 1 },
-    { name: 'G. Reyna', team: '🇺🇸 美国', goals: 1 },
-    { name: 'B. Embolo', team: '🇨🇭 瑞士', goals: 1 },
-    { name: 'B. Khoukhi', team: '🇶🇦 卡塔尔', goals: 1 },
-    { name: 'Vinicius Jr', team: '🇧🇷 巴西', goals: 1 },
-    { name: 'I. Saibari', team: '🇲🇦 摩洛哥', goals: 1 },
-    { name: 'J. McGinn', team: '🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰', goals: 1 },
-    { name: 'N. Irankunda', team: '🇦🇺 澳大利亚', goals: 1 },
-    { name: 'C. Metcalfe', team: '🇦🇺 澳大利亚', goals: 1 },
-    { name: 'F. Nmecha', team: '🇩🇪 德国', goals: 1 },
-    { name: 'N. Schlotterbeck', team: '🇩🇪 德国', goals: 1 },
-    { name: 'J. Musiala', team: '🇩🇪 德国', goals: 1 },
-    { name: 'N. Brown', team: '🇩🇪 德国', goals: 1 },
-    { name: 'D. Undav', team: '🇩🇪 德国', goals: 1 },
-    { name: 'L. Comenencia', team: '🇨🇼 库拉索', goals: 1 },
-    { name: 'V. van Dijk', team: '🇳🇱 荷兰', goals: 1 },
-    { name: 'C. Summerville', team: '🇳🇱 荷兰', goals: 1 },
-    { name: 'Nakamura', team: '🇯🇵 日本', goals: 1 },
-    { name: 'D. Kamada', team: '🇯🇵 日本', goals: 1 },
-    { name: 'V. Gyökeres', team: '🇸🇪 瑞典', goals: 1 },
-    { name: 'A. Isak', team: '🇸🇪 瑞典', goals: 1 },
-    { name: 'Rekik', team: '🇸🇪 瑞典', goals: 1 },
-    { name: 'Mejbri', team: '🇹🇳 突尼斯', goals: 1 },
-    { name: 'A. Diallo', team: '🇨🇮 科特迪瓦', goals: 1 }
+    { name: '巴洛贡', team: '🇺🇸 美国', goals: 2 },
+    { name: '哈弗茨', team: '🇩🇪 德国', goals: 2 },
+    { name: '阿亚里', team: '🇸🇪 瑞典', goals: 2 },
+    { name: '基尼奥内斯', team: '🇲🇽 墨西哥', goals: 1 },
+    { name: '希门尼斯', team: '🇲🇽 墨西哥', goals: 1 },
+    { name: '吴贤揆', team: '🇰🇷 韩国', goals: 1 },
+    { name: '黄仁范', team: '🇰🇷 韩国', goals: 1 },
+    { name: '克雷伊奇', team: '🇨🇿 捷克', goals: 1 },
+    { name: '拉林', team: '🇨🇦 加拿大', goals: 1 },
+    { name: '卢基奇', team: '🇧🇦 波黑', goals: 1 },
+    { name: '雷纳', team: '🇺🇸 美国', goals: 1 },
+    { name: '恩博洛', team: '🇨🇭 瑞士', goals: 1 },
+    { name: '胡赫', team: '🇶🇦 卡塔尔', goals: 1 },
+    { name: '维尼修斯', team: '🇧🇷 巴西', goals: 1 },
+    { name: '萨伊巴里', team: '🇲🇦 摩洛哥', goals: 1 },
+    { name: '麦金', team: '🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰', goals: 1 },
+    { name: '伊朗昆达', team: '🇦🇺 澳大利亚', goals: 1 },
+    { name: '梅特卡夫', team: '🇦🇺 澳大利亚', goals: 1 },
+    { name: '恩梅查', team: '🇩🇪 德国', goals: 1 },
+    { name: '施洛特贝克', team: '🇩🇪 德国', goals: 1 },
+    { name: '穆西亚拉', team: '🇩🇪 德国', goals: 1 },
+    { name: '布朗', team: '🇩🇪 德国', goals: 1 },
+    { name: '翁达夫', team: '🇩🇪 德国', goals: 1 },
+    { name: '科梅嫩西亚', team: '🇨🇼 库拉索', goals: 1 },
+    { name: '范戴克', team: '🇳🇱 荷兰', goals: 1 },
+    { name: '萨默维尔', team: '🇳🇱 荷兰', goals: 1 },
+    { name: '中村', team: '🇯🇵 日本', goals: 1 },
+    { name: '镰田大地', team: '🇯🇵 日本', goals: 1 },
+    { name: '约克雷斯', team: '🇸🇪 瑞典', goals: 1 },
+    { name: '伊萨克', team: '🇸🇪 瑞典', goals: 1 },
+    { name: '雷基克', team: '🇸🇪 瑞典', goals: 1 },
+    { name: '梅杰布里', team: '🇹🇳 突尼斯', goals: 1 },
+    { name: '迪亚洛', team: '🇨🇮 科特迪瓦', goals: 1 }
   ];
   return scorers.sort((a, b) => b.goals - a.goals);
 }
 
 function getAssistsLeaderboard() {
   const assists = [
-    { name: 'A. Pulisic', team: '🇺🇸 美国', assists: 2 },
-    { name: 'A. Isak', team: '🇸🇪 瑞典', assists: 2 },
-    { name: 'R. Jiménez', team: '🇲🇽 墨西哥', assists: 1 },
-    { name: 'Hwang In-beom', team: '🇰🇷 韩国', assists: 1 },
-    { name: 'A. Davies', team: '🇨🇦 加拿大', assists: 1 },
-    { name: 'A. Freeman', team: '🇺🇸 美国', assists: 1 },
-    { name: 'N. Brown', team: '🇩🇪 德国', assists: 1 },
-    { name: 'J. Musiala', team: '🇩🇪 德国', assists: 1 },
-    { name: 'Nakamura', team: '🇯🇵 日本', assists: 1 },
-    { name: 'V. Gyökeres', team: '🇸🇪 瑞典', assists: 1 }
+    { name: '普利西奇', team: '🇺🇸 美国', assists: 2 },
+    { name: '伊萨克', team: '🇸🇪 瑞典', assists: 2 },
+    { name: '希门尼斯', team: '🇲🇽 墨西哥', assists: 1 },
+    { name: '黄仁范', team: '🇰🇷 韩国', assists: 1 },
+    { name: '戴维斯', team: '🇨🇦 加拿大', assists: 1 },
+    { name: '弗里曼', team: '🇺🇸 美国', assists: 1 },
+    { name: '布朗', team: '🇩🇪 德国', assists: 1 },
+    { name: '穆西亚拉', team: '🇩🇪 德国', assists: 1 },
+    { name: '中村', team: '🇯🇵 日本', assists: 1 },
+    { name: '约克雷斯', team: '🇸🇪 瑞典', assists: 1 }
   ];
   return assists.sort((a, b) => b.assists - a.assists);
 }
@@ -3978,6 +4103,58 @@ function renderLeaderboard() {
 
 // ==================== INIT ====================
 
+// ==================== ODDS ====================
+
+function renderOdds() {
+  const el = document.getElementById('odds-content');
+  if (!el) return;
+  const odds = [
+    { team: '🇪🇸 西班牙', detail: '欧洲杯冠军·小组赛未赛', pct: 16.2, color: 'var(--accent-red)' },
+    { team: '🇫🇷 法国', detail: '世界杯亚军·第一热门', pct: 16.0, color: 'var(--accent-blue)' },
+    { team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', detail: '欧洲杯亚军·小组赛未赛', pct: 12.0, color: 'var(--accent-cyan)' },
+    { team: '🇧🇷 巴西', detail: '首战1-1摩洛哥', pct: 10.0, color: 'var(--accent-green)' },
+    { team: '🇦🇷 阿根廷', detail: '卫冕冠军·小组赛未赛', pct: 9.0, color: 'var(--accent-purple)' },
+    { team: '🇵🇹 葡萄牙', detail: 'C罗最后一届·小组赛未赛', pct: 7.0, color: 'var(--accent-green)' },
+    { team: '🇩🇪 德国', detail: '首战7-1大胜库拉索', pct: 6.5, color: 'var(--accent-gold)' },
+    { team: '🇳🇱 荷兰', detail: '首战2-2战平日本', pct: 4.5, color: 'var(--accent-orange, #f97316)' },
+    { team: '🇺🇸 美国', detail: '东道主·首战4-1大胜巴拉圭', pct: 3.5, color: 'var(--accent-blue)' },
+    { team: '🇨🇴 哥伦比亚', detail: '小组赛未赛', pct: 3.0, color: 'var(--accent-gold)' },
+    { team: '🇸🇪 瑞典', detail: '首战5-1大胜突尼斯', pct: 2.5, color: 'var(--accent-cyan)' },
+    { team: '🇯🇵 日本', detail: '首战2-2逼平荷兰', pct: 2.0, color: 'var(--accent-blue)' }
+  ];
+  const maxPct = odds[0].pct;
+  el.innerHTML = `
+    <div class="odds-container">
+      <div style="text-align:center;margin-bottom:20px;color:var(--text-muted);font-size:0.85rem;">
+        数据来源：Polymarket / 各大博彩公司综合 · 更新于2026年6月15日
+      </div>
+      ${odds.map((o, i) => `
+        <div class="odds-item">
+          <div class="odds-rank ${i === 0 ? 'r1' : (i === 1 ? 'r2' : (i === 2 ? 'r3' : 'normal'))}">${i + 1}</div>
+          <div class="odds-team-info">
+            <div class="odds-team-name">${o.team}</div>
+            <div class="odds-team-detail">${o.detail}</div>
+          </div>
+          <div class="odds-bar-wrap">
+            <div class="odds-bar">
+              <div class="odds-bar-fill" style="width:${(o.pct / maxPct * 100).toFixed(0)}%;background:${o.color}"></div>
+            </div>
+          </div>
+          <div class="odds-pct">${o.pct}%</div>
+        </div>
+      `).join('')}
+      <div style="text-align:center;margin-top:20px;padding:16px;background:var(--bg-card);border-radius:10px;border:1px solid var(--border-color);">
+        <div style="color:var(--accent-gold);font-weight:700;margin-bottom:8px;">💡 赔率解读</div>
+        <div style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;">
+          西班牙和法国并列最大热门，英格兰紧随其后。<br>
+          德国首战7-1大胜后赔率下降至第7位，美国作为东道主表现强势。<br>
+          阿根廷作为卫冕冠军仍被看好，但小组赛尚未开始。
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 renderGroups();
 renderSchedule();
 renderKnockout();
@@ -3986,6 +4163,7 @@ renderFullSchedule();
 renderSquad();
 renderStandings();
 renderLeaderboard();
+renderOdds();
 
 // ==================== PREDICTION GAME ====================
 
