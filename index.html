@@ -188,79 +188,31 @@
     background: rgba(10, 14, 26, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
-    padding: 0 20px;
-    position: relative;
   }
   .nav-tabs-wrap {
     max-width: 1400px;
     margin: 0 auto;
-    position: relative;
+    padding: 0 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
+  .nav-tabs-wrap::-webkit-scrollbar { display: none; }
   .nav-tabs-inner {
     display: flex;
     gap: 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-    scroll-behavior: smooth;
+    min-width: max-content;
   }
-  .nav-tabs-inner::-webkit-scrollbar { display: none; }
-  .nav-scroll-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border: 1px solid var(--border-color);
-    background: rgba(10, 14, 26, 0.95);
-    color: var(--text-secondary);
-    font-size: 1rem;
-    cursor: pointer;
-    z-index: 10;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    backdrop-filter: blur(10px);
-  }
-  .nav-scroll-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
-  .nav-scroll-btn.visible { display: flex; }
-  .nav-scroll-btn.left { left: -8px; }
-  .nav-scroll-btn.right { right: -8px; }
-  .nav-fade-left,
-  .nav-fade-right {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 40px;
-    pointer-events: none;
-    z-index: 5;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .nav-fade-left {
-    left: 0;
-    background: linear-gradient(to right, rgba(10,14,26,0.95), transparent);
-  }
-  .nav-fade-right {
-    right: 0;
-    background: linear-gradient(to left, rgba(10,14,26,0.95), transparent);
-  }
-  .nav-fade-left.visible,
-  .nav-fade-right.visible { opacity: 1; }
   .nav-tab {
-    padding: 16px 24px;
+    padding: 14px 16px;
     color: var(--text-muted);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    border: none;
     border-bottom: 3px solid transparent;
     white-space: nowrap;
-    transition: all 0.3s;
+    transition: all 0.2s;
     background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
     flex-shrink: 0;
   }
   .nav-tab:hover { color: var(--text-primary); }
@@ -268,6 +220,64 @@
     color: var(--accent-gold);
     border-bottom-color: var(--accent-gold);
   }
+  .nav-tab-more {
+    color: var(--accent-cyan);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    position: relative;
+  }
+  .nav-tab-more:hover { color: var(--accent-gold); }
+  .nav-tab-more.active {
+    color: var(--accent-gold);
+    border-bottom-color: var(--accent-gold);
+  }
+  .nav-more-arrow {
+    font-size: 11px;
+    transition: transform 0.3s;
+  }
+  .nav-more-arrow.open { transform: rotate(180deg); }
+  .nav-dropdown {
+    display: none;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 12px 16px 16px;
+    gap: 8px;
+    border-top: 1px solid var(--border-color);
+  }
+  .nav-dropdown.open {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  @media (max-width: 768px) {
+    .nav-dropdown.open { grid-template-columns: repeat(3, 1fr); }
+  }
+  .nav-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 8px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13px;
+  }
+  .nav-grid-item:hover {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+  .nav-grid-item.active {
+    background: rgba(212, 168, 83, 0.1);
+    color: var(--accent-gold);
+    border-color: rgba(212, 168, 83, 0.3);
+  }
+  .nav-grid-icon { font-size: 22px; }
+  .nav-grid-label { font-weight: 600; }
 
   /* Container */
   .container {
@@ -958,7 +968,6 @@
     .matches-list { grid-template-columns: 1fr; }
     .knockout-matches { grid-template-columns: 1fr; }
     .match-venue { display: none; }
-    .nav-tab { padding: 14px 16px; font-size: 14px; }
     
     /* 赛程卡片手机端样式 */
     .match-card {
@@ -1829,6 +1838,134 @@
     }
   }
 </style>
+
+<style>
+  /* ==================== 红黑榜 ==================== */
+  .rb-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .rb-date-nav {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .rb-date-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .rb-date-btn:hover:not([disabled]) {
+    border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    background: var(--bg-card-hover);
+  }
+  .rb-date-btn[disabled] {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+  .rb-date-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    min-width: 140px;
+    text-align: center;
+  }
+  .rb-source-badge {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 4px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+  }
+  .rb-article-link {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .rb-article-link a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .rb-article-link a:hover {
+    color: var(--accent-cyan);
+    text-decoration: underline;
+  }
+  .rb-img-wrap {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  .rb-img-wrap a {
+    display: block;
+  }
+  .rb-img {
+    width: 100%;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .rb-img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+  .rb-img-fallback {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    background: var(--bg-card);
+    border-radius: 16px;
+    border: 1px dashed var(--border-color);
+  }
+  .rb-img-fallback .rb-empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    opacity: 0.5;
+  }
+  .rb-img-fallback p {
+    margin-bottom: 16px;
+  }
+  .rb-link-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--accent-blue);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .rb-link-btn:hover {
+    background: var(--accent-cyan);
+  }
+  .rb-date-nav-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+  }
+  .rb-date-current {
+    font-weight: 700;
+    color: var(--text-primary);
+    min-width: 80px;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
 
@@ -1868,23 +2005,41 @@
 <!-- Navigation -->
 <nav class="nav-tabs">
   <div class="nav-tabs-wrap">
-    <div class="nav-fade-left" id="navFadeLeft"></div>
-    <div class="nav-fade-right" id="navFadeRight"></div>
-    <button class="nav-scroll-btn left" id="navScrollLeft" onclick="scrollNav(-200)">‹</button>
     <div class="nav-tabs-inner" id="navTabsInner">
       <button class="nav-tab active" data-tab="schedule">小组赛程</button>
+      <button class="nav-tab" data-tab="redblack">🔴红黑榜</button>
       <button class="nav-tab" data-tab="knockout">淘汰赛</button>
-      <button class="nav-tab" data-tab="fullschedule">比赛时间</button>
-      <button class="nav-tab" data-tab="standings">📊 积分排名</button>
-      <button class="nav-tab" data-tab="scorers">⚽ 进球助攻</button>
-      <button class="nav-tab" data-tab="odds">🏆 夺冠概率</button>
-      <button class="nav-tab" data-tab="groups">小组分组</button>
-      <button class="nav-tab" data-tab="timeline">赛程总览</button>
-      <button class="nav-tab" data-tab="format">赛制说明</button>
-      <button class="nav-tab" data-tab="squad">球队阵容</button>   
-      <button class="nav-tab" data-tab="prediction">🎯 预测竞猜</button>
+      <button class="nav-tab" data-tab="standings">积分排名</button>
+      <button class="nav-tab nav-tab-more" id="navMoreBtn" onclick="toggleNavMenu()">
+        更多 <span class="nav-more-arrow" id="navMoreArrow">▾</span>
+      </button>
     </div>
-    <button class="nav-scroll-btn right" id="navScrollRight" onclick="scrollNav(200)">›</button>
+  </div>
+  <div class="nav-dropdown" id="navDropdown">
+    <button class="nav-grid-item" data-tab="odds" onclick="selectTab(this)">
+      <span class="nav-grid-icon">📈</span><span class="nav-grid-label">夺冠概率</span>
+    </button>
+    <button class="nav-grid-item" data-tab="prediction" onclick="selectTab(this)">
+      <span class="nav-grid-icon">🎯</span><span class="nav-grid-label">预测竞猜</span>
+    </button>
+    <button class="nav-grid-item" data-tab="fullschedule" onclick="selectTab(this)">
+      <span class="nav-grid-icon">🕐</span><span class="nav-grid-label">比赛时间</span>
+    </button>
+    <button class="nav-grid-item" data-tab="scorers" onclick="selectTab(this)">
+      <span class="nav-grid-icon">⚽</span><span class="nav-grid-label">进球助攻</span>
+    </button>
+    <button class="nav-grid-item" data-tab="groups" onclick="selectTab(this)">
+      <span class="nav-grid-icon">🌍</span><span class="nav-grid-label">小组分组</span>
+    </button>
+    <button class="nav-grid-item" data-tab="timeline" onclick="selectTab(this)">
+      <span class="nav-grid-icon">📋</span><span class="nav-grid-label">赛程总览</span>
+    </button>
+    <button class="nav-grid-item" data-tab="format" onclick="selectTab(this)">
+      <span class="nav-grid-icon">📖</span><span class="nav-grid-label">赛制说明</span>
+    </button>
+    <button class="nav-grid-item" data-tab="squad" onclick="selectTab(this)">
+      <span class="nav-grid-icon">👥</span><span class="nav-grid-label">球队阵容</span>
+    </button>
   </div>
 </nav>
 
@@ -2037,6 +2192,13 @@
 
   <!-- Step Content -->
   <div id="pred-step-content"></div>
+</section>
+
+<!-- ===================== 红黑榜 ===================== -->
+<section class="section" id="section-redblack">
+  <h2 class="section-title">🔴⚫ 每日红黑榜</h2>
+  <p class="section-desc">每日世界杯红黑榜 · 数据来源懂球帝 · 点击图片查看原文</p>
+  <div id="redblack-content"></div>
 </section>
 
 </div>
@@ -4234,47 +4396,61 @@ function renderSquad() {
 
 // ==================== NAVIGATION ====================
 
-// Nav scroll helpers
-function scrollNav(delta) {
-  const el = document.getElementById('navTabsInner');
-  if (el) el.scrollBy({ left: delta, behavior: 'smooth' });
+// Nav dropdown
+function toggleNavMenu() {
+  const dropdown = document.getElementById('navDropdown');
+  const arrow = document.getElementById('navMoreArrow');
+  const btn = document.getElementById('navMoreBtn');
+  const isOpen = dropdown.classList.toggle('open');
+  arrow.classList.toggle('open', isOpen);
+  btn.classList.toggle('active', isOpen);
 }
 
-function updateNavScroll() {
-  const el = document.getElementById('navTabsInner');
-  if (!el) return;
-  const fadeL = document.getElementById('navFadeLeft');
-  const fadeR = document.getElementById('navFadeRight');
-  const btnL = document.getElementById('navScrollLeft');
-  const btnR = document.getElementById('navScrollRight');
-  const canScrollLeft = el.scrollLeft > 2;
-  const canScrollRight = el.scrollLeft < el.scrollWidth - el.clientWidth - 2;
-
-  fadeL.classList.toggle('visible', canScrollLeft);
-  fadeR.classList.toggle('visible', canScrollRight);
-  btnL.classList.toggle('visible', canScrollLeft);
-  btnR.classList.toggle('visible', canScrollRight);
+function selectTab(btn) {
+  const tab = btn.dataset.tab;
+  // Update inline tabs
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  const inlineTab = document.querySelector(`.nav-tab[data-tab="${tab}"]`);
+  if (inlineTab) inlineTab.classList.add('active');
+  // Update dropdown grid
+  document.querySelectorAll('.nav-grid-item').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // Switch section
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('section-' + tab).classList.add('active');
+  // Close dropdown
+  document.getElementById('navDropdown').classList.remove('open');
+  document.getElementById('navMoreArrow').classList.remove('open');
+  document.getElementById('navMoreBtn').classList.remove('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-document.querySelectorAll('.nav-tab').forEach(tab => {
+// Inline tab click
+document.querySelectorAll('.nav-tab:not(.nav-tab-more)').forEach(tab => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    const t = tab.dataset.tab;
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
     tab.classList.add('active');
+    document.querySelectorAll('.nav-grid-item').forEach(b => b.classList.remove('active'));
+    const gridItem = document.querySelector(`.nav-grid-item[data-tab="${t}"]`);
+    if (gridItem) gridItem.classList.add('active');
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById('section-' + tab.dataset.tab).classList.add('active');
-    // Scroll active tab into view
-    tab.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    document.getElementById('section-' + t).classList.add('active');
+    // Close dropdown if open
+    document.getElementById('navDropdown').classList.remove('open');
+    document.getElementById('navMoreArrow').classList.remove('open');
+    document.getElementById('navMoreBtn').classList.remove('active');
   });
 });
 
-// Listen for nav scroll events
-const navInner = document.getElementById('navTabsInner');
-if (navInner) {
-  navInner.addEventListener('scroll', updateNavScroll);
-  window.addEventListener('resize', updateNavScroll);
-  // Initial check after a short delay to allow layout
-  setTimeout(updateNavScroll, 100);
-}
+// Close dropdown when clicking outside
+document.addEventListener('click', e => {
+  if (!e.target.closest('.nav-tabs')) {
+    document.getElementById('navDropdown').classList.remove('open');
+    document.getElementById('navMoreArrow').classList.remove('open');
+    document.getElementById('navMoreBtn').classList.remove('active');
+  }
+});
 
 // Scroll to top button
 window.addEventListener('scroll', () => {
@@ -5165,6 +5341,90 @@ function resetPrediction() {
 
 // Initialize prediction game (must be after all declarations)
 initPrediction();
+
+// ==================== 红黑榜 ====================
+
+const REDBLACK_DATA = [
+  {
+    date: '6月17日',
+    title: '懂球帝美加墨世界杯6月17日红黑榜',
+    articleUrl: 'https://www.dongqiudi.com/articles/5942861.html',
+    imageUrl: 'https://bdimg7.qunliao.info/fastdfs8/M00/34/61/rBXRDGoyQbWAKAhTABuflGnzc68622.jpg'
+  },
+  {
+    date: '6月16日',
+    title: '懂球帝美加墨世界杯6月16日红黑榜',
+    articleUrl: 'https://m.dongqiudi.com/article/5939146.html',
+    imageUrl: 'https://bdimg7.qunliao.info/fastdfs8/M00/30/83/rBXRn2owzJiAdWWOACBXl8k_65A766.jpg'
+  },
+  {
+    date: '6月15日',
+    title: '懂球帝美加墨世界杯6月15日红黑榜',
+    articleUrl: 'https://m.dongqiudi.com/article/5935727.html',
+    imageUrl: 'https://bdimg7.qunliao.info/fastdfs8/M00/2D/1E/rBXRn2ovhHOAcwJRABaK2ORFLvY117.jpg'
+  },
+  {
+    date: '6月14日',
+    title: '懂球帝美加墨世界杯6月14日红黑榜',
+    articleUrl: 'https://m.dongqiudi.com/article/5932431.html',
+    imageUrl: 'https://bdimg7.qunliao.info/fastdfs8/M00/29/E6/rBXRn2ouUuqAEDKBABl9zwOjH8c773.jpg'
+  },
+  {
+    date: '6月13日',
+    title: '懂球帝美加墨世界杯6月13日红黑榜',
+    articleUrl: 'https://m.dongqiudi.com/article/5928506.html',
+    imageUrl: 'https://bdimg7.qunliao.info/fastdfs8/M00/26/24/rBXRDGos4gaAVCoxABYTm4Ynyuk120.jpg'
+  }
+];
+
+let currentRBIndex = 0;
+
+function changeRBDate(delta) {
+  currentRBIndex = Math.max(0, Math.min(REDBLACK_DATA.length - 1, currentRBIndex + delta));
+  renderRedBlack();
+}
+
+function renderRedBlack() {
+  const container = document.getElementById('redblack-content');
+  if (!container) return;
+
+  const data = REDBLACK_DATA[currentRBIndex];
+
+  const prevDisabled = currentRBIndex === REDBLACK_DATA.length - 1 ? 'disabled' : '';
+  const nextDisabled = currentRBIndex === 0 ? 'disabled' : '';
+
+  let imageHtml;
+  if (data.imageUrl) {
+    imageHtml = `
+      <div class="rb-img-wrap">
+        <a href="${data.articleUrl}" target="_blank" rel="noopener">
+          <img src="${data.imageUrl}" alt="${data.title}" loading="lazy" class="rb-img"
+               onerror="this.parentElement.parentElement.innerHTML='<div class=\\'rb-img-fallback\\'><p>图片加载失败</p><a href=\\'${data.articleUrl}\\' target=\\'_blank\\'>点击查看原文</a></div>'">
+        </a>
+      </div>`;
+  } else {
+    imageHtml = `
+      <div class="rb-img-fallback">
+        <div class="rb-empty-icon">📋</div>
+        <p>该日期红黑榜图片暂未收录</p>
+        <a href="${data.articleUrl}" target="_blank" rel="noopener" class="rb-link-btn">前往懂球帝查看原文</a>
+      </div>`;
+  }
+
+  container.innerHTML = `
+    <div class="rb-article-link">
+      <a href="${data.articleUrl}" target="_blank" rel="noopener">${data.title} ↗</a>
+    </div>
+    ${imageHtml}
+    <div class="rb-date-nav-bottom">
+      <button class="rb-date-btn" onclick="changeRBDate(1)" ${prevDisabled}>‹ 前一天</button>
+      <span class="rb-date-current">${data.date}</span>
+      <button class="rb-date-btn" onclick="changeRBDate(-1)" ${nextDisabled}>后一天 ›</button>
+    </div>
+  `;
+}
+
+renderRedBlack();
 </script>
 
 </body>
