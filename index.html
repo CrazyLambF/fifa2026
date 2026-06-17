@@ -3272,9 +3272,9 @@ const groupSchedule = [
   { date: '6月16日', time: '09:00', group: 'H', home: '沙特阿拉伯', homeFlag: '🇸🇦', away: '乌拉圭', awayFlag: '🇺🇾', venue: '堪萨斯城', score1: 1, score2: 1 },
 
   { date: '6月17日', time: '03:00', group: 'I', home: '法国', homeFlag: '🇫🇷', away: '塞内加尔', awayFlag: '🇸🇳', venue: '芝加哥', score1: 3, score2: 1 },
-  { date: '6月17日', time: '06:00', group: 'J', home: '阿根廷', homeFlag: '🇦🇷', away: '阿尔及利亚', awayFlag: '🇩🇿', venue: '迈阿密', score1: 0, score2: 0 },
+  { date: '6月17日', time: '06:00', group: 'J', home: '阿根廷', homeFlag: '🇦🇷', away: '阿尔及利亚', awayFlag: '🇩🇿', venue: '迈阿密', score1: 3, score2: 0 },
   { date: '6月17日', time: '06:00', group: 'I', home: '伊拉克', homeFlag: '🇮🇶', away: '挪威', awayFlag: '🇳🇴', venue: '明尼阿波利斯', score1: 1, score2: 4 },
-  { date: '6月17日', time: '09:00', group: 'J', home: '奥地利', homeFlag: '🇦🇹', away: '约旦', awayFlag: '🇯🇴', venue: '达拉斯', score1: 0, score2: 0 },
+  { date: '6月17日', time: '09:00', group: 'J', home: '奥地利', homeFlag: '🇦🇹', away: '约旦', awayFlag: '🇯🇴', venue: '达拉斯', score1: 3, score2: 1 },
 
   { date: '6月18日', time: '03:00', group: 'K', home: '葡萄牙', homeFlag: '🇵🇹', away: '刚果民主共和国', awayFlag: '🇨🇩', venue: '休斯顿', odds: '主胜（葡萄牙）1.28 · 平局5.50 · 客胜（刚果金）11.00',
     scoreOdds: {
@@ -3317,7 +3317,7 @@ const groupSchedule = [
       ]
     }
   },
-  { date: '6月18日', time: '06:00', group: 'L', home: '英格兰', homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', away: '克罗地亚', awayFlag: '🇭🇷', venue: '纽约', score1: 0, score2: 0, odds: '主胜（英格兰）1.71 · 平局3.60 · 客胜（克罗地亚）4.80',
+  { date: '6月18日', time: '06:00', group: 'L', home: '英格兰', homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿', away: '克罗地亚', awayFlag: '🇭🇷', venue: '纽约', odds: '主胜（英格兰）1.71 · 平局3.60 · 客胜（克罗地亚）4.80',
     scoreOdds: {
       win: [
         { score: '1:0', odds: 6.80 },
@@ -4422,10 +4422,12 @@ function renderStandings() {
 
 function getGoalsLeaderboard() {
   const scorers = [
+    { name: '梅西', team: '🇦🇷 阿根廷', goals: 3 },
     { name: '姆巴佩', team: '🇫🇷 法国', goals: 2 },
-    { name: '巴洛贡', team: '🇺🇸 美国', goals: 2 },
+    { name: '哈兰德', team: '🇳🇴 挪威', goals: 2 },
     { name: '哈弗茨', team: '🇩🇪 德国', goals: 2 },
     { name: '阿亚里', team: '🇸🇪 瑞典', goals: 2 },
+    { name: '巴洛贡', team: '🇺🇸 美国', goals: 2 },
     { name: '贾斯特', team: '🇳🇿 新西兰', goals: 2 },
     { name: '基尼奥内斯', team: '🇲🇽 墨西哥', goals: 1 },
     { name: '希门尼斯', team: '🇲🇽 墨西哥', goals: 1 },
@@ -4462,7 +4464,8 @@ function getGoalsLeaderboard() {
     { name: '穆赫比', team: '🇮🇷 伊朗', goals: 1 },
     { name: '阿姆里', team: '🇸🇦 沙特阿拉伯', goals: 1 },
     { name: '阿劳霍', team: '🇺🇾 乌拉圭', goals: 1 },
-    { name: '哈兰德', team: '🇳🇴 挪威', goals: 2 }
+    { name: '施密德', team: '🇦🇹 奥地利', goals: 1 },
+    { name: '阿瑙托维奇', team: '🇦🇹 奥地利', goals: 1 }
   ];
   return scorers.sort((a, b) => b.goals - a.goals);
 }
@@ -4531,20 +4534,20 @@ function renderOdds() {
   const el = document.getElementById('odds-content');
   if (!el) return;
   const odds = [
-    { team: '🇫🇷 法国', detail: '首战3-1胜塞内加尔·姆巴佩梅开二度', pct: 16.5, color: 'var(--accent-blue)' },
-    { team: '🇪🇸 西班牙', detail: '欧洲杯冠军·首战0-0佛得角爆冷', pct: 14.0, color: 'var(--accent-red)' },
-    { team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', detail: '首战0-0克罗地亚', pct: 11.5, color: 'var(--accent-cyan)' },
-    { team: '🇧🇷 巴西', detail: '首战1-1摩洛哥', pct: 9.5, color: 'var(--accent-green)' },
-    { team: '🇦🇷 阿根廷', detail: '卫冕冠军·首战0-0阿尔及利亚', pct: 8.5, color: 'var(--accent-purple)' },
-    { team: '🇵🇹 葡萄牙', detail: 'C罗最后一届·小组赛未赛', pct: 7.0, color: 'var(--accent-green)' },
-    { team: '🇩🇪 德国', detail: '首战7-1大胜库拉索', pct: 6.5, color: 'var(--accent-gold)' },
-    { team: '🇳🇱 荷兰', detail: '首战2-2战平日本', pct: 4.5, color: 'var(--accent-orange, #f97316)' },
-    { team: '🇺🇸 美国', detail: '东道主·首战4-1大胜巴拉圭', pct: 3.5, color: 'var(--accent-blue)' },
-    { team: '🇨🇴 哥伦比亚', detail: '小组赛未赛', pct: 3.0, color: 'var(--accent-gold)' },
-    { team: '🇸🇪 瑞典', detail: '首战5-1大胜突尼斯', pct: 2.5, color: 'var(--accent-cyan)' },
+    { team: '🇫🇷 法国', detail: '首战3-1胜塞内加尔·姆巴佩梅开二度', pct: 18.0, color: 'var(--accent-blue)' },
+    { team: '🇪🇸 西班牙', detail: '欧洲杯冠军·首战0-0佛得角爆冷', pct: 12.0, color: 'var(--accent-red)' },
+    { team: '🇦🇷 阿根廷', detail: '卫冕冠军·首战3-0大胜·梅西帽子戏法', pct: 10.5, color: 'var(--accent-purple)' },
+    { team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', detail: '首战0-0克罗地亚', pct: 10.0, color: 'var(--accent-cyan)' },
+    { team: '🇧🇷 巴西', detail: '首战1-1摩洛哥', pct: 8.5, color: 'var(--accent-green)' },
+    { team: '🇩🇪 德国', detail: '首战7-1大胜库拉索', pct: 8.0, color: 'var(--accent-gold)' },
+    { team: '🇵🇹 葡萄牙', detail: 'C罗最后一届·6月18日首战', pct: 7.0, color: 'var(--accent-green)' },
+    { team: '🇺🇸 美国', detail: '东道主·首战4-1大胜巴拉圭', pct: 4.0, color: 'var(--accent-blue)' },
+    { team: '🇳🇱 荷兰', detail: '首战2-2战平日本', pct: 3.5, color: 'var(--accent-orange, #f97316)' },
+    { team: '🇸🇪 瑞典', detail: '首战5-1大胜突尼斯', pct: 3.0, color: 'var(--accent-cyan)' },
+    { team: '🇳🇴 挪威', detail: '首战4-1大胜伊拉克·哈兰德梅开二度', pct: 2.5, color: 'var(--accent-blue)' },
+    { team: '🇨🇴 哥伦比亚', detail: '6月18日首战乌兹别克斯坦', pct: 2.5, color: 'var(--accent-gold)' },
     { team: '🇯🇵 日本', detail: '首战2-2逼平荷兰', pct: 2.0, color: 'var(--accent-blue)' },
-    { team: '🇧🇪 比利时', detail: '首战1-1战平埃及', pct: 1.8, color: 'var(--accent-gold)' },
-    { team: '🇳🇴 挪威', detail: '首战4-1大胜伊拉克·哈兰德梅开二度', pct: 1.5, color: 'var(--accent-blue)' }
+    { team: '🇧🇪 比利时', detail: '首战1-1战平埃及', pct: 1.5, color: 'var(--accent-gold)' }
   ];
   const maxPct = odds[0].pct;
   el.innerHTML = `
@@ -4575,7 +4578,7 @@ function renderOdds() {
         <div style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;">
           赔率为小数格式，表示投注1元可获得的回报（含本金）。<br>
           例如：赔率6.17表示投1元，若猜中可获得6.17元回报。<br>
-          赔率越低，夺冠概率越大。法国独占最大热门，西班牙因被佛得角逼平排名下滑。
+          赔率越低，夺冠概率越大。法国独占最大热门，阿根廷凭梅西帽子戏法升至第三。
         </div>
       </div>
     </div>
