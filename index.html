@@ -4964,7 +4964,6 @@ renderSquad();
 renderStandings();
 renderLeaderboard();
 renderOdds();
-renderBracket();
 
 // ==================== PREDICTION GAME ====================
 
@@ -5028,6 +5027,8 @@ const KO_ROUNDS = [
     { num: 'M104', from: ['M101','M102'] }
   ]}
 ];
+
+renderBracket();
 
 let predState = {
   currentStep: 1,
