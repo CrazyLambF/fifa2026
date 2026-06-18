@@ -1853,156 +1853,187 @@
   .bracket-container::-webkit-scrollbar { height: 6px; }
   .bracket-container::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 3px; }
   .bracket-container::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 3px; }
-  .bracket-rounds {
+
+  .bracket-tree {
     display: flex;
-    gap: 0;
+    align-items: stretch;
     min-width: max-content;
-    align-items: center;
+    padding: 0 20px;
   }
-  .bracket-round {
+  .bracket-round-col {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    min-width: 200px;
-    position: relative;
+    justify-content: space-around;
+    min-width: 190px;
+    flex-shrink: 0;
   }
-  .bracket-round-title {
+  .bracket-round-header {
     text-align: center;
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: var(--accent-gold);
-    padding: 8px 12px;
+    padding: 6px 10px;
     background: rgba(212,168,83,0.1);
-    border-radius: 8px;
-    margin-bottom: 8px;
+    border-radius: 6px;
+    margin-bottom: 10px;
     letter-spacing: 1px;
+    white-space: nowrap;
   }
-  .bracket-match {
+  .bracket-matches-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
+  }
+  .bracket-pair {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .bracket-match-cell {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 6px;
     overflow: hidden;
-    margin: 0 8px;
-    transition: border-color 0.2s;
+    margin: 3px 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .bracket-match:hover { border-color: var(--accent-gold); }
-  .bracket-match-num {
-    font-size: 0.65rem;
+  .bracket-match-cell:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 0 2px 12px rgba(212,168,83,0.15);
+  }
+  .bracket-match-cell .mn {
+    font-size: 0.6rem;
     color: var(--text-muted);
     text-align: center;
-    padding: 3px 0;
+    padding: 2px 0;
     background: rgba(255,255,255,0.02);
     border-bottom: 1px solid var(--border-color);
   }
-  .bracket-team {
+  .bracket-team-row {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    gap: 5px;
+    padding: 5px 8px;
+    font-size: 0.76rem;
     font-weight: 500;
     color: var(--text-primary);
     border-bottom: 1px solid rgba(255,255,255,0.03);
-    min-height: 32px;
+    min-height: 28px;
+    white-space: nowrap;
   }
-  .bracket-team:last-child { border-bottom: none; }
-  .bracket-team .flag { font-size: 1rem; }
-  .bracket-team.qualified { background: rgba(16,185,129,0.08); }
-  .bracket-team.tbd { color: var(--text-muted); font-style: italic; font-size: 0.75rem; }
-  .bracket-team .pts {
+  .bracket-team-row:last-child { border-bottom: none; }
+  .bracket-team-row .flag { font-size: 0.9rem; }
+  .bracket-team-row.tbd { color: var(--text-muted); font-style: italic; font-size: 0.7rem; }
+  .bracket-team-row .pts {
     margin-left: auto;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: var(--accent-gold);
   }
-  .bracket-connector {
+
+  /* Connectors - vertical and horizontal lines */
+  .bracket-conn-col {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 28px;
+    flex-shrink: 0;
   }
-  .bracket-connector-line {
-    width: 20px;
+  .bracket-conn-pair {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    position: relative;
+  }
+  .bracket-conn-pair::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    bottom: 25%;
+    width: 2px;
+    background: var(--border-color);
+  }
+  .bracket-conn-pair::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 14px;
     height: 2px;
     background: var(--border-color);
   }
-  .bracket-third-note {
-    text-align: center;
-    padding: 12px;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    background: var(--bg-card);
-    border-radius: 10px;
-    border: 1px dashed var(--border-color);
-    margin-bottom: 20px;
-  }
+
+  /* Third place cards */
   .bracket-third-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 10px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 8px;
+    margin-bottom: 20px;
   }
   .bracket-third-card {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
+    gap: 8px;
+    padding: 8px 12px;
     background: var(--bg-card);
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    font-size: 0.85rem;
+    font-size: 0.82rem;
   }
   .bracket-third-card .rank {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     color: #fff;
     flex-shrink: 0;
   }
   .bracket-third-card .rank.in { background: var(--accent-green); }
   .bracket-third-card .rank.out { background: var(--text-muted); }
-  .bracket-third-card .info { flex: 1; }
   .bracket-third-card .team-name { font-weight: 600; }
-  .bracket-third-card .team-stats { font-size: 0.75rem; color: var(--text-muted); }
+  .bracket-third-card .team-stats { font-size: 0.72rem; color: var(--text-muted); }
+
+  /* Group summary */
   .bracket-summary {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 10px;
-    margin-bottom: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 8px;
+    margin-bottom: 20px;
   }
   .bracket-summary-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 14px;
-    text-align: center;
+    border-radius: 8px;
+    padding: 10px 12px;
   }
   .bracket-summary-card .group-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
     font-weight: 600;
   }
   .bracket-summary-card .team-row {
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 4px 0;
-    font-size: 0.82rem;
+    gap: 5px;
+    padding: 3px 0;
+    font-size: 0.78rem;
   }
   .bracket-summary-card .team-row .pos {
-    width: 18px;
-    height: 18px;
-    border-radius: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 700;
     color: #fff;
     flex-shrink: 0;
@@ -2010,9 +2041,10 @@
   .bracket-summary-card .team-row .pos.p1 { background: var(--accent-green); }
   .bracket-summary-card .team-row .pos.p2 { background: var(--accent-blue); }
   .bracket-summary-card .team-row .pos.p3 { background: #f59e0b; }
+
   @media (max-width: 768px) {
-    .bracket-round { min-width: 160px; }
-    .bracket-team { font-size: 0.72rem; padding: 5px 8px; }
+    .bracket-round-col { min-width: 150px; }
+    .bracket-team-row { font-size: 0.7rem; padding: 4px 6px; }
     .bracket-third-grid { grid-template-columns: 1fr; }
     .bracket-summary { grid-template-columns: repeat(2, 1fr); }
   }
@@ -2357,7 +2389,7 @@
   <div id="bracket-qualifiers"></div>
   <div id="bracket-thirds"></div>
   <div class="bracket-container">
-    <div class="bracket-rounds" id="bracket-content"></div>
+    <div class="bracket-tree" id="bracket-content"></div>
   </div>
 </section>
 
@@ -4755,28 +4787,48 @@ function renderBracket() {
     return null;
   }
 
+  // Build bracket tree HTML
   var bracketHtml = '';
-  koRounds.forEach(function(round) {
-    bracketHtml += '<div class="bracket-round">';
-    bracketHtml += '<div class="bracket-round-title">' + round.title + '</div>';
-    round.nums.forEach(function(num) {
+  for (var ri = 0; ri < koRounds.length; ri++) {
+    var round = koRounds[ri];
+    var isLast = ri === koRounds.length - 1;
+
+    // Round column
+    bracketHtml += '<div class="bracket-round-col">';
+    bracketHtml += '<div class="bracket-round-header">' + round.title + '</div>';
+    bracketHtml += '<div class="bracket-matches-col">';
+
+    for (var mi = 0; mi < round.nums.length; mi++) {
+      var num = round.nums[mi];
       var t1, t2;
       if (r32[num]) {
         t1 = r32[num].t1;
         t2 = r32[num].t2;
-      } else if (koFrom[num]) {
+      } else {
         t1 = null;
         t2 = null;
       }
-      bracketHtml += '<div class="bracket-match">';
-      bracketHtml += '<div class="bracket-match-num">' + num + '</div>';
+      bracketHtml += '<div class="bracket-pair">';
+      bracketHtml += '<div class="bracket-match-cell">';
+      bracketHtml += '<div class="mn">' + num + '</div>';
       bracketHtml += bracketTeamHtml(t1);
       bracketHtml += bracketTeamHtml(t2);
       bracketHtml += '</div>';
-    });
-    bracketHtml += '</div>';
-    bracketHtml += '<div class="bracket-connector"><div class="bracket-connector-line"></div></div>';
-  });
+      bracketHtml += '</div>';
+    }
+
+    bracketHtml += '</div></div>';
+
+    // Connector column (between rounds)
+    if (!isLast) {
+      var nextCount = koRounds[ri + 1].nums.length;
+      bracketHtml += '<div class="bracket-conn-col">';
+      for (var ci = 0; ci < nextCount; ci++) {
+        bracketHtml += '<div class="bracket-conn-pair"></div>';
+      }
+      bracketHtml += '</div>';
+    }
+  }
 
   contentDiv.innerHTML = bracketHtml;
 }
