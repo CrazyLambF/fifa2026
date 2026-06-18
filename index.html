@@ -4692,9 +4692,10 @@ function bracketResolveTeam(source, qualified, bestThirds) {
   return null;
 }
 
-function bracketTeamHtml(team) {
+function bracketTeamHtml(team, groupInfo) {
   if (!team) return '<div class="bracket-tr tbd"><span>待定</span></div>';
-  return '<div class="bracket-tr"><span class="f">' + team.flag + '</span><span>' + team.name + '</span><span class="p">' + team.pts + '分</span></div>';
+  var label = groupInfo || '';
+  return '<div class="bracket-tr"><span class="f">' + team.flag + '</span><span>' + team.name + '</span>' + (label ? '<span class="p">' + label + '</span>' : '') + '</div>';
 }
 
 function renderBracket() {
@@ -4744,13 +4745,18 @@ function renderBracket() {
     thirdsDiv.innerHTML = '';
   }
 
-  // Resolve R32 teams
+  // Resolve R32 teams with group position labels
   var r32 = {};
+  var posLabels = { 1: '第1', 2: '第2', 3: '第3' };
   R32_TEMPLATE.forEach(function(m) {
-    r32[m.num] = {
-      t1: bracketResolveTeam(m.t1, qualified, bestThirds),
-      t2: bracketResolveTeam(m.t2, qualified, bestThirds)
-    };
+    var t1 = bracketResolveTeam(m.t1, qualified, bestThirds);
+    var t2 = bracketResolveTeam(m.t2, qualified, bestThirds);
+    var l1 = '', l2 = '';
+    if (m.t1.type === 'group') { l1 = m.t1.group + '组' + posLabels[m.t1.pos]; }
+    else if (m.t1.type === 'third') { l1 = '最佳第3'; }
+    if (m.t2.type === 'group') { l2 = m.t2.group + '组' + posLabels[m.t2.pos]; }
+    else if (m.t2.type === 'third') { l2 = '最佳第3'; }
+    r32[m.num] = { t1: t1, t2: t2, l1: l1, l2: l2 };
   });
 
   // Build all rounds
@@ -4792,16 +4798,16 @@ function renderBracket() {
 
     for (var mi = 0; mi < round.nums.length; mi++) {
       var num = round.nums[mi];
-      var t1, t2;
-      if (r32[num]) { t1 = r32[num].t1; t2 = r32[num].t2; }
+      var t1, t2, l1 = '', l2 = '';
+      if (r32[num]) { t1 = r32[num].t1; t2 = r32[num].t2; l1 = r32[num].l1; l2 = r32[num].l2; }
       else { t1 = null; t2 = null; }
 
       var isFinal = num === 'M104';
       bracketHtml += '<div class="bracket-match-pair">';
       bracketHtml += '<div class="bracket-match-box' + (isFinal ? ' final' : '') + '">';
       bracketHtml += '<div class="bracket-mn">' + num + '</div>';
-      bracketHtml += bracketTeamHtml(t1);
-      bracketHtml += bracketTeamHtml(t2);
+      bracketHtml += bracketTeamHtml(t1, l1);
+      bracketHtml += bracketTeamHtml(t2, l2);
       bracketHtml += '</div></div>';
     }
     bracketHtml += '</div></td>';
