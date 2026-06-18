@@ -4790,60 +4790,64 @@ function renderBracket() {
 
   contentDiv.innerHTML = bracketHtml;
 
-  // Draw connectors with SVG overlay
-  var roundCols = contentDiv.querySelectorAll('.bracket-round-col');
-  if (roundCols.length < 2) return;
+  // Draw connectors with SVG overlay after layout
+  requestAnimationFrame(function() {
+    var roundCols = contentDiv.querySelectorAll('.bracket-round-col');
+    if (roundCols.length < 2) return;
 
-  // Create SVG overlay
-  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.style.position = 'absolute';
-  svg.style.top = '0';
-  svg.style.left = '0';
-  svg.style.pointerEvents = 'none';
-  svg.style.zIndex = '1';
-  contentDiv.style.position = 'relative';
+    var treeRect = contentDiv.getBoundingClientRect();
+    var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.style.position = 'absolute';
+    svg.style.top = '0';
+    svg.style.left = '0';
+    svg.style.width = treeRect.width + 'px';
+    svg.style.height = treeRect.height + 'px';
+    svg.setAttribute('width', treeRect.width);
+    svg.setAttribute('height', treeRect.height);
+    svg.setAttribute('viewBox', '0 0 ' + treeRect.width + ' ' + treeRect.height);
+    svg.style.pointerEvents = 'none';
+    svg.style.zIndex = '1';
+    contentDiv.style.position = 'relative';
 
-  var treeRect = contentDiv.getBoundingClientRect();
-  svg.setAttribute('width', treeRect.width);
-  svg.setAttribute('height', treeRect.height);
-  svg.setAttribute('viewBox', '0 0 ' + treeRect.width + ' ' + treeRect.height);
+    for (var ri = 0; ri < koRounds.length - 1; ri++) {
+      var nextRound = koRounds[ri + 1];
+      for (var ni = 0; ni < nextRound.nums.length; ni++) {
+        var nextNum = nextRound.nums[ni];
+        var from = koFrom[nextNum];
+        if (!from) continue;
 
-  var koFromKeys = Object.keys(koFrom);
-  for (var ri = 0; ri < koRounds.length - 1; ri++) {
-    var currRound = koRounds[ri];
-    var nextRound = koRounds[ri + 1];
+        var box1 = contentDiv.querySelector('[data-match="' + from[0] + '"]');
+        var box2 = contentDiv.querySelector('[data-match="' + from[1] + '"]');
+        var boxN = contentDiv.querySelector('[data-match="' + nextNum + '"]');
+        if (!box1 || !box2 || !boxN) continue;
 
-    for (var ni = 0; ni < nextRound.nums.length; ni++) {
-      var nextNum = nextRound.nums[ni];
-      var from = koFrom[nextNum];
-      if (!from) continue;
+        var r1 = box1.getBoundingClientRect();
+        var r2 = box2.getBoundingClientRect();
+        var rn = boxN.getBoundingClientRect();
 
-      var box1 = contentDiv.querySelector('[data-match="' + from[0] + '"]');
-      var box2 = contentDiv.querySelector('[data-match="' + from[1] + '"]');
-      var boxN = contentDiv.querySelector('[data-match="' + nextNum + '"]');
-      if (!box1 || !box2 || !boxN) continue;
+        var y1 = r1.top + r1.height / 2 - treeRect.top;
+        var y2 = r2.top + r2.height / 2 - treeRect.top;
+        var yMid = (y1 + y2) / 2;
+        var xRight = Math.max(r1.right, r2.right) - treeRect.left;
+        var xLeft = rn.left - treeRect.left;
+        var xMid = (xRight + xLeft) / 2;
 
-      var r1 = box1.getBoundingClientRect();
-      var r2 = box2.getBoundingClientRect();
-      var rn = boxN.getBoundingClientRect();
-
-      var y1 = r1.top + r1.height / 2 - treeRect.top;
-      var y2 = r2.top + r2.height / 2 - treeRect.top;
-      var xn = rn.left - treeRect.left;
-      var x1 = r1.right - treeRect.left;
-      var x2 = r2.right - treeRect.left;
-      var xm = Math.max(x1, x2) + 4;
-
-      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-      path.setAttribute('d', 'M' + x1 + ',' + y1 + ' H' + xm + ' V' + ((y1+y2)/2) + ' H' + xn + ' M' + x2 + ',' + y2 + ' H' + xm);
-      path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', '#2a3550');
-      path.setAttribute('stroke-width', '1.5');
-      svg.appendChild(path);
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d',
+          'M' + (r1.right - treeRect.left) + ',' + y1 + ' H' + xMid +
+          ' M' + (r2.right - treeRect.left) + ',' + y2 + ' H' + xMid +
+          ' M' + xMid + ',' + y1 + ' V' + y2 +
+          ' M' + xMid + ',' + yMid + ' H' + xLeft
+        );
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#2a3550');
+        path.setAttribute('stroke-width', '1.5');
+        svg.appendChild(path);
+      }
     }
-  }
 
-  contentDiv.appendChild(svg);
+    contentDiv.appendChild(svg);
+  });
 }
 
 // ==================== LEADERBOARD ====================
