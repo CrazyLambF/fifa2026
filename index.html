@@ -2043,10 +2043,23 @@
   .bracket-summary-card .team-row .pos.p3 { background: #f59e0b; }
 
   @media (max-width: 768px) {
-    .bracket-round-col { min-width: 150px; }
-    .bracket-team-row { font-size: 0.7rem; padding: 4px 6px; }
+    .bracket-container { padding: 10px 0; }
+    .bracket-tree { padding: 0 8px; }
+    .bracket-round-col { min-width: 120px; }
+    .bracket-round-header { font-size: 0.68rem; padding: 4px 6px; margin-bottom: 6px; }
+    .bracket-match-cell { margin: 2px 0; }
+    .bracket-match-cell .mn { font-size: 0.52rem; padding: 1px 0; }
+    .bracket-team-row { font-size: 0.65rem; padding: 3px 5px; gap: 3px; min-height: 22px; }
+    .bracket-team-row .flag { font-size: 0.75rem; }
+    .bracket-team-row .pts { font-size: 0.6rem; }
+    .bracket-team-row.tbd { font-size: 0.58rem; }
+    .bracket-conn-col { width: 16px; }
+    .bracket-conn-pair::before { width: 1px; }
+    .bracket-conn-pair::after { width: 8px; height: 1px; }
     .bracket-third-grid { grid-template-columns: 1fr; }
-    .bracket-summary { grid-template-columns: repeat(2, 1fr); }
+    .bracket-summary { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .bracket-summary-card { padding: 8px; }
+    .bracket-summary-card .team-row { font-size: 0.7rem; }
   }
 </style>
 
@@ -4774,7 +4787,7 @@ function renderBracket() {
   ];
 
   var koFrom = {
-    'M89': ['M73','M75'], 'M90': ['M74','M77'], 'M91': ['M76','M78'], 'M92': ['M79','M80'],
+    'M89': ['M77','M75'], 'M90': ['M74','M73'], 'M91': ['M76','M78'], 'M92': ['M79','M80'],
     'M93': ['M83','M84'], 'M94': ['M81','M82'], 'M95': ['M86','M88'], 'M96': ['M85','M87'],
     'M97': ['M89','M90'], 'M98': ['M93','M94'], 'M99': ['M91','M92'], 'M100': ['M95','M96'],
     'M101': ['M97','M98'], 'M102': ['M99','M100'], 'M104': ['M101','M102']
@@ -5053,8 +5066,8 @@ const R32_TEMPLATE = [
 const KO_ROUNDS = [
   { round: '1/16决赛', matches: R32_TEMPLATE.map(m => m.num) },
   { round: '1/8决赛', matches: [
-    { num: 'M89', from: ['M73','M75'] },
-    { num: 'M90', from: ['M74','M77'] },
+    { num: 'M89', from: ['M77','M75'] },
+    { num: 'M90', from: ['M74','M73'] },
     { num: 'M91', from: ['M76','M78'] },
     { num: 'M92', from: ['M79','M80'] },
     { num: 'M93', from: ['M83','M84'] },
