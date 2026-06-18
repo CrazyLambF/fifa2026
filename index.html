@@ -1843,6 +1843,182 @@
 </style>
 
 <style>
+  /* ==================== 淘汰赛对阵图 ==================== */
+  .bracket-container {
+    overflow-x: auto;
+    padding: 20px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-gold) var(--bg-secondary);
+  }
+  .bracket-container::-webkit-scrollbar { height: 6px; }
+  .bracket-container::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 3px; }
+  .bracket-container::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 3px; }
+  .bracket-rounds {
+    display: flex;
+    gap: 0;
+    min-width: max-content;
+    align-items: center;
+  }
+  .bracket-round {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+    position: relative;
+  }
+  .bracket-round-title {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--accent-gold);
+    padding: 8px 12px;
+    background: rgba(212,168,83,0.1);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .bracket-match {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0 8px;
+    transition: border-color 0.2s;
+  }
+  .bracket-match:hover { border-color: var(--accent-gold); }
+  .bracket-match-num {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 3px 0;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid var(--border-color);
+  }
+  .bracket-team {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    min-height: 32px;
+  }
+  .bracket-team:last-child { border-bottom: none; }
+  .bracket-team .flag { font-size: 1rem; }
+  .bracket-team.qualified { background: rgba(16,185,129,0.08); }
+  .bracket-team.tbd { color: var(--text-muted); font-style: italic; font-size: 0.75rem; }
+  .bracket-team .pts {
+    margin-left: auto;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+  }
+  .bracket-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+  }
+  .bracket-connector-line {
+    width: 20px;
+    height: 2px;
+    background: var(--border-color);
+  }
+  .bracket-third-note {
+    text-align: center;
+    padding: 12px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    background: var(--bg-card);
+    border-radius: 10px;
+    border: 1px dashed var(--border-color);
+    margin-bottom: 20px;
+  }
+  .bracket-third-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .bracket-third-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-size: 0.85rem;
+  }
+  .bracket-third-card .rank {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .bracket-third-card .rank.in { background: var(--accent-green); }
+  .bracket-third-card .rank.out { background: var(--text-muted); }
+  .bracket-third-card .info { flex: 1; }
+  .bracket-third-card .team-name { font-weight: 600; }
+  .bracket-third-card .team-stats { font-size: 0.75rem; color: var(--text-muted); }
+  .bracket-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .bracket-summary-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 14px;
+    text-align: center;
+  }
+  .bracket-summary-card .group-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .bracket-summary-card .team-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0;
+    font-size: 0.82rem;
+  }
+  .bracket-summary-card .team-row .pos {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .bracket-summary-card .team-row .pos.p1 { background: var(--accent-green); }
+  .bracket-summary-card .team-row .pos.p2 { background: var(--accent-blue); }
+  .bracket-summary-card .team-row .pos.p3 { background: #f59e0b; }
+  @media (max-width: 768px) {
+    .bracket-round { min-width: 160px; }
+    .bracket-team { font-size: 0.72rem; padding: 5px 8px; }
+    .bracket-third-grid { grid-template-columns: 1fr; }
+    .bracket-summary { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
+<style>
   /* ==================== 红黑榜 ==================== */
   .rb-controls {
     display: flex;
@@ -2013,6 +2189,7 @@
       <button class="nav-tab" data-tab="redblack">红黑榜</button>
       <button class="nav-tab" data-tab="knockout">淘汰赛</button>
       <button class="nav-tab" data-tab="standings">积分排名</button>
+      <button class="nav-tab" data-tab="bracket">对阵图</button>
       <button class="nav-tab nav-tab-more" id="navMoreBtn" onclick="toggleNavMenu()">
         更多 <span class="nav-more-arrow" id="navMoreArrow">▾</span>
       </button>
@@ -2169,6 +2346,17 @@
   <h2 class="section-title">📊 小组积分排名</h2>
   <p class="section-desc">根据已结束的比赛自动计算小组积分和排名</p>
   <div class="standings-grid" id="standings-grid"></div>
+</section>
+
+<!-- ===================== 淘汰赛对阵图 ===================== -->
+<section class="section" id="section-bracket">
+  <h2 class="section-title">🏆 淘汰赛对阵图</h2>
+  <p class="section-desc">根据当前小组积分排名自动生成的淘汰赛对阵（仅显示已完成比赛的排名）</p>
+  <div id="bracket-qualifiers"></div>
+  <div id="bracket-thirds"></div>
+  <div class="bracket-container">
+    <div class="bracket-rounds" id="bracket-content"></div>
+  </div>
 </section>
 
 <!-- ===================== 进球助攻 ===================== -->
@@ -4438,6 +4626,155 @@ function renderStandings() {
   }).join('');
 }
 
+// ==================== BRACKET ====================
+
+function getQualifiedTeams() {
+  const standings = calculateStandings();
+  const qualified = {};
+  const thirdPlace = [];
+
+  Object.keys(standings).forEach(g => {
+    const teams = standings[g];
+    qualified[g] = {
+      first: { ...teams[0], group: g, pos: 1 },
+      second: { ...teams[1], group: g, pos: 2 },
+      third: { ...teams[2], group: g, pos: 3 }
+    };
+    if (teams[2].mp > 0) {
+      thirdPlace.push({ ...teams[2], group: g, pos: 3 });
+    }
+  });
+
+  thirdPlace.sort((a, b) => {
+    if (b.pts !== a.pts) return b.pts - a.pts;
+    if (b.gd !== a.gd) return b.gd - a.gd;
+    return b.gf - a.gf;
+  });
+
+  const best8 = thirdPlace.slice(0, 8);
+  return { qualified, bestThirds: best8, allThirds: thirdPlace };
+}
+
+function resolveTeam(source, qualified, bestThirds) {
+  if (source.type === 'group') {
+    const q = qualified[source.group];
+    if (!q) return null;
+    if (source.pos === 1) return q.first;
+    if (source.pos === 2) return q.second;
+    if (source.pos === 3) return q.third;
+  }
+  if (source.type === 'third') {
+    return bestThirds[source.slot - 1] || null;
+  }
+  return null;
+}
+
+function renderBracket() {
+  const qualDiv = document.getElementById('bracket-qualifiers');
+  const thirdsDiv = document.getElementById('bracket-thirds');
+  const contentDiv = document.getElementById('bracket-content');
+  if (!contentDiv) return;
+
+  const { qualified, bestThirds, allThirds } = getQualifiedTeams();
+
+  // Render group summary
+  const groupLetters = 'ABCDEFGHIJKL'.split('');
+  qualDiv.innerHTML = '<div class="bracket-summary">' + groupLetters.map(g => {
+    const q = qualified[g];
+    if (!q || q.first.mp === 0) return '';
+    return `
+      <div class="bracket-summary-card">
+        <div class="group-label">${g}组</div>
+        <div class="team-row"><span class="pos p1">1</span> ${q.first.flag} ${q.first.name} <span style="margin-left:auto;color:var(--accent-gold);font-weight:700">${q.first.pts}分</span></div>
+        <div class="team-row"><span class="pos p2">2</span> ${q.second.flag} ${q.second.name} <span style="margin-left:auto;color:var(--accent-blue);font-weight:700">${q.second.pts}分</span></div>
+        ${q.third.mp > 0 ? `<div class="team-row"><span class="pos p3">3</span> ${q.third.flag} ${q.third.name} <span style="margin-left:auto;color:#f59e0b;font-weight:700">${q.third.pts}分</span></div>` : ''}
+      </div>`;
+  }).join('') + '</div>';
+
+  // Render best thirds
+  if (allThirds.length > 0) {
+    thirdsDiv.innerHTML = '<h3 style="font-size:1rem;margin-bottom:12px;color:var(--text-primary)">最佳第三名排名</h3><div class="bracket-third-grid">' +
+      allThirds.map((t, i) => {
+        const isIn = i < 8;
+        return `
+          <div class="bracket-third-card">
+            <div class="rank ${isIn ? 'in' : 'out'}">${i + 1}</div>
+            <div class="info">
+              <div class="team-name">${t.flag} ${t.name}</div>
+              <div class="team-stats">${t.group}组 · ${t.pts}分 · 净胜球${t.gd > 0 ? '+' : ''}${t.gd}</div>
+            </div>
+            <div style="font-size:0.75rem;font-weight:700;color:${isIn ? 'var(--accent-green)' : 'var(--text-muted)'}">${isIn ? '晋级' : '淘汰'}</div>
+          </div>`;
+      }).join('') + '</div>';
+  }
+
+  // Build bracket rounds
+  const rounds = [
+    { title: '1/16决赛', matches: R32_TEMPLATE },
+    { title: '1/8决赛', matches: [
+      { num: 'M89', t1: null, t2: null, from: ['M73','M75'] },
+      { num: 'M90', t1: null, t2: null, from: ['M74','M77'] },
+      { num: 'M91', t1: null, t2: null, from: ['M76','M78'] },
+      { num: 'M92', t1: null, t2: null, from: ['M79','M80'] },
+      { num: 'M93', t1: null, t2: null, from: ['M83','M84'] },
+      { num: 'M94', t1: null, t2: null, from: ['M81','M82'] },
+      { num: 'M95', t1: null, t2: null, from: ['M86','M88'] },
+      { num: 'M96', t1: null, t2: null, from: ['M85','M87'] }
+    ]},
+    { title: '1/4决赛', matches: [
+      { num: 'M97', from: ['M89','M90'] },
+      { num: 'M98', from: ['M93','M94'] },
+      { num: 'M99', from: ['M91','M92'] },
+      { num: 'M100', from: ['M95','M96'] }
+    ]},
+    { title: '半决赛', matches: [
+      { num: 'M101', from: ['M97','M98'] },
+      { num: 'M102', from: ['M99','M100'] }
+    ]},
+    { title: '决赛', matches: [
+      { num: 'M104', from: ['M101','M102'] }
+    ]}
+  ];
+
+  // Resolve R32 teams
+  const resolvedMatches = {};
+  R32_TEMPLATE.forEach(m => {
+    const t1 = resolveTeam(m.t1, qualified, bestThirds);
+    const t2 = resolveTeam(m.t2, qualified, bestThirds);
+    resolvedMatches[m.num] = { t1, t2 };
+  });
+
+  function getTeamDisplay(team) {
+    if (!team) return '<div class="bracket-team tbd"><span>待定</span></div>';
+    return `<div class="bracket-team"><span class="flag">${team.flag}</span><span>${team.name}</span><span class="pts">${team.pts}分</span></div>`;
+  }
+
+  function getMatchDisplay(matchNum) {
+    const resolved = resolvedMatches[matchNum];
+    if (resolved) {
+      return { t1: resolved.t1, t2: resolved.t2 };
+    }
+    return { t1: null, t2: null };
+  }
+
+  contentDiv.innerHTML = rounds.map(round => {
+    return `
+      <div class="bracket-round">
+        <div class="bracket-round-title">${round.title}</div>
+        ${round.matches.map(m => {
+          const display = getMatchDisplay(m.num);
+          return `
+            <div class="bracket-match">
+              <div class="bracket-match-num">${m.num}</div>
+              ${getTeamDisplay(display.t1)}
+              ${getTeamDisplay(display.t2)}
+            </div>`;
+        }).join('')}
+      </div>
+      <div class="bracket-connector"><div class="bracket-connector-line"></div></div>`;
+  }).join('');
+}
+
 // ==================== LEADERBOARD ====================
 
 function getGoalsLeaderboard() {
@@ -4621,6 +4958,7 @@ renderSquad();
 renderStandings();
 renderLeaderboard();
 renderOdds();
+renderBracket();
 
 // ==================== PREDICTION GAME ====================
 
