@@ -2186,18 +2186,23 @@
   <div class="nav-tabs-wrap">
     <div class="nav-tabs-inner" id="navTabsInner">
       <button class="nav-tab active" data-tab="schedule">小组赛程</button>
-      <button class="nav-tab" data-tab="redblack">红黑榜</button>
-      <button class="nav-tab" data-tab="knockout">淘汰赛</button>
       <button class="nav-tab" data-tab="standings">积分排名</button>
-      <button class="nav-tab" data-tab="bracket">对阵图</button>
+      <button class="nav-tab" data-tab="redblack">红黑榜</button>
+      <button class="nav-tab" data-tab="odds">夺冠概率</button>
       <button class="nav-tab nav-tab-more" id="navMoreBtn" onclick="toggleNavMenu()">
         更多 <span class="nav-more-arrow" id="navMoreArrow">▾</span>
       </button>
     </div>
   </div>
   <div class="nav-dropdown" id="navDropdown">
-    <button class="nav-grid-item" data-tab="odds" onclick="selectTab(this)">
-      <span class="nav-grid-icon">📈</span><span class="nav-grid-label">夺冠概率</span>
+    <button class="nav-grid-item" data-tab="bracket" onclick="selectTab(this)">
+      <span class="nav-grid-icon">🏆</span><span class="nav-grid-label">对阵图</span>
+    </button>
+    <button class="nav-grid-item" data-tab="knockout" onclick="selectTab(this)">
+      <span class="nav-grid-icon">⚔️</span><span class="nav-grid-label">淘汰赛</span>
+    </button>
+    <button class="nav-grid-item" data-tab="scorers" onclick="selectTab(this)">
+      <span class="nav-grid-icon">⚽</span><span class="nav-grid-label">进球助攻</span>
     </button>
     <button class="nav-grid-item" data-tab="prediction" onclick="selectTab(this)">
       <span class="nav-grid-icon">🎯</span><span class="nav-grid-label">预测竞猜</span>
@@ -2205,17 +2210,8 @@
     <button class="nav-grid-item" data-tab="fullschedule" onclick="selectTab(this)">
       <span class="nav-grid-icon">🕐</span><span class="nav-grid-label">比赛时间</span>
     </button>
-    <button class="nav-grid-item" data-tab="scorers" onclick="selectTab(this)">
-      <span class="nav-grid-icon">⚽</span><span class="nav-grid-label">进球助攻</span>
-    </button>
     <button class="nav-grid-item" data-tab="groups" onclick="selectTab(this)">
       <span class="nav-grid-icon">🌍</span><span class="nav-grid-label">小组分组</span>
-    </button>
-    <button class="nav-grid-item" data-tab="timeline" onclick="selectTab(this)">
-      <span class="nav-grid-icon">📋</span><span class="nav-grid-label">赛程总览</span>
-    </button>
-    <button class="nav-grid-item" data-tab="format" onclick="selectTab(this)">
-      <span class="nav-grid-icon">📖</span><span class="nav-grid-label">赛制说明</span>
     </button>
     <button class="nav-grid-item" data-tab="squad" onclick="selectTab(this)">
       <span class="nav-grid-icon">👥</span><span class="nav-grid-label">球队阵容</span>
@@ -4655,7 +4651,7 @@ function getQualifiedTeams() {
   return { qualified, bestThirds: best8, allThirds: thirdPlace };
 }
 
-function resolveTeam(source, qualified, bestThirds) {
+function bracketResolveTeam(source, qualified, bestThirds) {
   if (source.type === 'group') {
     const q = qualified[source.group];
     if (!q) return null;
@@ -4669,110 +4665,114 @@ function resolveTeam(source, qualified, bestThirds) {
   return null;
 }
 
+function bracketTeamHtml(team) {
+  if (!team) return '<div class="bracket-team tbd"><span>待定</span></div>';
+  return '<div class="bracket-team"><span class="flag">' + team.flag + '</span><span>' + team.name + '</span><span class="pts">' + team.pts + '分</span></div>';
+}
+
 function renderBracket() {
-  const qualDiv = document.getElementById('bracket-qualifiers');
-  const thirdsDiv = document.getElementById('bracket-thirds');
-  const contentDiv = document.getElementById('bracket-content');
+  var qualDiv = document.getElementById('bracket-qualifiers');
+  var thirdsDiv = document.getElementById('bracket-thirds');
+  var contentDiv = document.getElementById('bracket-content');
   if (!contentDiv) return;
 
-  const { qualified, bestThirds, allThirds } = getQualifiedTeams();
+  var data = getQualifiedTeams();
+  var qualified = data.qualified;
+  var bestThirds = data.bestThirds;
+  var allThirds = data.allThirds;
 
-  // Render group summary
-  const groupLetters = 'ABCDEFGHIJKL'.split('');
-  qualDiv.innerHTML = '<div class="bracket-summary">' + groupLetters.map(g => {
-    const q = qualified[g];
-    if (!q || q.first.mp === 0) return '';
-    return `
-      <div class="bracket-summary-card">
-        <div class="group-label">${g}组</div>
-        <div class="team-row"><span class="pos p1">1</span> ${q.first.flag} ${q.first.name} <span style="margin-left:auto;color:var(--accent-gold);font-weight:700">${q.first.pts}分</span></div>
-        <div class="team-row"><span class="pos p2">2</span> ${q.second.flag} ${q.second.name} <span style="margin-left:auto;color:var(--accent-blue);font-weight:700">${q.second.pts}分</span></div>
-        ${q.third.mp > 0 ? `<div class="team-row"><span class="pos p3">3</span> ${q.third.flag} ${q.third.name} <span style="margin-left:auto;color:#f59e0b;font-weight:700">${q.third.pts}分</span></div>` : ''}
-      </div>`;
-  }).join('') + '</div>';
+  // Group summary cards
+  var groupLetters = 'ABCDEFGHIJKL'.split('');
+  var summaryHtml = '<div class="bracket-summary">';
+  groupLetters.forEach(function(g) {
+    var q = qualified[g];
+    if (!q || q.first.mp === 0) return;
+    summaryHtml += '<div class="bracket-summary-card">';
+    summaryHtml += '<div class="group-label">' + g + '组</div>';
+    summaryHtml += '<div class="team-row"><span class="pos p1">1</span> ' + q.first.flag + ' ' + q.first.name + ' <span style="margin-left:auto;color:var(--accent-gold);font-weight:700">' + q.first.pts + '分</span></div>';
+    summaryHtml += '<div class="team-row"><span class="pos p2">2</span> ' + q.second.flag + ' ' + q.second.name + ' <span style="margin-left:auto;color:var(--accent-blue);font-weight:700">' + q.second.pts + '分</span></div>';
+    if (q.third.mp > 0) {
+      summaryHtml += '<div class="team-row"><span class="pos p3">3</span> ' + q.third.flag + ' ' + q.third.name + ' <span style="margin-left:auto;color:#f59e0b;font-weight:700">' + q.third.pts + '分</span></div>';
+    }
+    summaryHtml += '</div>';
+  });
+  summaryHtml += '</div>';
+  qualDiv.innerHTML = summaryHtml;
 
-  // Render best thirds
+  // Best thirds
   if (allThirds.length > 0) {
-    thirdsDiv.innerHTML = '<h3 style="font-size:1rem;margin-bottom:12px;color:var(--text-primary)">最佳第三名排名</h3><div class="bracket-third-grid">' +
-      allThirds.map((t, i) => {
-        const isIn = i < 8;
-        return `
-          <div class="bracket-third-card">
-            <div class="rank ${isIn ? 'in' : 'out'}">${i + 1}</div>
-            <div class="info">
-              <div class="team-name">${t.flag} ${t.name}</div>
-              <div class="team-stats">${t.group}组 · ${t.pts}分 · 净胜球${t.gd > 0 ? '+' : ''}${t.gd}</div>
-            </div>
-            <div style="font-size:0.75rem;font-weight:700;color:${isIn ? 'var(--accent-green)' : 'var(--text-muted)'}">${isIn ? '晋级' : '淘汰'}</div>
-          </div>`;
-      }).join('') + '</div>';
+    var thirdsHtml = '<h3 style="font-size:1rem;margin-bottom:12px;color:var(--text-primary)">最佳第三名排名</h3><div class="bracket-third-grid">';
+    allThirds.forEach(function(t, i) {
+      var isIn = i < 8;
+      thirdsHtml += '<div class="bracket-third-card">';
+      thirdsHtml += '<div class="rank ' + (isIn ? 'in' : 'out') + '">' + (i + 1) + '</div>';
+      thirdsHtml += '<div class="info"><div class="team-name">' + t.flag + ' ' + t.name + '</div>';
+      thirdsHtml += '<div class="team-stats">' + t.group + '组 · ' + t.pts + '分 · 净胜球' + (t.gd > 0 ? '+' : '') + t.gd + '</div></div>';
+      thirdsHtml += '<div style="font-size:0.75rem;font-weight:700;color:' + (isIn ? 'var(--accent-green)' : 'var(--text-muted)') + '">' + (isIn ? '晋级' : '淘汰') + '</div>';
+      thirdsHtml += '</div>';
+    });
+    thirdsHtml += '</div>';
+    thirdsDiv.innerHTML = thirdsHtml;
+  } else {
+    thirdsDiv.innerHTML = '';
   }
-
-  // Build bracket rounds
-  const rounds = [
-    { title: '1/16决赛', matches: R32_TEMPLATE },
-    { title: '1/8决赛', matches: [
-      { num: 'M89', t1: null, t2: null, from: ['M73','M75'] },
-      { num: 'M90', t1: null, t2: null, from: ['M74','M77'] },
-      { num: 'M91', t1: null, t2: null, from: ['M76','M78'] },
-      { num: 'M92', t1: null, t2: null, from: ['M79','M80'] },
-      { num: 'M93', t1: null, t2: null, from: ['M83','M84'] },
-      { num: 'M94', t1: null, t2: null, from: ['M81','M82'] },
-      { num: 'M95', t1: null, t2: null, from: ['M86','M88'] },
-      { num: 'M96', t1: null, t2: null, from: ['M85','M87'] }
-    ]},
-    { title: '1/4决赛', matches: [
-      { num: 'M97', from: ['M89','M90'] },
-      { num: 'M98', from: ['M93','M94'] },
-      { num: 'M99', from: ['M91','M92'] },
-      { num: 'M100', from: ['M95','M96'] }
-    ]},
-    { title: '半决赛', matches: [
-      { num: 'M101', from: ['M97','M98'] },
-      { num: 'M102', from: ['M99','M100'] }
-    ]},
-    { title: '决赛', matches: [
-      { num: 'M104', from: ['M101','M102'] }
-    ]}
-  ];
 
   // Resolve R32 teams
-  const resolvedMatches = {};
-  R32_TEMPLATE.forEach(m => {
-    const t1 = resolveTeam(m.t1, qualified, bestThirds);
-    const t2 = resolveTeam(m.t2, qualified, bestThirds);
-    resolvedMatches[m.num] = { t1, t2 };
+  var r32 = {};
+  R32_TEMPLATE.forEach(function(m) {
+    r32[m.num] = {
+      t1: bracketResolveTeam(m.t1, qualified, bestThirds),
+      t2: bracketResolveTeam(m.t2, qualified, bestThirds)
+    };
   });
 
-  function getTeamDisplay(team) {
-    if (!team) return '<div class="bracket-team tbd"><span>待定</span></div>';
-    return `<div class="bracket-team"><span class="flag">${team.flag}</span><span>${team.name}</span><span class="pts">${team.pts}分</span></div>`;
-  }
+  // Build all rounds
+  var koRounds = [
+    { title: '1/16决赛', nums: ['M73','M74','M75','M76','M77','M78','M79','M80','M81','M82','M83','M84','M85','M86','M87','M88'] },
+    { title: '1/8决赛', nums: ['M89','M90','M91','M92','M93','M94','M95','M96'] },
+    { title: '1/4决赛', nums: ['M97','M98','M99','M100'] },
+    { title: '半决赛', nums: ['M101','M102'] },
+    { title: '决赛', nums: ['M104'] }
+  ];
 
-  function getMatchDisplay(matchNum) {
-    const resolved = resolvedMatches[matchNum];
-    if (resolved) {
-      return { t1: resolved.t1, t2: resolved.t2 };
+  var koFrom = {
+    'M89': ['M73','M75'], 'M90': ['M74','M77'], 'M91': ['M76','M78'], 'M92': ['M79','M80'],
+    'M93': ['M83','M84'], 'M94': ['M81','M82'], 'M95': ['M86','M88'], 'M96': ['M85','M87'],
+    'M97': ['M89','M90'], 'M98': ['M93','M94'], 'M99': ['M91','M92'], 'M100': ['M95','M96'],
+    'M101': ['M97','M98'], 'M102': ['M99','M100'], 'M104': ['M101','M102']
+  };
+
+  function getBracketTeam(matchNum, slot) {
+    if (r32[matchNum]) {
+      return slot === 1 ? r32[matchNum].t1 : r32[matchNum].t2;
     }
-    return { t1: null, t2: null };
+    return null;
   }
 
-  contentDiv.innerHTML = rounds.map(round => {
-    return `
-      <div class="bracket-round">
-        <div class="bracket-round-title">${round.title}</div>
-        ${round.matches.map(m => {
-          const display = getMatchDisplay(m.num);
-          return `
-            <div class="bracket-match">
-              <div class="bracket-match-num">${m.num}</div>
-              ${getTeamDisplay(display.t1)}
-              ${getTeamDisplay(display.t2)}
-            </div>`;
-        }).join('')}
-      </div>
-      <div class="bracket-connector"><div class="bracket-connector-line"></div></div>`;
-  }).join('');
+  var bracketHtml = '';
+  koRounds.forEach(function(round) {
+    bracketHtml += '<div class="bracket-round">';
+    bracketHtml += '<div class="bracket-round-title">' + round.title + '</div>';
+    round.nums.forEach(function(num) {
+      var t1, t2;
+      if (r32[num]) {
+        t1 = r32[num].t1;
+        t2 = r32[num].t2;
+      } else if (koFrom[num]) {
+        t1 = null;
+        t2 = null;
+      }
+      bracketHtml += '<div class="bracket-match">';
+      bracketHtml += '<div class="bracket-match-num">' + num + '</div>';
+      bracketHtml += bracketTeamHtml(t1);
+      bracketHtml += bracketTeamHtml(t2);
+      bracketHtml += '</div>';
+    });
+    bracketHtml += '</div>';
+    bracketHtml += '<div class="bracket-connector"><div class="bracket-connector-line"></div></div>';
+  });
+
+  contentDiv.innerHTML = bracketHtml;
 }
 
 // ==================== LEADERBOARD ====================
