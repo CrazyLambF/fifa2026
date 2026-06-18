@@ -1929,47 +1929,6 @@
     font-weight: 700;
   }
 
-  /* Connector column */
-  .bracket-conn-col {
-    width: 24px;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-  .bracket-conn-pair {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  /* Horizontal line from left match */
-  .bracket-conn-pair::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 12px;
-    height: 1.5px;
-    background: #2a3550;
-  }
-  /* Horizontal line to right match */
-  .bracket-conn-pair::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 12px;
-    height: 1.5px;
-    background: #2a3550;
-  }
-  .bracket-conn-pair .conn-vline {
-    position: absolute;
-    left: 12px;
-    width: 1.5px;
-    background: #2a3550;
-  }
-
   /* Group summary */
   .bracket-summary {
     display: grid;
@@ -2053,10 +2012,6 @@
     .bracket-tr .f { font-size: 0.7rem; }
     .bracket-tr .p { font-size: 0.52rem; }
     .bracket-tr.tbd { font-size: 0.5rem; }
-    .bracket-conn-col { width: 16px; }
-    .bracket-conn-pair::before { width: 8px; }
-    .bracket-conn-pair::after { width: 8px; }
-    .bracket-conn-pair .conn-vline { left: 8px; }
     .bracket-third-grid { grid-template-columns: repeat(2, 1fr); }
     .bracket-summary { grid-template-columns: repeat(3, 1fr); gap: 4px; }
     .bracket-scard { padding: 6px 8px; }
@@ -4807,16 +4762,14 @@ function renderBracket() {
     return null;
   }
 
-  // Build bracket tree with flex layout + CSS connectors
+  // Build bracket tree with flex layout
   var bracketHtml = '';
 
   for (var ri = 0; ri < koRounds.length; ri++) {
     var round = koRounds[ri];
-    var isLast = ri === koRounds.length - 1;
     var matchCount = round.nums.length;
 
-    // Round column
-    bracketHtml += '<div class="bracket-round-col">';
+    bracketHtml += '<div class="bracket-round-col" data-round="' + ri + '">';
     bracketHtml += '<div class="bracket-round-label">' + round.title + '</div>';
     bracketHtml += '<div class="bracket-round-body">';
 
@@ -4825,28 +4778,72 @@ function renderBracket() {
       var t1, t2, l1 = '', l2 = '';
       if (r32[num]) { t1 = r32[num].t1; t2 = r32[num].t2; l1 = r32[num].l1; l2 = r32[num].l2; }
       else { t1 = null; t2 = null; }
-
       var isFinal = num === 'M104';
-      bracketHtml += '<div class="bracket-match-box' + (isFinal ? ' final' : '') + '">';
+      bracketHtml += '<div class="bracket-match-box' + (isFinal ? ' final' : '') + '" data-match="' + num + '">';
       bracketHtml += '<div class="bracket-mn">' + num + '</div>';
       bracketHtml += bracketTeamHtml(t1, l1);
       bracketHtml += bracketTeamHtml(t2, l2);
       bracketHtml += '</div>';
     }
     bracketHtml += '</div></div>';
-
-    // Connector column
-    if (!isLast) {
-      var nextCount = koRounds[ri + 1].nums.length;
-      bracketHtml += '<div class="bracket-conn-col">';
-      for (var ci = 0; ci < nextCount; ci++) {
-        bracketHtml += '<div class="bracket-conn-pair"><div class="conn-vline" style="top:25%;height:50%"></div></div>';
-      }
-      bracketHtml += '</div>';
-    }
   }
 
   contentDiv.innerHTML = bracketHtml;
+
+  // Draw connectors with SVG overlay
+  var roundCols = contentDiv.querySelectorAll('.bracket-round-col');
+  if (roundCols.length < 2) return;
+
+  // Create SVG overlay
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.style.position = 'absolute';
+  svg.style.top = '0';
+  svg.style.left = '0';
+  svg.style.pointerEvents = 'none';
+  svg.style.zIndex = '1';
+  contentDiv.style.position = 'relative';
+
+  var treeRect = contentDiv.getBoundingClientRect();
+  svg.setAttribute('width', treeRect.width);
+  svg.setAttribute('height', treeRect.height);
+  svg.setAttribute('viewBox', '0 0 ' + treeRect.width + ' ' + treeRect.height);
+
+  var koFromKeys = Object.keys(koFrom);
+  for (var ri = 0; ri < koRounds.length - 1; ri++) {
+    var currRound = koRounds[ri];
+    var nextRound = koRounds[ri + 1];
+
+    for (var ni = 0; ni < nextRound.nums.length; ni++) {
+      var nextNum = nextRound.nums[ni];
+      var from = koFrom[nextNum];
+      if (!from) continue;
+
+      var box1 = contentDiv.querySelector('[data-match="' + from[0] + '"]');
+      var box2 = contentDiv.querySelector('[data-match="' + from[1] + '"]');
+      var boxN = contentDiv.querySelector('[data-match="' + nextNum + '"]');
+      if (!box1 || !box2 || !boxN) continue;
+
+      var r1 = box1.getBoundingClientRect();
+      var r2 = box2.getBoundingClientRect();
+      var rn = boxN.getBoundingClientRect();
+
+      var y1 = r1.top + r1.height / 2 - treeRect.top;
+      var y2 = r2.top + r2.height / 2 - treeRect.top;
+      var xn = rn.left - treeRect.left;
+      var x1 = r1.right - treeRect.left;
+      var x2 = r2.right - treeRect.left;
+      var xm = Math.max(x1, x2) + 4;
+
+      var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      path.setAttribute('d', 'M' + x1 + ',' + y1 + ' H' + xm + ' V' + ((y1+y2)/2) + ' H' + xn + ' M' + x2 + ',' + y2 + ' H' + xm);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', '#2a3550');
+      path.setAttribute('stroke-width', '1.5');
+      svg.appendChild(path);
+    }
+  }
+
+  contentDiv.appendChild(svg);
 }
 
 // ==================== LEADERBOARD ====================
