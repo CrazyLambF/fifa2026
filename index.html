@@ -1846,220 +1846,196 @@
   /* ==================== 淘汰赛对阵图 ==================== */
   .bracket-container {
     overflow-x: auto;
-    padding: 20px 0;
+    padding: 10px 0;
     scrollbar-width: thin;
     scrollbar-color: var(--accent-gold) var(--bg-secondary);
   }
-  .bracket-container::-webkit-scrollbar { height: 6px; }
-  .bracket-container::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 3px; }
-  .bracket-container::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 3px; }
+  .bracket-container::-webkit-scrollbar { height: 4px; }
+  .bracket-container::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 2px; }
+  .bracket-container::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 2px; }
 
   .bracket-tree {
-    display: flex;
-    align-items: stretch;
-    min-width: max-content;
-    padding: 0 20px;
+    display: table;
+    width: 100%;
+    min-width: 900px;
+    border-collapse: separate;
+    border-spacing: 0;
   }
-  .bracket-round-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    min-width: 190px;
-    flex-shrink: 0;
+  .bracket-round-row {
+    display: table-row;
   }
-  .bracket-round-header {
+  .bracket-round-cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 4px;
+  }
+  .bracket-round-label {
     text-align: center;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.72rem;
     color: var(--accent-gold);
-    padding: 6px 10px;
-    background: rgba(212,168,83,0.1);
+    padding: 5px 8px;
+    background: rgba(212,168,83,0.08);
     border-radius: 6px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     letter-spacing: 1px;
-    white-space: nowrap;
   }
-  .bracket-matches-col {
+  .bracket-round-matches {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    flex: 1;
+    min-height: 100%;
   }
-  .bracket-pair {
+  .bracket-match-pair {
     display: flex;
-    flex-direction: column;
-    position: relative;
+    align-items: center;
+    margin: 4px 0;
   }
-  .bracket-match-cell {
+  .bracket-match-box {
+    flex: 1;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     overflow: hidden;
-    margin: 3px 0;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .bracket-match-cell:hover {
+  .bracket-match-box:hover {
     border-color: var(--accent-gold);
-    box-shadow: 0 2px 12px rgba(212,168,83,0.15);
+    box-shadow: 0 2px 12px rgba(212,168,83,0.2);
   }
-  .bracket-match-cell .mn {
-    font-size: 0.6rem;
+  .bracket-mn {
+    font-size: 0.55rem;
     color: var(--text-muted);
     text-align: center;
-    padding: 2px 0;
-    background: rgba(255,255,255,0.02);
+    padding: 1px 0;
+    background: rgba(255,255,255,0.03);
     border-bottom: 1px solid var(--border-color);
   }
-  .bracket-team-row {
+  .bracket-tr {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 5px 8px;
-    font-size: 0.76rem;
+    gap: 4px;
+    padding: 4px 7px;
+    font-size: 0.73rem;
     font-weight: 500;
     color: var(--text-primary);
-    border-bottom: 1px solid rgba(255,255,255,0.03);
-    min-height: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    min-height: 26px;
     white-space: nowrap;
   }
-  .bracket-team-row:last-child { border-bottom: none; }
-  .bracket-team-row .flag { font-size: 0.9rem; }
-  .bracket-team-row.tbd { color: var(--text-muted); font-style: italic; font-size: 0.7rem; }
-  .bracket-team-row .pts {
-    margin-left: auto;
-    font-weight: 700;
-    font-size: 0.7rem;
-    color: var(--accent-gold);
-  }
+  .bracket-tr:last-child { border-bottom: none; }
+  .bracket-tr .f { font-size: 0.85rem; }
+  .bracket-tr.tbd { color: var(--text-muted); font-style: italic; font-size: 0.62rem; }
+  .bracket-tr .p { margin-left: auto; font-weight: 700; font-size: 0.65rem; color: var(--accent-gold); }
+  .bracket-tr.winner { background: rgba(16,185,129,0.1); }
 
-  /* Connectors - vertical and horizontal lines */
-  .bracket-conn-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 28px;
-    flex-shrink: 0;
+  /* SVG connector lines */
+  .bracket-conn-cell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 32px;
+    padding: 0;
   }
-  .bracket-conn-pair {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex: 1;
-    position: relative;
-  }
-  .bracket-conn-pair::before {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 25%;
-    bottom: 25%;
-    width: 2px;
-    background: var(--border-color);
-  }
-  .bracket-conn-pair::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 14px;
-    height: 2px;
-    background: var(--border-color);
-  }
+  .bracket-conn-cell svg { display: block; }
 
-  /* Third place cards */
+  /* Third place */
   .bracket-third-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 8px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 6px;
+    margin-bottom: 16px;
   }
   .bracket-third-card {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
+    gap: 6px;
+    padding: 7px 10px;
     background: var(--bg-card);
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid var(--border-color);
-    font-size: 0.82rem;
+    font-size: 0.78rem;
   }
-  .bracket-third-card .rank {
-    width: 22px;
-    height: 22px;
+  .bracket-third-card .rk {
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     color: #fff;
     flex-shrink: 0;
   }
-  .bracket-third-card .rank.in { background: var(--accent-green); }
-  .bracket-third-card .rank.out { background: var(--text-muted); }
-  .bracket-third-card .team-name { font-weight: 600; }
-  .bracket-third-card .team-stats { font-size: 0.72rem; color: var(--text-muted); }
+  .bracket-third-card .rk.in { background: var(--accent-green); }
+  .bracket-third-card .rk.out { background: var(--text-muted); }
 
   /* Group summary */
   .bracket-summary {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-    gap: 8px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+    gap: 6px;
+    margin-bottom: 16px;
   }
-  .bracket-summary-card {
+  .bracket-scard {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 10px 12px;
+    border-radius: 6px;
+    padding: 8px 10px;
   }
-  .bracket-summary-card .group-label {
-    font-size: 0.72rem;
+  .bracket-scard .gl {
+    font-size: 0.68rem;
     color: var(--text-muted);
-    margin-bottom: 4px;
+    margin-bottom: 3px;
     font-weight: 600;
   }
-  .bracket-summary-card .team-row {
+  .bracket-scard .tr {
     display: flex;
     align-items: center;
-    gap: 5px;
-    padding: 3px 0;
-    font-size: 0.78rem;
+    gap: 4px;
+    padding: 2px 0;
+    font-size: 0.74rem;
   }
-  .bracket-summary-card .team-row .pos {
-    width: 16px;
-    height: 16px;
+  .bracket-scard .tr .pos {
+    width: 14px;
+    height: 14px;
     border-radius: 3px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     font-weight: 700;
     color: #fff;
     flex-shrink: 0;
   }
-  .bracket-summary-card .team-row .pos.p1 { background: var(--accent-green); }
-  .bracket-summary-card .team-row .pos.p2 { background: var(--accent-blue); }
-  .bracket-summary-card .team-row .pos.p3 { background: #f59e0b; }
+  .bracket-scard .tr .pos.p1 { background: var(--accent-green); }
+  .bracket-scard .tr .pos.p2 { background: var(--accent-blue); }
+  .bracket-scard .tr .pos.p3 { background: #f59e0b; }
+
+  /* Final match highlight */
+  .bracket-match-box.final {
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 16px rgba(212,168,83,0.3);
+  }
+  .bracket-match-box.final .bracket-mn {
+    background: rgba(212,168,83,0.15);
+    color: var(--accent-gold);
+    font-weight: 700;
+  }
 
   @media (max-width: 768px) {
-    .bracket-container { padding: 10px 0; }
-    .bracket-tree { padding: 0 8px; }
-    .bracket-round-col { min-width: 120px; }
-    .bracket-round-header { font-size: 0.68rem; padding: 4px 6px; margin-bottom: 6px; }
-    .bracket-match-cell { margin: 2px 0; }
-    .bracket-match-cell .mn { font-size: 0.52rem; padding: 1px 0; }
-    .bracket-team-row { font-size: 0.65rem; padding: 3px 5px; gap: 3px; min-height: 22px; }
-    .bracket-team-row .flag { font-size: 0.75rem; }
-    .bracket-team-row .pts { font-size: 0.6rem; }
-    .bracket-team-row.tbd { font-size: 0.58rem; }
-    .bracket-conn-col { width: 16px; }
-    .bracket-conn-pair::before { width: 1px; }
-    .bracket-conn-pair::after { width: 8px; height: 1px; }
-    .bracket-third-grid { grid-template-columns: 1fr; }
-    .bracket-summary { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-    .bracket-summary-card { padding: 8px; }
-    .bracket-summary-card .team-row { font-size: 0.7rem; }
+    .bracket-tree { min-width: 700px; }
+    .bracket-round-cell { padding: 0 2px; }
+    .bracket-round-label { font-size: 0.6rem; padding: 3px 5px; }
+    .bracket-match-box { min-width: 100px; }
+    .bracket-mn { font-size: 0.48rem; }
+    .bracket-tr { font-size: 0.62rem; padding: 3px 5px; gap: 3px; min-height: 22px; }
+    .bracket-tr .f { font-size: 0.72rem; }
+    .bracket-tr .p { font-size: 0.55rem; }
+    .bracket-tr.tbd { font-size: 0.52rem; }
+    .bracket-conn-cell { width: 20px; }
+    .bracket-third-grid { grid-template-columns: repeat(2, 1fr); }
+    .bracket-summary { grid-template-columns: repeat(3, 1fr); }
   }
 </style>
 
@@ -4717,8 +4693,8 @@ function bracketResolveTeam(source, qualified, bestThirds) {
 }
 
 function bracketTeamHtml(team) {
-  if (!team) return '<div class="bracket-team tbd"><span>待定</span></div>';
-  return '<div class="bracket-team"><span class="flag">' + team.flag + '</span><span>' + team.name + '</span><span class="pts">' + team.pts + '分</span></div>';
+  if (!team) return '<div class="bracket-tr tbd"><span>待定</span></div>';
+  return '<div class="bracket-tr"><span class="f">' + team.flag + '</span><span>' + team.name + '</span><span class="p">' + team.pts + '分</span></div>';
 }
 
 function renderBracket() {
@@ -4738,12 +4714,12 @@ function renderBracket() {
   groupLetters.forEach(function(g) {
     var q = qualified[g];
     if (!q || q.first.mp === 0) return;
-    summaryHtml += '<div class="bracket-summary-card">';
-    summaryHtml += '<div class="group-label">' + g + '组</div>';
-    summaryHtml += '<div class="team-row"><span class="pos p1">1</span> ' + q.first.flag + ' ' + q.first.name + ' <span style="margin-left:auto;color:var(--accent-gold);font-weight:700">' + q.first.pts + '分</span></div>';
-    summaryHtml += '<div class="team-row"><span class="pos p2">2</span> ' + q.second.flag + ' ' + q.second.name + ' <span style="margin-left:auto;color:var(--accent-blue);font-weight:700">' + q.second.pts + '分</span></div>';
+    summaryHtml += '<div class="bracket-scard">';
+    summaryHtml += '<div class="gl">' + g + '组</div>';
+    summaryHtml += '<div class="tr"><span class="pos p1">1</span> ' + q.first.flag + ' ' + q.first.name + ' <span style="margin-left:auto;color:var(--accent-gold);font-weight:700">' + q.first.pts + '分</span></div>';
+    summaryHtml += '<div class="tr"><span class="pos p2">2</span> ' + q.second.flag + ' ' + q.second.name + ' <span style="margin-left:auto;color:var(--accent-blue);font-weight:700">' + q.second.pts + '分</span></div>';
     if (q.third.mp > 0) {
-      summaryHtml += '<div class="team-row"><span class="pos p3">3</span> ' + q.third.flag + ' ' + q.third.name + ' <span style="margin-left:auto;color:#f59e0b;font-weight:700">' + q.third.pts + '分</span></div>';
+      summaryHtml += '<div class="tr"><span class="pos p3">3</span> ' + q.third.flag + ' ' + q.third.name + ' <span style="margin-left:auto;color:#f59e0b;font-weight:700">' + q.third.pts + '分</span></div>';
     }
     summaryHtml += '</div>';
   });
@@ -4752,14 +4728,14 @@ function renderBracket() {
 
   // Best thirds
   if (allThirds.length > 0) {
-    var thirdsHtml = '<h3 style="font-size:1rem;margin-bottom:12px;color:var(--text-primary)">最佳第三名排名</h3><div class="bracket-third-grid">';
+    var thirdsHtml = '<h3 style="font-size:0.9rem;margin-bottom:10px;color:var(--text-primary)">最佳第三名排名</h3><div class="bracket-third-grid">';
     allThirds.forEach(function(t, i) {
       var isIn = i < 8;
       thirdsHtml += '<div class="bracket-third-card">';
-      thirdsHtml += '<div class="rank ' + (isIn ? 'in' : 'out') + '">' + (i + 1) + '</div>';
-      thirdsHtml += '<div class="info"><div class="team-name">' + t.flag + ' ' + t.name + '</div>';
-      thirdsHtml += '<div class="team-stats">' + t.group + '组 · ' + t.pts + '分 · 净胜球' + (t.gd > 0 ? '+' : '') + t.gd + '</div></div>';
-      thirdsHtml += '<div style="font-size:0.75rem;font-weight:700;color:' + (isIn ? 'var(--accent-green)' : 'var(--text-muted)') + '">' + (isIn ? '晋级' : '淘汰') + '</div>';
+      thirdsHtml += '<div class="rk ' + (isIn ? 'in' : 'out') + '">' + (i + 1) + '</div>';
+      thirdsHtml += '<div style="flex:1"><div style="font-weight:600">' + t.flag + ' ' + t.name + '</div>';
+      thirdsHtml += '<div style="font-size:0.68rem;color:var(--text-muted)">' + t.group + '组 · ' + t.pts + '分 · 净胜球' + (t.gd > 0 ? '+' : '') + t.gd + '</div></div>';
+      thirdsHtml += '<div style="font-size:0.68rem;font-weight:700;color:' + (isIn ? 'var(--accent-green)' : 'var(--text-muted)') + '">' + (isIn ? '晋级' : '淘汰') + '</div>';
       thirdsHtml += '</div>';
     });
     thirdsHtml += '</div>';
@@ -4800,49 +4776,61 @@ function renderBracket() {
     return null;
   }
 
-  // Build bracket tree HTML
-  var bracketHtml = '';
+  // Build bracket tree with table layout + SVG connectors
+  var h = 56; // match box height
+  var totalH = koRounds[0].nums.length * (h + 8); // total bracket height
+  var bracketHtml = '<table class="bracket-tree" style="height:' + totalH + 'px"><tr>';
+
   for (var ri = 0; ri < koRounds.length; ri++) {
     var round = koRounds[ri];
     var isLast = ri === koRounds.length - 1;
 
-    // Round column
-    bracketHtml += '<div class="bracket-round-col">';
-    bracketHtml += '<div class="bracket-round-header">' + round.title + '</div>';
-    bracketHtml += '<div class="bracket-matches-col">';
+    // Round cell
+    bracketHtml += '<td class="bracket-round-cell" style="vertical-align:top">';
+    bracketHtml += '<div class="bracket-round-label">' + round.title + '</div>';
+    bracketHtml += '<div class="bracket-round-matches" style="height:' + (totalH - 40) + 'px">';
 
     for (var mi = 0; mi < round.nums.length; mi++) {
       var num = round.nums[mi];
       var t1, t2;
-      if (r32[num]) {
-        t1 = r32[num].t1;
-        t2 = r32[num].t2;
-      } else {
-        t1 = null;
-        t2 = null;
-      }
-      bracketHtml += '<div class="bracket-pair">';
-      bracketHtml += '<div class="bracket-match-cell">';
-      bracketHtml += '<div class="mn">' + num + '</div>';
+      if (r32[num]) { t1 = r32[num].t1; t2 = r32[num].t2; }
+      else { t1 = null; t2 = null; }
+
+      var isFinal = num === 'M104';
+      bracketHtml += '<div class="bracket-match-pair">';
+      bracketHtml += '<div class="bracket-match-box' + (isFinal ? ' final' : '') + '">';
+      bracketHtml += '<div class="bracket-mn">' + num + '</div>';
       bracketHtml += bracketTeamHtml(t1);
       bracketHtml += bracketTeamHtml(t2);
-      bracketHtml += '</div>';
-      bracketHtml += '</div>';
+      bracketHtml += '</div></div>';
     }
+    bracketHtml += '</div></td>';
 
-    bracketHtml += '</div></div>';
-
-    // Connector column (between rounds)
+    // Connector cell with SVG lines
     if (!isLast) {
       var nextCount = koRounds[ri + 1].nums.length;
-      bracketHtml += '<div class="bracket-conn-col">';
+      var connH = totalH - 40;
+      var segH = connH / nextCount;
+      bracketHtml += '<td class="bracket-conn-cell" style="vertical-align:top">';
+      bracketHtml += '<svg width="32" height="' + connH + '" viewBox="0 0 32 ' + connH + '">';
       for (var ci = 0; ci < nextCount; ci++) {
-        bracketHtml += '<div class="bracket-conn-pair"></div>';
+        var y1 = ci * segH + segH * 0.25;
+        var y2 = ci * segH + segH * 0.75;
+        var ym = (y1 + y2) / 2;
+        // Vertical line from top match
+        bracketHtml += '<line x1="0" y1="' + y1 + '" x2="12" y2="' + y1 + '" stroke="#2a3550" stroke-width="1.5"/>';
+        // Vertical line from bottom match
+        bracketHtml += '<line x1="0" y1="' + y2 + '" x2="12" y2="' + y2 + '" stroke="#2a3550" stroke-width="1.5"/>';
+        // Vertical connector between the two
+        bracketHtml += '<line x1="12" y1="' + y1 + '" x2="12" y2="' + y2 + '" stroke="#2a3550" stroke-width="1.5"/>';
+        // Horizontal line to next round
+        bracketHtml += '<line x1="12" y1="' + ym + '" x2="32" y2="' + ym + '" stroke="#2a3550" stroke-width="1.5"/>';
       }
-      bracketHtml += '</div>';
+      bracketHtml += '</svg></td>';
     }
   }
 
+  bracketHtml += '</tr></table>';
   contentDiv.innerHTML = bracketHtml;
 }
 
