@@ -4778,12 +4778,18 @@ function renderBracket() {
 
     for (var mi = 0; mi < matchCount; mi++) {
       var num = round.nums[mi];
-      var t1, t2, l1 = '', l2 = '';
-      if (r32[num]) { t1 = r32[num].t1; t2 = r32[num].t2; l1 = r32[num].l1; l2 = r32[num].l2; }
-      else { t1 = null; t2 = null; }
+      var t1, t2, l1 = '', l2 = '', desc = '';
+      if (r32[num]) {
+        t1 = r32[num].t1; t2 = r32[num].t2; l1 = r32[num].l1; l2 = r32[num].l2;
+        desc = l1 + ' vs ' + l2;
+      } else {
+        t1 = null; t2 = null;
+        var from = koFrom[num];
+        if (from) desc = from[0] + '胜者 vs ' + from[1] + '胜者';
+      }
       var isFinal = num === 'M104';
       bracketHtml += '<div class="bracket-match-box' + (isFinal ? ' final' : '') + '" data-match="' + num + '">';
-      bracketHtml += '<div class="bracket-mn">' + num + '</div>';
+      bracketHtml += '<div class="bracket-mn">' + num + ' · ' + desc + '</div>';
       bracketHtml += bracketTeamHtml(t1, l1);
       bracketHtml += bracketTeamHtml(t2, l2);
       bracketHtml += '</div>';
