@@ -3705,22 +3705,22 @@ const knockoutData = [
     round: '1/16决赛',
     icon: 'var(--accent-cyan)',
     matches: [
-      { num: 'M77', time: '6月30日 01:00', teams: 'I组第1 vs 最佳第3②', venue: '达拉斯' },
       { num: 'M75', time: '6月29日 04:30', teams: 'F组第1 vs C组第2', venue: '波士顿' },
-      { num: 'M74', time: '6月29日 01:00', teams: 'E组第1 vs 最佳第3①', venue: '休斯顿' },
+      { num: 'M77', time: '6月30日 01:00', teams: 'I组第1 vs 最佳第3②', venue: '达拉斯' },
       { num: 'M73', time: '6月29日 03:00', teams: 'A组第2 vs B组第2', venue: '洛杉矶' },
-      { num: 'M76', time: '6月29日 09:00', teams: 'C组第1 vs F组第2', venue: '瓜达拉哈拉' },
+      { num: 'M74', time: '6月29日 01:00', teams: 'E组第1 vs 最佳第3①', venue: '休斯顿' },
       { num: 'M78', time: '6月30日 05:00', teams: 'E组第2 vs I组第2', venue: '纽约' },
-      { num: 'M79', time: '6月30日 09:00', teams: 'A组第1 vs 最佳第3③', venue: '墨西哥城' },
+      { num: 'M76', time: '6月29日 09:00', teams: 'C组第1 vs F组第2', venue: '瓜达拉哈拉' },
       { num: 'M80', time: '7月1日 00:00', teams: 'L组第1 vs 最佳第3④', venue: '亚特兰大' },
-      { num: 'M83', time: '7月2日 03:00', teams: 'K组第2 vs L组第2', venue: '洛杉矶' },
+      { num: 'M79', time: '6月30日 09:00', teams: 'A组第1 vs 最佳第3③', venue: '墨西哥城' },
       { num: 'M84', time: '7月2日 07:00', teams: 'H组第1 vs J组第2', venue: '多伦多' },
-      { num: 'M81', time: '7月1日 04:00', teams: 'G组第1 vs 最佳第3⑤', venue: '西雅图' },
+      { num: 'M83', time: '7月2日 03:00', teams: 'K组第2 vs L组第2', venue: '洛杉矶' },
       { num: 'M82', time: '7月1日 08:00', teams: 'D组第1 vs 最佳第3⑥', venue: '旧金山' },
-      { num: 'M86', time: '7月3日 02:00', teams: 'D组第2 vs G组第2', venue: '达拉斯' },
+      { num: 'M81', time: '7月1日 04:00', teams: 'G组第1 vs 最佳第3⑤', venue: '西雅图' },
       { num: 'M88', time: '7月3日 09:30', teams: 'K组第1 vs 最佳第3⑧', venue: '堪萨斯城' },
-      { num: 'M85', time: '7月2日 11:00', teams: 'B组第1 vs 最佳第3⑦', venue: '温哥华' },
+      { num: 'M86', time: '7月3日 02:00', teams: 'D组第2 vs G组第2', venue: '达拉斯' },
       { num: 'M87', time: '7月3日 06:00', teams: 'J组第1 vs H组第2', venue: '迈阿密' },
+      { num: 'M85', time: '7月2日 11:00', teams: 'B组第1 vs 最佳第3⑦', venue: '温哥华' },
     ]
   },
   {
@@ -4744,7 +4744,7 @@ function renderBracket() {
 
   // Build all rounds
   var koRounds = [
-    { title: '1/16决赛', nums: ['M77','M75','M74','M73','M76','M78','M79','M80','M83','M84','M81','M82','M86','M88','M85','M87'] },
+    { title: '1/16决赛', nums: ['M75','M77','M73','M74','M78','M76','M80','M79','M84','M83','M82','M81','M88','M86','M87','M85'] },
     { title: '1/8决赛', nums: ['M89','M90','M91','M92','M93','M94','M95','M96'] },
     { title: '1/4决赛', nums: ['M97','M98','M99','M100'] },
     { title: '半决赛', nums: ['M101','M102'] },
@@ -4852,17 +4852,33 @@ function drawBracketLines() {
     var xR = Math.max(r1.right, r2.right) - bL;
     var xL = rn.left - bL;
 
-    var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d',
-      'M' + xR + ',' + y1 + ' H' + xL +
-      ' M' + xR + ',' + y2 + ' H' + xL +
-      ' M' + xR + ',' + y1 + ' V' + y2 +
-      ' M' + xR + ',' + yMid + ' H' + xL
-    );
-    path.setAttribute('fill', 'none');
-    path.setAttribute('stroke', '#3b4a6b');
-    path.setAttribute('stroke-width', '1.5');
-    svg.appendChild(path);
+    var path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path1.setAttribute('d', 'M' + xR + ',' + y1 + ' H' + xL);
+    path1.setAttribute('fill', 'none');
+    path1.setAttribute('stroke', '#3b4a6b');
+    path1.setAttribute('stroke-width', '1.5');
+    svg.appendChild(path1);
+
+    var path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path2.setAttribute('d', 'M' + xR + ',' + y2 + ' H' + xL);
+    path2.setAttribute('fill', 'none');
+    path2.setAttribute('stroke', '#3b4a6b');
+    path2.setAttribute('stroke-width', '1.5');
+    svg.appendChild(path2);
+
+    var pathV = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    pathV.setAttribute('d', 'M' + xR + ',' + y1 + ' V' + y2);
+    pathV.setAttribute('fill', 'none');
+    pathV.setAttribute('stroke', '#3b4a6b');
+    pathV.setAttribute('stroke-width', '1.5');
+    svg.appendChild(pathV);
+
+    var pathH = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    pathH.setAttribute('d', 'M' + xR + ',' + yMid + ' H' + xL);
+    pathH.setAttribute('fill', 'none');
+    pathH.setAttribute('stroke', '#3b4a6b');
+    pathH.setAttribute('stroke-width', '1.5');
+    svg.appendChild(pathH);
   }
 
   contentDiv.appendChild(svg);
