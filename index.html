@@ -1858,7 +1858,7 @@
     display: flex;
     align-items: stretch;
     min-width: max-content;
-    gap: 24px;
+    gap: 36px;
   }
   .bracket-round-col {
     display: flex;
@@ -4851,27 +4851,35 @@ function drawBracketLines() {
     var yMid = (y1 + y2) / 2;
     var xR = Math.max(r1.right, r2.right) - bL;
     var xL = rn.left - bL;
+    var xGap = (xR + xL) / 2;
 
     var path1 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path1.setAttribute('d', 'M' + xR + ',' + y1 + ' H' + xL);
+    path1.setAttribute('d', 'M' + xR + ',' + y1 + ' H' + xGap);
     path1.setAttribute('fill', 'none');
     path1.setAttribute('stroke', '#3b4a6b');
     path1.setAttribute('stroke-width', '1.5');
     svg.appendChild(path1);
 
     var path2 = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path2.setAttribute('d', 'M' + xR + ',' + y2 + ' H' + xL);
+    path2.setAttribute('d', 'M' + xR + ',' + y2 + ' H' + xGap);
     path2.setAttribute('fill', 'none');
     path2.setAttribute('stroke', '#3b4a6b');
     path2.setAttribute('stroke-width', '1.5');
     svg.appendChild(path2);
 
     var pathV = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    pathV.setAttribute('d', 'M' + xL + ',' + y1 + ' V' + y2);
+    pathV.setAttribute('d', 'M' + xGap + ',' + y1 + ' V' + y2);
     pathV.setAttribute('fill', 'none');
     pathV.setAttribute('stroke', '#3b4a6b');
     pathV.setAttribute('stroke-width', '1.5');
     svg.appendChild(pathV);
+
+    var pathH = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    pathH.setAttribute('d', 'M' + xGap + ',' + yMid + ' H' + xL);
+    pathH.setAttribute('fill', 'none');
+    pathH.setAttribute('stroke', '#3b4a6b');
+    pathH.setAttribute('stroke-width', '1.5');
+    svg.appendChild(pathH);
   }
 
   contentDiv.appendChild(svg);
