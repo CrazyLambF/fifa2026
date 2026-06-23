@@ -1422,6 +1422,97 @@
     .pred-step-circle { width: 34px; height: 34px; font-size: 0.8rem; }
   }
 
+  /* Quiz Section */
+  .quiz-container { max-width: 680px; margin: 0 auto; }
+  .quiz-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 20px; padding: 16px 20px;
+    background: var(--bg-card); border-radius: 12px; border: 1px solid var(--border-color);
+  }
+  .quiz-score { font-size: 1.1rem; font-weight: 700; color: var(--accent-gold); }
+  .quiz-progress-text { font-size: 0.9rem; color: var(--text-secondary); }
+  .quiz-question-card {
+    background: var(--bg-card); border-radius: 14px; border: 1px solid var(--border-color);
+    padding: 28px 24px; margin-bottom: 20px;
+  }
+  .quiz-category {
+    display: inline-block; padding: 4px 12px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 600; margin-bottom: 14px;
+    background: rgba(59,130,246,0.15); color: var(--accent-blue);
+  }
+  .quiz-question-text {
+    font-size: 1.15rem; font-weight: 600; line-height: 1.6; color: var(--text-primary);
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .quiz-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 18px; border-radius: 10px;
+    background: var(--bg-card); border: 2px solid var(--border-color);
+    cursor: pointer; transition: all 0.2s; font-size: 0.95rem;
+  }
+  .quiz-option:hover:not(.disabled) { border-color: var(--accent-gold); background: rgba(234,179,8,0.05); }
+  .quiz-option .quiz-opt-letter {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
+    background: var(--bg-secondary); color: var(--text-secondary);
+    flex-shrink: 0; transition: all 0.2s;
+  }
+  .quiz-option.correct {
+    border-color: var(--accent-green); background: rgba(34,197,94,0.1);
+  }
+  .quiz-option.correct .quiz-opt-letter { background: var(--accent-green); color: #fff; }
+  .quiz-option.wrong {
+    border-color: var(--accent-red); background: rgba(239,68,68,0.1);
+  }
+  .quiz-option.wrong .quiz-opt-letter { background: var(--accent-red); color: #fff; }
+  .quiz-option.disabled { cursor: default; opacity: 0.7; }
+  .quiz-option.disabled:hover { border-color: var(--border-color); background: var(--bg-card); }
+  .quiz-feedback {
+    margin-top: 16px; padding: 14px 18px; border-radius: 10px;
+    font-size: 0.9rem; line-height: 1.6;
+  }
+  .quiz-feedback.correct-fb { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); color: var(--accent-green); }
+  .quiz-feedback.wrong-fb { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--accent-red); }
+  .quiz-next-btn {
+    display: block; width: 100%; margin-top: 16px; padding: 14px;
+    background: var(--accent-gold); color: #000; border: none; border-radius: 10px;
+    font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  }
+  .quiz-next-btn:hover { background: #e0b45e; }
+  .quiz-result {
+    text-align: center; padding: 40px 24px;
+    background: var(--bg-card); border-radius: 14px; border: 1px solid var(--border-color);
+  }
+  .quiz-result-score {
+    font-size: 3rem; font-weight: 800; color: var(--accent-gold); margin: 16px 0 8px;
+  }
+  .quiz-result-label { font-size: 1rem; color: var(--text-secondary); margin-bottom: 24px; }
+  .quiz-result-msg { font-size: 1.15rem; font-weight: 600; margin-bottom: 24px; }
+  .quiz-restart-btn {
+    display: inline-block; padding: 14px 32px;
+    background: var(--accent-gold); color: #000; border: none; border-radius: 10px;
+    font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+  }
+  .quiz-restart-btn:hover { background: #e0b45e; }
+  .quiz-start-screen {
+    text-align: center; padding: 40px 24px;
+    background: var(--bg-card); border-radius: 14px; border: 1px solid var(--border-color);
+  }
+  .quiz-start-icon { font-size: 3.5rem; margin-bottom: 16px; }
+  .quiz-start-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+  .quiz-start-desc { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.7; }
+  .quiz-cat-select {
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-bottom: 24px;
+  }
+  .quiz-cat-btn {
+    padding: 8px 16px; border-radius: 20px; border: 2px solid var(--border-color);
+    background: transparent; color: var(--text-secondary); font-size: 0.85rem;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .quiz-cat-btn.active { border-color: var(--accent-gold); color: var(--accent-gold); background: rgba(234,179,8,0.1); }
+  .quiz-cat-btn:hover { border-color: var(--accent-gold); }
+
   /* Squad Section */
   .squad-filters {
     display: flex;
@@ -2224,6 +2315,9 @@
     <button class="nav-grid-item" data-tab="format" onclick="selectTab(this)">
       <span class="nav-grid-icon">📖</span><span class="nav-grid-label">赛制说明</span>
     </button>
+    <button class="nav-grid-item" data-tab="quiz" onclick="selectTab(this)">
+      <span class="nav-grid-icon">🧠</span><span class="nav-grid-label">知识问答</span>
+    </button>
   </div>
 </nav>
 
@@ -2394,6 +2488,13 @@
   <h2 class="section-title">每日红黑榜</h2>
   <p class="section-desc">每日世界杯红黑榜 · 数据来源懂球帝 · 点击图片查看原文</p>
   <div id="redblack-content"></div>
+</section>
+
+<!-- ===================== 知识问答 ===================== -->
+<section class="section" id="section-quiz">
+  <h2 class="section-title">🧠 世界杯知识问答</h2>
+  <p class="section-desc">测试你对本届世界杯的了解程度，每轮10道题</p>
+  <div class="quiz-container" id="quiz-container"></div>
 </section>
 
 </div>
@@ -5786,6 +5887,239 @@ function renderRedBlack() {
 }
 
 renderRedBlack();
+
+// ==================== QUIZ ====================
+
+function buildQuizPool() {
+  const pool = [];
+  const allTeams = [];
+  groupsData.forEach(g => g.teams.forEach(t => allTeams.push({ ...t, group: g.letter })));
+
+  // Category: 射手榜
+  const goals = getGoalsLeaderboard();
+  goals.filter(g => g.goals >= 2).forEach(p => {
+    pool.push({
+      cat: '射手榜',
+      q: `${p.team.replace(/[\uD800-\uDBFF]./g,'')} 的 ${p.name} 目前打进了几粒进球？`,
+      opts: [`${p.goals}球`, `${p.goals + 1}球`, `${p.goals - 1}球`, `${p.goals + 2}球`],
+      ans: 0,
+      explain: `${p.name}目前打进${p.goals}球。`
+    });
+  });
+
+  // Category: 助攻榜
+  const assists = getAssistsLeaderboard();
+  assists.filter(a => a.assists >= 2).forEach(p => {
+    pool.push({
+      cat: '助攻榜',
+      q: `以下哪位球员的助攻数最多？`,
+      opts: shuffle([p.name, ...getRandomItems(assists.filter(x => x.name !== p.name), 3).map(x => x.name)]),
+      ans: -1,
+      explain: `${p.name}以${p.assists}次助攻领跑。`,
+      dynamicAns: p.name
+    });
+  });
+
+  // Category: 比分
+  groupSchedule.filter(m => m.score1 != null).forEach(m => {
+    const scoreStr = `${m.score1}-${m.score2}`;
+    pool.push({
+      cat: '比分',
+      q: `${m.home} vs ${m.away} 的比分是？`,
+      opts: shuffle([scoreStr, `${m.score2}-${m.score1}`, `${m.score1 + 1}-${m.score2}`, `${m.score1}-${m.score2 + 1}`]),
+      ans: -1,
+      explain: `正确比分是 ${m.home} ${m.score1}-${m.score2} ${m.away}。`,
+      dynamicAns: scoreStr
+    });
+  });
+
+  // Category: 分组
+  allTeams.forEach(t => {
+    const wrongGroups = ['A','B','C','D','E','F','G','H','I','J','K','L'].filter(g => g !== t.group);
+    const opts = shuffle([t.group, ...getRandomItems(wrongGroups, 3)]);
+    pool.push({
+      cat: '分组',
+      q: `${t.flag} ${t.name} 被分在哪个小组？`,
+      opts: opts.map(g => `${g}组`),
+      ans: -1,
+      explain: `${t.name}被分在${t.group}组。`,
+      dynamicAns: `${t.group}组`
+    });
+  });
+
+  // Category: 世界杯知识
+  const knowledgeQuestions = [
+    { q: '2026年世界杯由哪三个国家联合举办？', opts: ['美国、加拿大、墨西哥', '美国、墨西哥、巴西', '加拿大、美国、英国', '墨西哥、巴西、阿根廷'], ans: 0, explain: '2026世界杯由美国、加拿大和墨西哥联合举办。' },
+    { q: '本届世界杯共有多少支参赛球队？', opts: ['48支', '32支', '36支', '40支'], ans: 0, explain: '2026世界杯首次扩军至48支球队。' },
+    { q: '本届世界杯决赛将在哪座球场举行？', opts: ['大都会人寿体育场', '阿兹特克体育场', '玫瑰碗体育场', '卢赛尔体育场'], ans: 0, explain: '决赛在纽约大都会人寿体育场举行。' },
+    { q: '本届世界杯的总比赛场次是多少？', opts: ['104场', '64场', '80场', '96场'], ans: 0, explain: '从64场增加至104场。' },
+    { q: '世界杯历史上进球最多的球员是？', opts: ['梅西', '克洛泽', '罗纳尔多', '姆巴佩'], ans: 0, explain: '梅西在本届世界杯打破纪录，成为世界杯历史射手王。' },
+    { q: '小组赛胜一场积几分？', opts: ['3分', '2分', '1分', '4分'], ans: 0, explain: '胜一场得3分，平一场得1分，负一场得0分。' },
+    { q: '每个小组有几支球队？', opts: ['4支', '3支', '5支', '6支'], ans: 0, explain: '每组4支球队进行单循环赛。' },
+    { q: '12个小组第3名中，成绩最好的几支球队可以晋级？', opts: ['8支', '4支', '6支', '12支'], ans: 0, explain: '12个小组第3名中成绩最好的8支晋级32强。' },
+    { q: '揭幕战在哪个城市举行？', opts: ['墨西哥城', '纽约', '洛杉矶', '多伦多'], ans: 0, explain: '揭幕战在墨西哥城阿兹特克体育场举行。' },
+    { q: '以下哪支球队不在A组？', opts: ['巴西', '墨西哥', '韩国', '南非'], ans: 0, explain: 'A组包括墨西哥、南非、韩国、捷克。巴西在C组。' },
+    { q: '梅西在对阵奥地利的比赛中打进了几球？', opts: ['2球', '1球', '3球', '0球'], ans: 0, explain: '梅西在阿根廷2-0奥地利的比赛中梅开二度。' },
+    { q: '姆巴佩在对阵伊拉克的比赛中打进了几球？', opts: ['2球', '1球', '3球', '0球'], ans: 0, explain: '姆巴佩在法国3-0伊拉克的比赛中梅开二度。' },
+    { q: '哈兰德目前在本届世界杯打进了几球？', opts: ['4球', '2球', '3球', '5球'], ans: 0, explain: '哈兰德打进4球，帮助挪威晋级淘汰赛。' },
+    { q: '以下哪支球队两战两胜已提前晋级？', opts: ['挪威', '比利时', '乌拉圭', '塞内加尔'], ans: 0, explain: '挪威两战两胜已提前晋级淘汰赛。' },
+    { q: '日本在小组赛第二轮以多大比分战胜突尼斯？', opts: ['4-0', '3-0', '2-0', '5-1'], ans: 0, explain: '日本4-0大胜突尼斯。' },
+    { q: '荷兰在小组赛第二轮以多大比分战胜瑞典？', opts: ['5-1', '4-0', '3-1', '2-0'], ans: 0, explain: '荷兰5-1大胜瑞典。' },
+    { q: 'C罗所在的葡萄牙队在首轮比赛中的结果是？', opts: ['1-1平局', '胜利', '失利', '2-0胜利'], ans: 0, explain: '葡萄牙首轮1-1战平刚果民主共和国。' },
+    { q: '哪位球员在世界杯历史上打进了最多的进球？', opts: ['梅西（18球）', '克洛泽（16球）', '罗纳尔多（15球）', '姆巴佩（12球）'], ans: 0, explain: '梅西以18球成为世界杯历史射手王。' },
+    { q: '埃及在世界杯的首场胜利是击败了哪支球队？', opts: ['新西兰', '比利时', '伊朗', '突尼斯'], ans: 0, explain: '埃及3-1击败新西兰，取得世界杯首胜。' },
+    { q: '本届世界杯首次新增了哪个赛制环节？', opts: ['1/16决赛', '加时赛', '点球大战', 'VAR'], ans: 0, explain: '首次新增1/16决赛（32强淘汰赛）轮次。' }
+  ];
+  knowledgeQuestions.forEach(q => {
+    pool.push({ cat: '世界杯知识', ...q, explain: q.explain });
+  });
+
+  return pool;
+}
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function getRandomItems(arr, n) {
+  return shuffle(arr).slice(0, n);
+}
+
+let quizState = { questions: [], current: 0, score: 0, answered: false, categories: null };
+
+function renderQuiz() {
+  const el = document.getElementById('quiz-container');
+  if (!el) return;
+
+  if (!quizState.questions.length) {
+    const cats = ['射手榜', '比分', '分组', '世界杯知识'];
+    el.innerHTML = `
+      <div class="quiz-start-screen">
+        <div class="quiz-start-icon">🧠</div>
+        <div class="quiz-start-title">世界杯知识问答</div>
+        <div class="quiz-start-desc">每轮10道题，涵盖射手榜、比分、分组、世界杯知识等。<br>看看你能答对多少！</div>
+        <div style="margin-bottom:16px;font-weight:600;color:var(--text-secondary);font-size:0.9rem;">选择题目类别（可多选）：</div>
+        <div class="quiz-cat-select" id="quiz-cat-select">
+          ${cats.map(c => `<button class="quiz-cat-btn active" data-cat="${c}" onclick="toggleQuizCat(this)">${c}</button>`).join('')}
+        </div>
+        <button class="quiz-restart-btn" onclick="startQuiz()">开始答题</button>
+      </div>`;
+    return;
+  }
+
+  const q = quizState.questions[quizState.current];
+  const letters = ['A', 'B', 'C', 'D'];
+  const isLast = quizState.current >= quizState.questions.length - 1;
+
+  el.innerHTML = `
+    <div class="quiz-header">
+      <span class="quiz-score">得分：${quizState.score}/${quizState.current + (quizState.answered ? 1 : 0)}</span>
+      <span class="quiz-progress-text">第 ${quizState.current + 1}/${quizState.questions.length} 题</span>
+    </div>
+    <div class="quiz-question-card">
+      <span class="quiz-category">${q.cat}</span>
+      <div class="quiz-question-text">${q.q}</div>
+    </div>
+    <div class="quiz-options" id="quiz-options">
+      ${q.opts.map((opt, i) => `
+        <div class="quiz-option" data-idx="${i}" onclick="selectQuizOption(${i})">
+          <span class="quiz-opt-letter">${letters[i]}</span>
+          <span>${opt}</span>
+        </div>
+      `).join('')}
+    </div>
+    <div id="quiz-feedback"></div>
+    <div id="quiz-next-area"></div>
+  `;
+}
+
+function toggleQuizCat(btn) {
+  btn.classList.toggle('active');
+}
+
+function startQuiz() {
+  const catBtns = document.querySelectorAll('.quiz-cat-btn.active');
+  const selectedCats = Array.from(catBtns).map(b => b.dataset.cat);
+  if (!selectedCats.length) { alert('请至少选择一个类别'); return; }
+
+  const pool = buildQuizPool().filter(q => selectedCats.includes(q.cat));
+  const questions = getRandomItems(pool, Math.min(10, pool.length)).map(q => {
+    // Resolve dynamic answers
+    if (q.dynamicAns !== undefined) {
+      const ansIdx = q.opts.indexOf(q.dynamicAns);
+      return { ...q, ans: ansIdx >= 0 ? ansIdx : 0 };
+    }
+    return q;
+  });
+
+  quizState = { questions, current: 0, score: 0, answered: false };
+  renderQuiz();
+}
+
+function selectQuizOption(idx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+
+  const q = quizState.questions[quizState.current];
+  const correct = idx === q.ans;
+  if (correct) quizState.score++;
+
+  const opts = document.querySelectorAll('#quiz-options .quiz-option');
+  opts.forEach((el, i) => {
+    el.classList.add('disabled');
+    if (i === q.ans) el.classList.add('correct');
+    if (i === idx && !correct) el.classList.add('wrong');
+  });
+
+  const fb = document.getElementById('quiz-feedback');
+  fb.innerHTML = `<div class="quiz-feedback ${correct ? 'correct-fb' : 'wrong-fb'}">
+    ${correct ? '✅ 回答正确！' : '❌ 回答错误'}<br>${q.explain}
+  </div>`;
+
+  const isLast = quizState.current >= quizState.questions.length - 1;
+  const area = document.getElementById('quiz-next-area');
+  area.innerHTML = `<button class="quiz-next-btn" onclick="${isLast ? 'showQuizResult()' : 'nextQuizQuestion()'}">${isLast ? '查看结果' : '下一题 →'}</button>`;
+}
+
+function nextQuizQuestion() {
+  quizState.current++;
+  quizState.answered = false;
+  renderQuiz();
+}
+
+function showQuizResult() {
+  const el = document.getElementById('quiz-container');
+  const total = quizState.questions.length;
+  const score = quizState.score;
+  const pct = Math.round(score / total * 100);
+  let msg = '';
+  if (pct === 100) msg = '🏆 满分！你是真正的世界杯专家！';
+  else if (pct >= 80) msg = '🌟 非常优秀！你对世界杯了如指掌！';
+  else if (pct >= 60) msg = '👍 不错！你是一个合格的球迷！';
+  else if (pct >= 40) msg = '💪 还需努力，多关注比赛吧！';
+  else msg = '📚 加油！去看看赛程和比分吧！';
+
+  el.innerHTML = `
+    <div class="quiz-result">
+      <div style="font-size:3rem;">${pct >= 80 ? '🏆' : pct >= 60 ? '⭐' : pct >= 40 ? '👍' : '📚'}</div>
+      <div class="quiz-result-score">${score}/${total}</div>
+      <div class="quiz-result-label">正确率 ${pct}%</div>
+      <div class="quiz-result-msg">${msg}</div>
+      <button class="quiz-restart-btn" onclick="resetQuiz()">再来一轮</button>
+    </div>`;
+}
+
+function resetQuiz() {
+  quizState = { questions: [], current: 0, score: 0, answered: false };
+  renderQuiz();
+}
+
+renderQuiz();
 </script>
 
 </body>
