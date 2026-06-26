@@ -1,7 +1,7 @@
 {
   "name": "fifa2026-daily-update",
   "version": "1.0.0",
-  "description": "每日更新FIFA 2026世界杯观赛指南数据",
+  "description": "每日更新FIFA 2026世界杯观赛指南数据，包括比赛比分、射手榜、助攻榜、红黑榜、夺冠赔率等。当用户要求更新世界杯数据、更新红黑榜、更新比分、更新射手榜、更新赔率时使用此skill。",
   "author": "MiMoCode",
-  "tags": ["fifa", "worldcup", "2026", "data-update", "football"]
+  "tags": ["fifa", "worldcup", "2026", "data-update", "football", "红黑榜", "比分", "射手榜"]
 }
