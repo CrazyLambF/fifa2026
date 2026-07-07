@@ -3816,26 +3816,26 @@ const knockoutData = [
       { num: 'M80', time: '7月2日 00:00', teams: '英格兰 2-1 刚果(金)', venue: '亚特兰大', score1: 2, score2: 1 },
       { num: 'M81', time: '7月2日 08:00', teams: '美国 2-0 波黑', venue: '西雅图', score1: 2, score2: 0 },
       { num: 'M82', time: '7月2日 04:00', teams: '比利时 3-2 塞内加尔', venue: '旧金山', score1: 3, score2: 2 },
-      { num: 'M83', time: '7月3日 07:00', teams: '哥伦比亚 vs 加纳', venue: '洛杉矶' },
-      { num: 'M84', time: '7月3日 03:00', teams: '西班牙 vs 奥地利', venue: '多伦多' },
-      { num: 'M85', time: '7月3日 11:00', teams: '瑞士 vs 阿尔及利亚', venue: '温哥华' },
-      { num: 'M86', time: '7月4日 06:00', teams: '阿根廷 vs 佛得角', venue: '达拉斯' },
-      { num: 'M87', time: '7月4日 09:30', teams: '葡萄牙 vs 克罗地亚', venue: '迈阿密' },
-      { num: 'M88', time: '7月4日 02:00', teams: '澳大利亚 vs 埃及', venue: '堪萨斯城' },
+      { num: 'M83', time: '7月3日 07:00', teams: '哥伦比亚 1-0 加纳', venue: '洛杉矶', score1: 1, score2: 0 },
+      { num: 'M84', time: '7月3日 03:00', teams: '西班牙 3-0 奥地利', venue: '多伦多', score1: 3, score2: 0 },
+      { num: 'M85', time: '7月3日 11:00', teams: '瑞士 2-0 阿尔及利亚', venue: '温哥华', score1: 2, score2: 0 },
+      { num: 'M86', time: '7月4日 06:00', teams: '阿根廷 3-2 佛得角', venue: '达拉斯', score1: 3, score2: 2 },
+      { num: 'M87', time: '7月4日 09:30', teams: '葡萄牙 2-1 克罗地亚', venue: '迈阿密', score1: 2, score2: 1 },
+      { num: 'M88', time: '7月4日 02:00', teams: '澳大利亚 1(4)-1(2) 埃及', venue: '堪萨斯城', score1: '1(4)', score2: '1(2)' },
     ]
   },
   {
     round: '1/8决赛',
     icon: 'var(--accent-blue)',
     matches: [
-      { num: 'M89', time: '7月5日 05:00', teams: '巴拉圭 vs 法国', venue: '休斯顿' },
-      { num: 'M90', time: '7月5日 01:00', teams: '加拿大 vs 摩洛哥', venue: '费城' },
-      { num: 'M91', time: '7月6日 04:00', teams: '巴西 vs 挪威', venue: '纽约' },
-      { num: 'M92', time: '7月6日 08:00', teams: '墨西哥 vs 英格兰', venue: '墨西哥城' },
-      { num: 'M93', time: '7月7日 03:00', teams: 'M83胜者 vs M84胜者', venue: '达拉斯' },
-      { num: 'M94', time: '7月7日 08:00', teams: '美国 vs 比利时', venue: '西雅图' },
-      { num: 'M95', time: '7月8日 00:00', teams: 'M86胜者 vs M88胜者', venue: '亚特兰大' },
-      { num: 'M96', time: '7月8日 04:00', teams: 'M85胜者 vs M87胜者', venue: '温哥华' },
+      { num: 'M89', time: '7月5日 05:00', teams: '巴拉圭 0-1 法国', venue: '休斯顿', score1: 0, score2: 1 },
+      { num: 'M90', time: '7月5日 01:00', teams: '加拿大 0-3 摩洛哥', venue: '费城', score1: 0, score2: 3 },
+      { num: 'M91', time: '7月6日 04:00', teams: '巴西 1-2 挪威', venue: '纽约', score1: 1, score2: 2 },
+      { num: 'M92', time: '7月6日 08:00', teams: '墨西哥 2-3 英格兰', venue: '墨西哥城', score1: 2, score2: 3 },
+      { num: 'M93', time: '7月7日 03:00', teams: '哥伦比亚 vs 西班牙', venue: '达拉斯' },
+      { num: 'M94', time: '7月7日 08:00', teams: '美国 1-4 比利时', venue: '西雅图', score1: 1, score2: 4 },
+      { num: 'M95', time: '7月8日 00:00', teams: '阿根廷 vs 埃及', venue: '亚特兰大' },
+      { num: 'M96', time: '7月8日 04:00', teams: '瑞士 vs 葡萄牙', venue: '温哥华' },
     ]
   },
   {
@@ -5028,16 +5028,16 @@ function drawBracketLines() {
 
 function getGoalsLeaderboard() {
   const scorers = [
-    { name: '姆巴佩', team: '🇫🇷 法国', goals: 6 },
-    { name: '梅西', team: '🇦🇷 阿根廷', goals: 6 },
-    { name: '哈兰德', team: '🇳🇴 挪威', goals: 5 },
-    { name: '哈里·凯恩', team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', goals: 5 },
+    { name: '姆巴佩', team: '🇫🇷 法国', goals: 7 },
+    { name: '梅西', team: '🇦🇷 阿根廷', goals: 4 },
+    { name: '哈兰德', team: '🇳🇴 挪威', goals: 4 },
+    { name: '哈里·凯恩', team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', goals: 6 },
     { name: '维尼修斯', team: '🇧🇷 巴西', goals: 4 },
     { name: '德姆贝莱', team: '🇫🇷 法国', goals: 4 },
     { name: '加克波', team: '🇳🇱 荷兰', goals: 3 },
     { name: '萨伊巴里', team: '🇲🇦 摩洛哥', goals: 3 },
     { name: '哈弗茨', team: '🇩🇪 德国', goals: 3 },
-    { name: '基尼奥内斯', team: '🇲🇽 墨西哥', goals: 3 },
+    { name: '基尼奥内斯', team: '🇲🇽 墨西哥', goals: 4 },
     { name: '乔纳森·大卫', team: '🇨🇦 加拿大', goals: 3 },
     { name: '马特乌斯·库尼亚', team: '🇧🇷 巴西', goals: 3 },
     { name: '布罗比', team: '🇳🇱 荷兰', goals: 3 },
@@ -5047,15 +5047,19 @@ function getGoalsLeaderboard() {
     { name: '伊斯梅拉·萨尔', team: '🇸🇳 塞内加尔', goals: 3 },
     { name: '曼赞比', team: '🇨🇭 瑞士', goals: 3 },
     { name: '恩西索', team: '🇵🇾 巴拉圭', goals: 3 },
-    { name: '蒂勒曼斯', team: '🇧🇪 比利时', goals: 3 },
+    { name: '蒂勒曼斯', team: '🇧🇪 比利时', goals: 2 },
+    { name: '德凯特拉雷', team: '🇧🇪 比利时', goals: 3 },
+    { name: '卢卡库', team: '🇧🇪 比利时', goals: 2 },
+    { name: '范纳肯', team: '🇧🇪 比利时', goals: 1 },
     { name: '巴洛贡', team: '🇺🇸 美国', goals: 3 },
+    { name: '蒂尔曼', team: '🇺🇸 美国', goals: 1 },
     { name: '礼萨伊安', team: '🇮🇷 伊朗', goals: 2 },
     { name: 'C罗', team: '🇵🇹 葡萄牙', goals: 2 },
     { name: '阿亚里', team: '🇸🇪 瑞典', goals: 2 },
     { name: '马克西·阿劳霍', team: '🇺🇾 乌拉圭', goals: 2 },
     { name: '特罗萨德', team: '🇧🇪 比利时', goals: 2 },
-    { name: '贝林厄姆', team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', goals: 2 },
-    { name: '奥亚萨巴尔', team: '🇪🇸 西班牙', goals: 2 },
+    { name: '贝林厄姆', team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', goals: 4 },
+    { name: '奥亚萨巴尔', team: '🇪🇸 西班牙', goals: 4 },
     { name: '马赫雷斯', team: '🇩🇿 阿尔及利亚', goals: 2 },
     { name: '穆尼奥斯', team: '🇨🇴 哥伦比亚', goals: 2 },
     { name: '瓦尔加斯', team: '🇨🇭 瑞士', goals: 2 },
@@ -5156,7 +5160,7 @@ function getAssistsLeaderboard() {
     { name: '恩博洛', team: '🇨🇭 瑞士', assists: 2 },
     { name: '萨拉赫', team: '🇪🇬 埃及', assists: 2 },
     { name: '内森·萨利巴', team: '🇨🇦 加拿大', assists: 2 },
-    { name: '萨卡', team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', assists: 2 },
+    { name: '萨卡', team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', assists: 3 },
     { name: '奥阿尔', team: '🇩🇿 阿尔及利亚', assists: 2 },
     { name: '恩迪亚耶', team: '🇸🇳 塞内加尔', assists: 2 },
     { name: '佐野海舟', team: '🇯🇵 日本', assists: 1 },
@@ -5241,26 +5245,23 @@ function renderOdds() {
   const el = document.getElementById('odds-content');
   if (!el) return;
   const odds = [
-    { team: '🇫🇷 法国', detail: '三战全胜晋级·姆巴佩梅开二度·+400', pct: 20.00, color: 'var(--accent-blue)' },
-    { team: '🇪🇸 西班牙', detail: '三战全胜晋级·亚马尔世界杯首球·+500', pct: 16.67, color: 'var(--accent-red)' },
-    { team: '🇦🇷 阿根廷', detail: '卫冕冠军·梅西5球领跑射手榜·三战全胜晋级·+700', pct: 12.50, color: 'var(--accent-purple)' },
-    { team: '🇵🇹 葡萄牙', detail: 'C罗梅开二度·三战全胜晋级·+800', pct: 11.11, color: 'var(--accent-green)' },
-    { team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', detail: '三战全胜晋级·+600', pct: 14.29, color: 'var(--accent-cyan)' },
-    { team: '🇧🇷 巴西', detail: '三战全胜晋级·马特乌斯·库尼亚双响·12-1', pct: 7.69, color: 'var(--accent-green)' },
-    { team: '🇩🇪 德国', detail: '三战全胜晋级·翁达夫绝杀·13-1', pct: 7.14, color: 'var(--accent-gold)' },
-    { team: '🇳🇱 荷兰', detail: '三战全胜晋级·加克波布罗比闪耀·14-1', pct: 6.67, color: 'var(--accent-orange, #f97316)' },
-    { team: '🇲🇽 墨西哥', detail: '三战全胜晋级·东道主之一·35-1', pct: 2.78, color: 'var(--accent-green)' },
-    { team: '🇨🇭 瑞士', detail: '三战全胜晋级·35-1', pct: 2.78, color: 'var(--accent-red)' },
-    { team: '🇺🇸 美国', detail: '东道主·三战全胜晋级·35-1', pct: 2.78, color: 'var(--accent-blue)' },
-    { team: '🇳🇴 挪威', detail: '哈兰德4球·三战全胜晋级·35-1', pct: 2.78, color: 'var(--accent-blue)' },
-    { team: '🇭🇷 克罗地亚', detail: '三战全胜晋级·40-1', pct: 2.44, color: 'var(--accent-red)' },
-    { team: '🇯🇵 日本', detail: '三战全胜晋级·上田绮世双响·40-1', pct: 2.44, color: 'var(--accent-blue)' }
+    { team: '🇫🇷 法国', detail: '进入1/4决赛·姆巴佩7球领跑射手榜·+400', pct: 20.00, color: 'var(--accent-blue)' },
+    { team: '🇪🇸 西班牙', detail: '进入1/4决赛·+500', pct: 16.67, color: 'var(--accent-red)' },
+    { team: '🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰', detail: '进入1/4决赛·哈里·凯恩6球·+600', pct: 14.29, color: 'var(--accent-cyan)' },
+    { team: '🇦🇷 阿根廷', detail: '进入1/4决赛·梅西4球·+700', pct: 12.50, color: 'var(--accent-purple)' },
+    { team: '🇵🇹 葡萄牙', detail: '进入1/4决赛·+800', pct: 11.11, color: 'var(--accent-green)' },
+    { team: '🇳🇴 挪威', detail: '进入1/4决赛·哈兰德4球·12-1', pct: 7.69, color: 'var(--accent-blue)' },
+    { team: '🇲🇦 摩洛哥', detail: '进入1/4决赛·14-1', pct: 6.67, color: 'var(--accent-red)' },
+    { team: '🇧🇪 比利时', detail: '进入1/4决赛·16-1', pct: 5.88, color: 'var(--accent-gold)' },
+    { team: '🇨🇭 瑞士', detail: '进入1/4决赛·20-1', pct: 4.76, color: 'var(--accent-red)' },
+    { team: '🇨🇴 哥伦比亚', detail: '进入1/4决赛·25-1', pct: 3.85, color: 'var(--accent-yellow)' },
+    { team: '🇪🇬 埃及', detail: '进入1/4决赛·30-1', pct: 3.23, color: 'var(--accent-green)' }
   ];
   const maxPct = odds[0].pct;
   el.innerHTML = `
     <div class="odds-container">
         <div style="text-align:center;margin-bottom:20px;color:var(--text-muted);font-size:0.85rem;">
-        数据来源：DraftKings Sportsbook · 更新于2026年6月25日
+        数据来源：DraftKings Sportsbook · 更新于2026年7月7日
       </div>
       ${odds.map((o, i) => {
         const decimalOdds = (100 / o.pct).toFixed(2);
@@ -5285,7 +5286,7 @@ function renderOdds() {
         <div style="color:var(--text-secondary);font-size:0.85rem;line-height:1.8;">
           赔率为小数格式，表示投注1元可获得的回报（含本金）。<br>
           例如：赔率4.80表示投1元，若猜中可获得4.80元回报。<br>
-          赔率越低，夺冠概率越大。法国以+400（20.00%）居首，西班牙+500（16.67%）第二，英格兰+600（14.29%）第三。梅西5球领跑射手榜，阿根廷+700（12.50%）。挪威哈兰德4球率队晋级，35-1。
+          赔率越低，夺冠概率越大。法国以+400（20.00%）居首，西班牙+500（16.67%）第二，英格兰+600（14.29%）第三。梅西4球，阿根廷+700（12.50%）。挪威哈兰德4球，12-1。
         </div>
       </div>
     </div>
