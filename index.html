@@ -215,6 +215,35 @@
   .rule p b{color:var(--ink)}
   footer{margin-top:44px;padding:26px 0 42px;border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;text-align:center;line-height:2}
 
+  /* ===== 长河·乙组 夺冠晋级赛程（假设出线）===== */
+  .ko-path{display:none;margin-top:26px;padding:20px 20px 18px;background:linear-gradient(170deg,#fffdf5,var(--gold-bg));
+    border:1px solid var(--gold-border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  #f-all:checked ~ main .ko-path[data-ko="yi"],
+  #f-yi:checked  ~ main .ko-path[data-ko="yi"]{display:block}
+  .ko-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:6px}
+  .ko-trophy{font-size:26px;line-height:1.1;flex:none}
+  .ko-headtxt h3{font-size:18px;font-weight:900;color:var(--green);margin-bottom:6px}
+  .ko-headtxt p{font-size:13.5px;color:var(--muted);line-height:1.65;max-width:820px}
+  .ko-headtxt p b{color:var(--gold-ink)}
+  .ko-steps{list-style:none;margin:0;padding:0}
+  .ko-step{display:flex;gap:14px;padding:15px 0;border-top:1px dashed var(--gold-border)}
+  .ko-step:first-child{border-top:0;padding-top:10px}
+  .ko-badge{flex:none;width:80px;align-self:flex-start;text-align:center;font-size:13px;font-weight:900;line-height:1.35;
+    color:#fff;background:linear-gradient(135deg,#0e4d27,var(--green));border-radius:10px;padding:9px 6px}
+  .ko-final .ko-badge{color:#3a2a06;background:linear-gradient(135deg,#f7b733,var(--gold))}
+  .ko-body{flex:1;min-width:0}
+  .ko-when{font-size:15.5px;font-weight:800;color:var(--green-deep);margin-bottom:7px}
+  .ko-when small{font-size:12px;font-weight:600;color:var(--faint);margin-left:7px}
+  .ko-games{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .ko-games li{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:600;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px}
+  .ko-games li .ko-no{font-size:11.5px;font-weight:800;color:var(--faint)}
+  .ko-champ{border-color:var(--gold-border);background:linear-gradient(135deg,#fff6e0,#fdeecb);color:var(--gold-ink);font-weight:800}
+  .ko-note{font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:8px}
+  .ko-note b{color:var(--gold-ink)}
+  .ko-adv{display:inline-block;margin-top:9px;font-size:12px;font-weight:800;color:var(--green);background:#e6f7ea;border-radius:7px;padding:3px 10px}
+  .ko-final .ko-adv{color:#8a6d1a;background:#fdeecb}
+
   /* ===== 移动端 ===== */
   @media (max-width:760px){
     .group-cols{grid-template-columns:1fr}
@@ -270,10 +299,17 @@
     .row .no{display:none}
     .row .cbadge{grid-area:cbadge;justify-self:start}
     .row .match{grid-area:match}
-    .row .note{grid-area:note}
+    .row .note{grid-area:note;min-width:0;white-space:normal;line-height:1.3;justify-self:end}
     .day-head{padding:13px 14px}
     .day-date{font-size:17px}
     .day-note{font-size:12px}
+    .ko-path{margin-top:20px;padding:16px 14px 14px}
+    .ko-headtxt h3{font-size:16px}
+    .ko-headtxt p{font-size:12.5px}
+    .ko-step{gap:10px;padding:13px 0}
+    .ko-badge{width:62px;font-size:12px;padding:8px 4px}
+    .ko-when{font-size:14px}
+    .ko-games li{font-size:12.5px;padding:6px 9px;gap:6px}
   }
   @media (max-width:420px){
     .hero h1{font-size:24px}
@@ -458,6 +494,55 @@
   <div class="fmeta" data-page-node-id="q7QEfnUmFIHut6ZmblPJbd"><span class="gbadge bing" data-page-node-id="pK4kpQTc80K0uvCGDfzmTk">丙组</span><span class="cbadge" data-page-node-id="rx4FIkGjraLRfP5GhToEMR">场序 51</span><span class="cbadge court" data-page-node-id="waYtWhPwYWFY2zDhwACV05">1号场</span></div>
   
 </article>
+    </div>
+    <div class="ko-path" data-ko="yi">
+      <div class="ko-head">
+        <span class="ko-trophy">🏆</span>
+        <div class="ko-headtxt">
+          <h3>夺冠晋级赛程 · 男子乙组（假设出线）</h3>
+          <p>假设长河小学（乙组 B组）以<b>小组第一或第二</b>出线：乙组「小组前八」经<b>抽签落位</b>进入淘汰赛（2027 年 3 月），小组第一与第二同入一个抽签池，因此<b>夺冠路径的轮次、日期、场地完全一致</b>，仅具体对手由抽签决定。自 1/4 决赛起<b>三连胜即夺乙组冠军</b>。</p>
+        </div>
+      </div>
+      <ol class="ko-steps">
+        <li class="ko-step">
+          <div class="ko-badge">1/4 决赛</div>
+          <div class="ko-body">
+            <div class="ko-when">2027.3.6<small>周六 · 第八轮</small></div>
+            <ul class="ko-games">
+              <li><span class="cbadge court">1号场</span><span class="ko-no">09:20 · 场序41</span>抽签1 vs 抽签8</li>
+              <li><span class="cbadge court">2号场</span><span class="ko-no">09:20 · 场序42</span>抽签2 vs 抽签7</li>
+              <li><span class="cbadge court">1号场</span><span class="ko-no">10:10 · 场序43</span>抽签3 vs 抽签6</li>
+              <li><span class="cbadge court">2号场</span><span class="ko-no">10:10 · 场序44</span>抽签4 vs 抽签5</li>
+            </ul>
+            <div class="ko-note">长河小学落入 <b>抽签 1–8</b> 之一，出场序 41–44 其中一场，对手由抽签确定。</div>
+            <span class="ko-adv">胜者 → 半决赛</span>
+          </div>
+        </li>
+        <li class="ko-step">
+          <div class="ko-badge">半决赛</div>
+          <div class="ko-body">
+            <div class="ko-when">2027.3.13<small>周六 · 第九轮 · 1–4名</small></div>
+            <ul class="ko-games">
+              <li><span class="cbadge court">1号场</span><span class="ko-no">09:20 · 场序45</span>场序41胜者 vs 场序42胜者</li>
+              <li><span class="cbadge court">2号场</span><span class="ko-no">09:20 · 场序46</span>场序43胜者 vs 场序44胜者</li>
+            </ul>
+            <div class="ko-note">长河若胜场序 41/42 → 进 <b>场序45</b>（1号场）；若胜场序 43/44 → 进 <b>场序46</b>（2号场）。</div>
+            <span class="ko-adv">胜者 → 冠亚军决赛</span>
+          </div>
+        </li>
+        <li class="ko-step ko-final">
+          <div class="ko-badge">决赛日</div>
+          <div class="ko-body">
+            <div class="ko-when">2027.3.20<small>周六 · 第十轮</small></div>
+            <ul class="ko-games">
+              <li class="ko-champ"><span class="cbadge court">2号场</span><span class="ko-no">10:10 · 场序52</span>冠亚军决赛：场序45胜者 vs 场序46胜者</li>
+              <li><span class="cbadge court">1号场</span><span class="ko-no">10:10 · 场序51</span>3/4名决赛：场序45负者 vs 场序46负者</li>
+            </ul>
+            <div class="ko-note">长河若闯入 <b>场序52 冠亚军决赛</b> 并取胜，即夺 <b>男子乙组冠军</b>。</div>
+            <span class="ko-adv">胜场序52 → 🏆 乙组冠军</span>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
