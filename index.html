@@ -264,11 +264,11 @@
     .gbadge,.cbadge{font-size:10.5px;padding:2px 7px}
     /* 双赛提示：允许换行、缩小字号 */
     .double{font-size:10px;line-height:1.35;padding:3px 7px;margin-top:7px}
-    .row{grid-template-columns:52px 1fr auto;grid-template-areas:"time meta note" "match match match";row-gap:5px;padding:12px 14px}
+    .row{grid-template-columns:52px auto auto 1fr;grid-template-areas:"time gbadge cbadge note" "match match match match";row-gap:5px;column-gap:8px;padding:12px 14px}
     .row .time{grid-area:time}
-    .row .gbadge{grid-area:meta;justify-self:start}
+    .row .gbadge{grid-area:gbadge;justify-self:start}
     .row .no{display:none}
-    .row .cbadge{grid-area:meta;justify-self:start;margin-left:8px}
+    .row .cbadge{grid-area:cbadge;justify-self:start}
     .row .match{grid-area:match}
     .row .note{grid-area:note}
     .day-head{padding:13px 14px}
