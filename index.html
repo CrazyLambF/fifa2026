@@ -578,5 +578,43 @@
   <div data-page-node-id="oB3XCxlVzgpxmc2J4sCZPP">赛程整理自《2026滨江区"白马湖杯"青少年校园足球联赛分组及赛程安排》 · 具体时间以主办方最新通知为准</div>
   <div data-page-node-id="Htj5PayKCWoY7jWxi4kFfF">⚽ 祝长河小学的足球少年们踢出风采！</div>
 </footer>
+
+<script>
+(function () {
+  var nodes = document.querySelectorAll('.frel[data-date]');
+  if (!nodes.length) return;
+
+  function startOfDay(d) {
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  }
+
+  var today = startOfDay(new Date());
+
+  Array.prototype.forEach.call(nodes, function (el) {
+    var raw = (el.getAttribute('data-date') || '').trim();
+    var parts = raw.split('-').map(Number);
+    if (parts.length !== 3 || parts.some(isNaN)) return;
+
+    var target = startOfDay(new Date(parts[0], parts[1] - 1, parts[2]));
+    var diff = Math.round((target - today) / 86400000);
+
+    // 保留原文里的后缀，例如「· 双赛日」
+    var suffix = '';
+    var cut = (el.textContent || '').indexOf('·');
+    if (cut !== -1) suffix = (el.textContent || '').slice(cut).trim();
+
+    var label, state;
+    if (diff > 1)       { label = diff + ' 天后'; state = 'soon';  }
+    else if (diff === 1){ label = '明天';        state = 'soon';  }
+    else if (diff === 0){ label = '今天';        state = 'today'; }
+    else if (diff === -1){label = '昨天';        state = 'past';  }
+    else                { label = '已结束';      state = 'past';  }
+
+    el.textContent = suffix ? (label + ' ' + suffix) : label;
+    el.classList.remove('soon', 'today', 'past');
+    el.classList.add(state);
+  });
+})();
+</script>
 </body>
 </html>
