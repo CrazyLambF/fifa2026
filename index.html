@@ -54,8 +54,7 @@
   #f-all:checked  ~ .toolbar label[for=f-all],
   #f-jia:checked  ~ .toolbar label[for=f-jia],
   #f-yi:checked   ~ .toolbar label[for=f-yi],
-  #f-bing:checked ~ .toolbar label[for=f-bing],
-  #f-ch:checked   ~ .toolbar label[for=f-ch]{background:#fff;color:var(--green);box-shadow:0 2px 8px rgba(22,101,52,.16),0 1px 2px rgba(0,0,0,.08)}
+  #f-bing:checked ~ .toolbar label[for=f-bing]{background:#fff;color:var(--green);box-shadow:0 2px 8px rgba(22,101,52,.16),0 1px 2px rgba(0,0,0,.08)}
   #f-jia:checked  ~ .toolbar label[for=f-jia]{color:var(--teal);box-shadow:0 2px 8px rgba(13,148,136,.20),0 1px 2px rgba(0,0,0,.08)}
   #f-yi:checked   ~ .toolbar label[for=f-yi]{color:var(--gold-ink);box-shadow:0 2px 8px rgba(234,157,12,.22),0 1px 2px rgba(0,0,0,.08)}
   #f-bing:checked ~ .toolbar label[for=f-bing]{color:var(--bing);box-shadow:0 2px 8px rgba(109,40,217,.20),0 1px 2px rgba(0,0,0,.08)}
@@ -216,6 +215,35 @@
   .rule p b{color:var(--ink)}
   footer{margin-top:44px;padding:26px 0 42px;border-top:1px solid var(--line);color:var(--faint);font-size:12.5px;text-align:center;line-height:2}
 
+  /* ===== 长河·乙组 夺冠晋级赛程（假设出线）===== */
+  .ko-path{display:none;margin-top:26px;padding:20px 20px 18px;background:linear-gradient(170deg,#fffdf5,var(--gold-bg));
+    border:1px solid var(--gold-border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+  #f-all:checked ~ main .ko-path[data-ko="yi"],
+  #f-yi:checked  ~ main .ko-path[data-ko="yi"]{display:block}
+  .ko-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:6px}
+  .ko-trophy{font-size:26px;line-height:1.1;flex:none}
+  .ko-headtxt h3{font-size:18px;font-weight:900;color:var(--green);margin-bottom:6px}
+  .ko-headtxt p{font-size:13.5px;color:var(--muted);line-height:1.65;max-width:820px}
+  .ko-headtxt p b{color:var(--gold-ink)}
+  .ko-steps{list-style:none;margin:0;padding:0}
+  .ko-step{display:flex;gap:14px;padding:15px 0;border-top:1px dashed var(--gold-border)}
+  .ko-step:first-child{border-top:0;padding-top:10px}
+  .ko-badge{flex:none;width:80px;align-self:flex-start;text-align:center;font-size:13px;font-weight:900;line-height:1.35;
+    color:#fff;background:linear-gradient(135deg,#0e4d27,var(--green));border-radius:10px;padding:9px 6px}
+  .ko-final .ko-badge{color:#3a2a06;background:linear-gradient(135deg,#f7b733,var(--gold))}
+  .ko-body{flex:1;min-width:0}
+  .ko-when{font-size:15.5px;font-weight:800;color:var(--green-deep);margin-bottom:7px}
+  .ko-when small{font-size:12px;font-weight:600;color:var(--faint);margin-left:7px}
+  .ko-games{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .ko-games li{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:600;color:var(--ink);
+    background:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 11px}
+  .ko-games li .ko-no{font-size:11.5px;font-weight:800;color:var(--faint)}
+  .ko-champ{border-color:var(--gold-border);background:linear-gradient(135deg,#fff6e0,#fdeecb);color:var(--gold-ink);font-weight:800}
+  .ko-note{font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:8px}
+  .ko-note b{color:var(--gold-ink)}
+  .ko-adv{display:inline-block;margin-top:9px;font-size:12px;font-weight:800;color:var(--green);background:#e6f7ea;border-radius:7px;padding:3px 10px}
+  .ko-final .ko-adv{color:#8a6d1a;background:#fdeecb}
+
   /* ===== 移动端 ===== */
   @media (max-width:760px){
     .group-cols{grid-template-columns:1fr}
@@ -246,22 +274,48 @@
     #f-ch:checked ~ .toolbar .track::after{left:18.5px}
     .count-hint{order:2;margin-left:auto;text-align:right;font-size:12px;width:auto}
     .focus-grid{grid-template-columns:1fr 1fr;gap:10px}
-    .fcard{padding:13px 12px 12px 15px}
-    .ftime{font-size:22px}
-    .fvs{font-size:13.5px;gap:6px}
-    .row{grid-template-columns:52px 1fr auto;grid-template-areas:"time meta note" "match match match";row-gap:5px;padding:12px 14px}
+    .fcard{padding:12px 11px 12px 14px}
+    /* 顶部改为上下两行：场序一行、相对时间胶囊一行，避免窄卡横向挤压 */
+    .fcard-top{flex-direction:column;align-items:flex-start;gap:5px;margin-bottom:7px}
+    .fno{font-size:11px;letter-spacing:.03em;line-height:1.3}
+    .frel{align-self:flex-start;font-size:10.5px;padding:2.5px 8px;letter-spacing:.02em}
+    /* 日期 / 时间：时间为视觉重心，KICK OFF 缩小跟随 */
+    .fdate{font-size:14px}
+    .fdate small{font-size:11.5px;margin-left:3px}
+    .ftime{font-size:21px;margin:1px 0 8px;line-height:1.15}
+    .ftime small{font-size:9.5px;margin-left:4px;letter-spacing:.06em}
+    /* 对阵：缩小字号与 VS/⚽ 占位，保证 4 字队名两端不溢出 */
+    .fvs{font-size:12.5px;gap:4px}
+    .fvs .vs{font-size:9px;padding:1.5px 4px;border-radius:5px}
+    .fvs .team.ch::before{font-size:10px;margin-right:2px}
+    /* 徽章行 */
+    .fmeta{gap:5px;margin-top:10px}
+    .gbadge,.cbadge{font-size:10.5px;padding:2px 7px}
+    /* 双赛提示：允许换行、缩小字号 */
+    .double{font-size:10px;line-height:1.35;padding:3px 7px;margin-top:7px}
+    /* 比赛行：组别徽章与场地徽章各占独立列，消除同格重叠；场地名较长，行内徽章再缩小 */
+    .row{grid-template-columns:52px auto auto 1fr;grid-template-areas:"time gbadge cbadge note" "match match match match";row-gap:5px;column-gap:8px;padding:12px 14px}
     .row .time{grid-area:time}
-    .row .gbadge{grid-area:meta;justify-self:start}
+    .row .gbadge{grid-area:gbadge;justify-self:start}
     .row .no{display:none}
-    .row .cbadge{grid-area:meta;justify-self:start;margin-left:8px}
+    .row .cbadge{grid-area:cbadge;justify-self:start}
+    .row .gbadge,.row .cbadge{font-size:10px;padding:2px 6px}
     .row .match{grid-area:match}
-    .row .note{grid-area:note}
+    .row .note{grid-area:note;min-width:0;white-space:normal;line-height:1.3}
     .day-head{padding:13px 14px}
     .day-date{font-size:17px}
     .day-note{font-size:12px}
+    /* 夺冠晋级赛程（移动端） */
+    .ko-path{margin-top:20px;padding:16px 14px 14px}
+    .ko-headtxt h3{font-size:16px}
+    .ko-headtxt p{font-size:12.5px}
+    .ko-step{gap:10px;padding:13px 0}
+    .ko-badge{width:62px;font-size:12px;padding:8px 4px}
+    .ko-when{font-size:13px}
+    .ko-when small{display:block;margin:2px 0 0}
+    .ko-games li{font-size:12.5px;padding:6px 9px;gap:6px}
   }
   @media (max-width:420px){
-    .focus-grid{grid-template-columns:1fr}
     .hero h1{font-size:24px}
   }
   @media print{
@@ -444,6 +498,55 @@
   <div class="fmeta" data-page-node-id="2JGsgOycDwIFBmXSvPJhsk"><span class="gbadge bing" data-page-node-id="OXaSp3cqRNl5Etu5J2clPV">丙组</span><span class="cbadge" data-page-node-id="sqtGX85kBxoJjfmHXHOWJ2">场序 51</span><span class="cbadge court" data-page-node-id="LBCrxb6JsGehNg5ZlKQCFN">1号场</span></div>
   
 </article>
+    </div>
+
+    <!-- 长河·乙组 夺冠晋级赛程（假设出线） -->
+    <div class="ko-path" data-ko="yi">
+      <div class="ko-head">
+        <span class="ko-trophy">🏆</span>
+        <div class="ko-headtxt">
+          <h3>夺冠晋级赛程 · 男子乙组（假设长河小学出线）</h3>
+          <p>长河小学以乙组 <b>B 组小组第一或第二</b> 出线后，按赛制「<b>小组前八抽签落位</b>」进入 1/4 决赛——小组第 1 与第 2 同入抽签池，落位由赛前抽签决定，<b>夺冠路径一致</b>。乙组淘汰赛集中在 <b>2027 年 3 月</b>于<b>博文小学（北场 / 南场）</b>进行，需连过 <b>1/4 决赛 → 半决赛 → 冠亚军决赛</b> 三关，<b>三连胜</b>即夺冠。以下为各阶段场序、时间与场地。</p>
+        </div>
+      </div>
+      <ol class="ko-steps">
+        <li class="ko-step">
+          <span class="ko-badge">1/4<br>决赛</span>
+          <div class="ko-body">
+            <div class="ko-when">2027 年 3 月 6 日（周六）<small>乙组第八轮 · 博文小学</small></div>
+            <ul class="ko-games">
+              <li><b>场序55</b> · 09:20 · 北场<span>抽签1 vs 抽签8</span></li>
+              <li><b>场序56</b> · 09:20 · 南场<span>抽签2 vs 抽签7</span></li>
+              <li><b>场序57</b> · 10:10 · 北场<span>抽签3 vs 抽签6</span></li>
+              <li><b>场序58</b> · 10:10 · 南场<span>抽签4 vs 抽签5</span></li>
+            </ul>
+            <div class="ko-note">小组第 1 / 第 2 均入<b>抽签池</b>（落位 1–8），对阵由抽签确定；<b>胜者</b>晋级 1–4 名半决赛。</div>
+          </div>
+        </li>
+        <li class="ko-step">
+          <span class="ko-badge">半<br>决赛</span>
+          <div class="ko-body">
+            <div class="ko-when">2027 年 3 月 13 日（周六）<small>乙组第九轮 · 博文小学</small></div>
+            <ul class="ko-games">
+              <li><b>场序59</b> · 09:20 · 北场<span>场序55胜者 vs 场序56胜者</span></li>
+              <li><b>场序60</b> · 09:20 · 南场<span>场序57胜者 vs 场序58胜者</span></li>
+            </ul>
+            <div class="ko-note">1–4 名半决赛。若长河从场序 55–58 某场胜出，即在此对应半决赛登场。</div>
+            <div class="ko-adv">胜者 → 冠亚军决赛（争冠）　·　负者 → 场序65 三四名决赛</div>
+          </div>
+        </li>
+        <li class="ko-step ko-final">
+          <span class="ko-badge">决<br>赛</span>
+          <div class="ko-body">
+            <div class="ko-when">2027 年 3 月 20 日（周六）<small>决赛日 · 博文小学</small></div>
+            <ul class="ko-games">
+              <li class="ko-champ"><b>场序66</b> · 10:10 · 南场<span>场序59胜者 vs 场序60胜者 · 冠亚军决赛 🏆</span></li>
+              <li><b>场序65</b> · 10:10 · 北场<span>场序59负者 vs 场序60负者 · 三四名决赛</span></li>
+            </ul>
+            <div class="ko-adv">场序66 胜者 → 男子乙组冠军 · 颁奖 11:45</div>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 
