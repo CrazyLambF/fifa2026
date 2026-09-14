@@ -621,5 +621,25 @@
   <div data-page-node-id="Rh4RAzMcygQUkh1GFgiABT">赛程整理自《2026滨江区"白马湖杯"青少年校园足球联赛分组及赛程安排》及最新甲组、乙组赛程表（2026.9.14 版 · 已同步乙组前两轮比分） · 具体时间以主办方最新通知为准</div>
   <div data-page-node-id="R0Mg2LTEvuZW1KpgYqyUJp">⚽ 祝长河小学的足球少年们踢出风采！</div>
 </footer>
+
+<script>
+/* 开赛倒计时标签：按访问当天动态计算（无 JS 时保留 HTML 静态文案） */
+(function () {
+  var now = new Date(); now.setHours(0, 0, 0, 0);
+  document.querySelectorAll('.frel[data-date]').forEach(function (el) {
+    var d = new Date(el.getAttribute('data-date') + 'T00:00:00');
+    var diff = Math.round((d - now) / 86400000);
+    var old = el.textContent, i = old.indexOf(' · ');
+    var suffix = i > -1 ? old.slice(i) : ''; /* 保留「· 双赛日」等后缀 */
+    var txt, cls;
+    if (diff < 0) { txt = '已结束'; cls = 'past'; }
+    else if (diff === 0) { txt = '今天开赛'; cls = 'today'; }
+    else if (diff === 1) { txt = '明天开赛'; cls = 'soon'; }
+    else { txt = diff + ' 天后'; cls = 'soon'; }
+    el.textContent = txt + suffix;
+    el.className = 'frel ' + cls;
+  });
+})();
+</script>
 </body>
 </html>
