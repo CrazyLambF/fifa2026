@@ -5,6 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" data-page-node-id="n5ju4fG6C4V6NwFlQTUASW">
 <title>2026滨江区"白马湖杯"青少年校园足球联赛 · 比赛日程</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23166534'/%3E%3Cpolygon points='50,30 65,41 59,59 41,59 35,41' fill='%23fff'/%3E%3C/svg%3E" data-page-node-id="HJ5dE91e9m7RHtQVKllWDF">
+<script>
+/* 每日首次访问自动刷新：确保拿到当天最新赛程/比分数据，避免浏览器缓存旧版本 */
+(function () {
+  try {
+    var d = new Date();
+    var today = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+    var STORE = 'bml_last_visit';
+    /* URL 参数兜底：本次已刷新过则不再触发，防止 localStorage 失效时无限刷新 */
+    var refreshed = new URLSearchParams(location.search).get('_daily');
+    if (localStorage.getItem(STORE) !== today && refreshed !== today) {
+      localStorage.setItem(STORE, today);
+      var url = new URL(location.href);
+      url.searchParams.set('_daily', today);
+      location.replace(url.toString()); /* 带清缓存参数重新加载，每天仅触发一次 */
+    }
+  } catch (e) { /* localStorage 不可用（如无痕模式）时忽略，不影响正常访问 */ }
+})();
+</script>
 <style>
   :root{--bg:#f6f4ee;--card:#fff;--ink:#1d2a22;--muted:#6d7b71;--faint:#9aa69d;--line:#e6e2d6;
     --green:#166534;--green-deep:#0b3d22;--gold:#d97706;--gold-ink:#92400e;--gold-bg:#fef7e0;
